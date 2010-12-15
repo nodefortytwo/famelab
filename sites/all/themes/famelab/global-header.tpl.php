@@ -11,27 +11,34 @@
 
 
 <body class="<?php print $body_classes; ?> show-grid">
-  <div id="page" class="container-16 clear-block">
 
-      <div id="site-header" class="clear-block grid-16">
+<div id="header-group-wrapper" class="full-width">
+    <div id="header-group" class="container-16">
+        <div id="header-group-inner" class="grid-16">
             <?php if ($linked_site_name): ?>
-                <h1 id="site-name" class="grid-7 alpha"><a href="/">FameLab</a></h1>
+            <h1 id="site-name" class="grid-7 alpha"><?php print $linked_site_name; ?></h1>
             <?php endif; ?>
-            
-            <div id="supporting-logo" class="grid-4 push-5">Cheltenham Festivals</div>
-            
+            <div id="supporting-logo">Festivals</div>
+        </div>
+    </div>
+</div>
+
+<div id="nav-group-wrapper" class="full-width">
+    <div id="nav-group" class="container-16">
+        <div id="nav-group-inner" class="grid-16">
             <?php if ($main_menu_links || $secondary_menu_links): ?>
-              <div id="site-menu" class="grid-16 alpha">
-                <?php print $main_menu_links; ?>
-                <?php print $secondary_menu_links; ?>
-                <?php if ($search_box): ?>
-                <div id="search-box"><?php print $search_box; ?></div>
-                <?php endif; ?>
-              </div>
+            <div id="site-menu" class="grid-16 alpha">
+            <?php print $main_menu_links; ?>
+            <?php print $secondary_menu_links; ?>
+            </div>
             <?php endif; ?>
         </div>
-      <?php if (!empty($messages)): ?>
-      <div id="messages" class="clear-block grid-16">
-          <?php print $messages; ?>
-      </div>
-      <?php endif; ?>
+    </div>
+</div>
+
+<div id="page-group-wrapper" class="full-width">
+    <div id="page-group" class="container-16">
+        <div id="page-group-inner" class="grid-16">
+
+
+

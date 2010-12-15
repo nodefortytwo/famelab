@@ -10,10 +10,230 @@ Red         =   #C90031
 Teal        =   #008B7D
 
 */
-
 html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td {
     background-repeat: no-repeat;
 }
+
+p, dl, hr, h1, h2, h3, h4, h5, h6, ol, ul, pre, table, address, fieldset {
+    margin-bottom: 10px;
+}
+
+
+body{
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 75%;
+    
+    background-color:#f8f8f8;
+    padding-bottom:20px;
+}
+
+.full-width{
+    width:100%;
+    float:left;
+
+}
+
+#header-group-wrapper{
+    background:#171614;
+}
+
+#header-group{
+ 
+}
+
+#header-group-inner{
+   padding:20px 0;
+}
+
+h1#site-name a{
+    text-indent: -9999px;
+    background-image: url(_img/famelab_logo_blue.png);
+    width:399px;
+    height:123px;
+    display:block;
+}
+
+#supporting-logo {
+    height:111px;
+    background-image: url(_img/ch_logo.png);
+    background-position: center right;
+    text-indent: -9999px;
+}
+
+#search-box{
+    float:right;
+    background:white;
+    width:225px;
+
+}
+#search label{
+    display:none;
+}
+
+#search input{
+    border:0;
+    background:white;
+    display: block;
+    float:left;
+    color:#0061A7;
+    height:20px;
+ }
+ #search input.form-text{
+     width:162px;
+}
+
+#search input.form-submit{
+    height:22px;
+    float:right;
+    border-left: 1px solid black;
+}
+
+#nav-group-wrapper{
+    background-image: url(_img/nav_bg.gif);
+    background-repeat: repeat-x;
+    background-position: bottom;
+    background-color: #feffff;
+    min-height: 20px;
+    border-top:1px solid #393b3a;
+}
+
+#site-menu ul,
+#site-menu li{
+    display:block;
+    list-style: none;
+    float:left;
+    margin:0;
+    padding:0;
+}
+
+#site-menu a{
+    display: block;
+    float:left;
+    padding:2px 10px;
+    color:black;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+#page-group-wrapper{
+    background-color:#e0edf3;
+    padding:10px 0;
+}
+
+.tabs{
+    position:absolute;
+    top:0;
+    right: 0;
+    width:500px
+}
+.tabs ul{
+    width:auto;
+}
+.tabs ul,
+.tabs li{
+    display:block;
+    list-style: none;
+    float:left;
+    margin:0;
+    padding:0;
+}
+
+.tabs li a{
+      padding:3px 5px;
+      text-decoration: none;
+      color:black;
+      display: block;
+      background-color: #f9f9f9;
+}
+.tabs li a:hover{
+    background-color:#cedbe1;
+}
+
+.block{
+    background-color: #fff;
+    border:1px solid white;
+
+}
+
+.block h2{
+    display: block;
+    width:95%;
+    background-color:#EAA420;
+    color:white;
+    font-size: 13px;
+    padding:2px 1% 2px 4%;
+    margin-bottom:5px
+}
+
+.block ul{
+    list-style: none;
+}
+
+#block-user-1 ul.menu{
+    diplay:block;
+    width:100%;
+}
+#block-user-1 ul.menu li{
+    diplay:block;
+    border-top:1px solid white;
+
+}
+
+#block-user-1 ul.menu li a{
+    color:black;
+    text-decoration: none;
+    width:95%;
+    padding-left:5%;
+    background-color: #f9f9f9;
+    display:block;
+}
+#block-user-1 ul.menu li a:hover{
+    background-color: #cedbe1;
+}
+
+#user-login-form #edit-submit{
+    background-color: #0061A7;
+    border:0;
+    width:100%;
+    color:white;
+    padding:3px 0;
+    margin-top:2px;
+}
+
+#user-login-form .item-list ul{
+    diplay:block;
+
+    width:100%;
+}
+#user-login-form .item-list ul li{
+    diplay:block;
+    border-top:1px solid white;
+
+}
+
+#user-login-form .item-list ul li a{
+    color:black;
+    text-decoration: none;
+    width:100%;
+    background-color: #f9f9f9;
+    display:block;
+}
+
+
+#footer-group-wrapper{
+    
+    padding:20px 0;
+    background-color:#f4f4f4;
+    border-top:1px solid #e4e4e4;
+    border-bottom:1px solid #e4e4e4;
+}
+
+#footer-group-wrapper .block{
+    background-color: transparent;
+    border:none;
+
+}
+/*
 
 body{
     font-family: "Arial Black",Arial,Helvetica;
@@ -178,3 +398,4 @@ p{
 #block-user-1 ul{
     list-style: none;
 }
+*/
