@@ -1,0 +1,48 @@
+#block-admin-display-form table{
+    width:100%;
+    background-color: #f0f6f8;
+}
+#block-admin-display-form table .region{
+    background-color: #00A5E5;
+    font-weight: bold;
+    border-bottom:1px solid #0061A7;
+    color:white;
+    padding:3px 5px;
+    margin-top:20px;
+    
+}
+td.region, td.module, td.container, td.category {
+
+    border-bottom: 1px solid #B4D7F0;
+    border-top: 1.5em solid #FFFFFF;
+
+}
+
+tr:first-child td.region, tr:first-child td.module, tr:first-child td.container, tr:first-child td.category {
+    border-top-width: 0;
+}
+
+.odd, .odd .block{
+    background-color: #f9f9f9;
+}
+.even, .even .block{
+    background-color: white;
+}
+a.tabledrag-handle {
+    float:left;
+    text-decoration: none;
+}
+a.tabledrag-handle .handle {
+    background: url("_img/drupal/draggable.png") no-repeat scroll 0 0 transparent;
+    height: 20px;
+    width: 20px;
+}
+
+#blocks tr.region-populated {
+    display: none;
+}
+
+#blocks tr.region-message {
+    color: #999999;
+    font-weight: normal;
+}

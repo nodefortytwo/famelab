@@ -146,6 +146,12 @@ ini_set('session.use_cookies',      1);
 ini_set('session.use_only_cookies', 1);
 ini_set('session.use_trans_sid',    0);
 ini_set('url_rewriter.tags',        '');
+ini_set('display_error',        'on');
+ini_set('post_max_size',        '100M');
+ini_set('upload_max_filesize',        '100M');
+ini_set('error_reporting','E_ALL & ~E_NOTICE');
+ini_set('max_execution_time',        '1000');
+ini_set('max_input_time',        '1000');
 
 /**
  * If you encounter a situation where users post a large amount of text, and

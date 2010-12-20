@@ -9,16 +9,18 @@ include('global-header.tpl.php');
       </div>
     <?php endif; ?>
     </div>
-
+    
+    <?php print $breadcrumb; ?>
 
     <div id="main" class="column <?php print ns('grid-16', $left, 4, $right, 3) . ' ' . ns('push-4', !$left, 4); ?>">
-      <?php print $breadcrumb; ?>
+      
       <?php if ($title): ?>
         <h1 class="title" id="page-title"><?php print $title; ?></h1>
       <?php endif; ?>
       <?php if ($tabs): ?>
         <div class="tabs"><?php print $tabs; ?></div>
       <?php endif; ?>
+
       <?php print $messages; ?>
       <?php print $help; ?>
 

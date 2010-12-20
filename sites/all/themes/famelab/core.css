@@ -18,6 +18,26 @@ p, dl, hr, h1, h2, h3, h4, h5, h6, ol, ul, pre, table, address, fieldset {
     margin-bottom: 10px;
 }
 
+h1{
+    font-size: 20px;
+}
+
+h2{
+    font-size: 16px;
+}
+h3{
+    font-size: 14px;
+    font-weight:bold;
+}
+h4{
+    font-size: 14px;
+}
+h5{
+    font-size: 12px;
+}
+
+
+
 
 body{
     font-family: Arial,Helvetica,sans-serif;
@@ -128,6 +148,10 @@ h1#site-name a{
 }
 .tabs ul{
     width:auto;
+    clear:both;
+    display:block;
+    float:right;
+    background-color: #f9f9f9;    
 }
 .tabs ul,
 .tabs li{
@@ -144,9 +168,14 @@ h1#site-name a{
       color:black;
       display: block;
       background-color: #f9f9f9;
+
 }
 .tabs li a:hover{
     background-color:#cedbe1;
+}
+
+.secondary{
+    top:24px;
 }
 
 .block{
@@ -164,7 +193,15 @@ h1#site-name a{
     padding:2px 1% 2px 4%;
     margin-bottom:5px
 }
-
+.block h2 a{
+    display:block;
+    width:100%;
+    color:white;
+    text-decoration: none;
+}
+.block h2 a:hover{
+    color:black;
+}
 .block ul{
     list-style: none;
 }
@@ -189,6 +226,10 @@ h1#site-name a{
 }
 #block-user-1 ul.menu li a:hover{
     background-color: #cedbe1;
+}
+
+#boxes-box-sponsors img{
+    padding-bottom: 5px;
 }
 
 #user-login-form #edit-submit{
@@ -232,6 +273,26 @@ h1#site-name a{
     background-color: transparent;
     border:none;
 
+}
+#fame-reg-create-account .form-item{
+    clear:both;
+}
+#fame-reg-create-account label{
+    float:left;
+    font-weight: bold;
+}
+#fame-reg-create-account .form-radios label{
+    font-weight: normal;
+}
+#fame-reg-create-account .form-text{
+    clear:both;
+    float:left;
+}
+
+#fame-reg-create-account .form-submit{
+    clear:both;
+    float:left;
+    margin-top:10px;
 }
 /*
 
