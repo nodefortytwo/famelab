@@ -10,7 +10,7 @@
 </head>
 
 
-<body class="<?php print $body_classes; ?> show-grid">
+<body class="<?php print $body_classes; ?> ">
 
 <div id="header-group-wrapper" class="full-width">
     <div id="header-group" class="container-16">

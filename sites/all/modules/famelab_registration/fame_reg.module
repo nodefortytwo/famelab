@@ -1,0 +1,160 @@
+<?php
+
+function fame_reg_block($op = 'list', $delta = 0, $edit = array()) {
+
+    switch ($op){
+        case 'list':
+            $blocks[0] = array(
+                'info' => t('Famelab: Registration Login Box')
+            );
+            return $blocks;
+        break;
+
+        case 'view':
+             switch ($delta) {
+                case 0:
+                    global $user;
+                    if ($user->uid == 0){
+                        $link = 'node/1';
+                        $link_text = 'Sign in';
+                        $title = '<a href="/?token_url=http%3A%2F%2Ffamelab.node42.co.uk%2Frpx%2Fend_point%3Fdestination%3D'.urlencode($link).'" class="rpxnow" onclick="return false;">'.$link_text.'</a>';
+                        $link_text = 'Create Account';
+                        $body = '<h2><a href="/user/register">'.$link_text.'</a></h2>';
+                    }else{
+                        $title = '';
+                        $body = '<h2>' . l('Edit profile', 'user/' . $user->uid) . '</h2>';
+                    }
+                    $block = array(
+                        'subject' => $title,
+                        'content' => $body,
+                    );
+                break;
+             }
+             return $block;
+        break;
+
+    }
+    
+}
+
+
+function fame_reg_menu(){
+
+    $items['user/register'] = array(
+        'title' => 'Create Account',
+        'page callback' => 'drupal_get_form',
+        'page arguments' => array('fame_reg_create_account'),
+        'access arguments' => array('access content'),
+        'type' => MENU_LOCAL_TASK,
+    );
+
+    return $items;
+
+}
+
+function fame_reg_create_account(){
+    $form = array();
+
+    $form['intro'] = array(
+        '#prefix' => '<p>',
+        '#value' => 'Please fill in your details below. When you have submitted the your details one of our administers will check and approve your account. <br/> Once access has been granted you will be able to complete your full profile.',
+        '#suffix' => '</p>'
+    );
+
+    $form['title'] = array(
+      '#type' => 'textfield',
+      '#title' => 'Title',
+      '#required' => 'true'
+    );
+
+    $form['firstname'] = array(
+      '#type' => 'textfield',
+      '#title' => 'Firstname',
+      '#required' => 'true'
+    );
+
+    $form['surname'] = array(
+      '#type' => 'textfield',
+      '#title' => 'Surname',
+      '#required' => 'true'
+    );
+     $form['username'] = array(
+      '#type' => 'textfield',
+      '#title' => 'Desired username',
+      '#required' => 'true'
+    );
+    $form['email'] = array(
+      '#type' => 'textfield',
+      '#title' => 'E-mail address',
+      '#required' => 'true'
+    );
+
+    $form['email_confirm'] = array(
+      '#type' => 'textfield',
+      '#title' => 'Confirm e-mail address',
+      '#required' => 'true'
+    );
+
+    $form['city'] = array(
+      '#type' => 'textfield',
+      '#title' => 'City'
+    );
+
+    $form['country'] = array(
+      '#type' => 'textfield',
+      '#title' => 'Country'
+    );
+
+    $form['famelab_relationship'] = array(
+      '#type' => 'radios',
+      '#title' => 'Relationship with famelab',
+      '#options' => array('Alumni', 'Sponsor', 'Fan', 'Other'),
+      '#required' => 'true'
+    );
+
+    $form['submit'] = array(
+      '#type' => 'submit',
+      '#value' => 'Submit'
+    );
+    return $form;
+}
+
+
+function fame_reg_create_account_validate($form, $form_state){
+
+    if($form_state['values']['email'] != $form_state['values']['email_confirm']){
+        form_set_error('email', 'email addresses do not match!');
+    }
+
+
+    if (!valid_email_address($form_state['values']['email'])){
+       form_set_error('email', 'the email address provided is not valid');
+    }
+}
+
+function fame_reg_create_account_submit($form, $form_state){
+    $roles = array();
+    
+    if ($form_state['values']['famelab_relationship'] === "0"){
+        $roles[3] = 'alumni';
+    }elseif ($form_state['values']['famelab_relationship'] === "1"){
+        $roles[4] = 'sponsor';
+    }
+
+
+    $newUser = array(
+        'name' =>  $form_state['values']['username'],
+        'pass' => user_password(), // random password
+        'mail' => $form_state['values']['email'],
+        'status' => 0,
+        'init' => $form_state['values']['email'],
+        'profile_title' => $form_state['values']['title'],
+        'profile_firstname' => $form_state['values']['firstname'],
+        'profile_surname' => $form_state['values']['surname'],
+        'profile_town' => $form_state['values']['city'],
+        'profile_country' => $form_state['values']['country'],
+        'roles' => $roles
+    );
+    $account = user_save(null, $newUser);
+
+}
