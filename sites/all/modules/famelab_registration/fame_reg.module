@@ -48,6 +48,13 @@ function fame_reg_menu(){
         'type' => MENU_LOCAL_TASK,
     );
 
+    $items['user/register/complete/%'] = array(
+        'title' => 'Registration Complete',
+        'page callback' => 'fame_reg_create_account_complete',
+        'page arguments' => array(3),
+        'access arguments' => array('access content'),
+        'type' => MENU_CALLBACK,
+    );
     return $items;
 
 }
@@ -156,5 +163,24 @@ function fame_reg_create_account_submit($form, $form_state){
         'roles' => $roles
     );
     $account = user_save(null, $newUser);
+    if (is_object($account)){
+        drupal_goto('user/register/complete/' . $account->uid);
+    }else{
+        drupal_set_message('User registration has failed. Please contact famelab directly. (ERR/REG/1)');
+    }
 
+}
+
+function fame_reg_create_account_complete($uid){
+    $user = user_load($uid);
+    if (!is_object($user)){
+        drupal_set_message('User registration has failed. Please contact famelab directly. (ERR/REG/2)');
+        drupal_goto('user/register');
+    }
+
+    $html = '<p>' . 'Thank you for registering %firstname,' . '</p>';
+    $html .= '<p>' . 'A site administrator will look at your application shortly and get back to you via e-mail as soon as possible.' . '</p>';
+    $html .= '<p><strong>FameLab Web Team</strong></p>';
+    $html = t($html, array('%firstname' => $user->profile_firstname));
+    return $html;
 }
