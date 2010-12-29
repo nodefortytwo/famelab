@@ -22,6 +22,12 @@ h1{
     font-size: 20px;
 }
 
+h1#page-title{
+    font-size: 35px;
+    display: block;
+    border-bottom: 1px solid #889398
+}
+
 h2{
     font-size: 16px;
 }
@@ -176,6 +182,29 @@ h1#site-name a{
 
 .secondary{
     top:24px;
+}
+
+#main-content{
+    background-color:white;
+    padding:20px 2%;
+    float:left;
+    width:96%;
+  }
+
+.node ul.links{
+  position:absolute;
+  left:0;
+  bottom:0;
+  width:759px;
+  background-color: #fafcfd;
+  display: block;
+  list-style: none;
+  margin:0;
+  padding:0;
+}
+
+.node ul.links li{
+    padding:5px 0 5px 5px;
 }
 
 .block{
