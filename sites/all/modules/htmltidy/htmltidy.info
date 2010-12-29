@@ -1,0 +1,12 @@
+; $Id $
+name = "HTML Tidy"
+description = "Tidy up your HTML."
+core = 6.x
+package = "Input Formats"
+
+; Information added by drupal.org packaging script on 2010-03-23
+version = "6.x-1.2"
+core = "6.x"
+project = "htmltidy"
+datestamp = "1269355827"
+
