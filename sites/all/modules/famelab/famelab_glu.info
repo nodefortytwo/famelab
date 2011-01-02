@@ -1,0 +1,4 @@
+
+name = "Famelab Glue Code"
+description = "Various Famelab specific tweaks and functionaility too small to be seperated out. Hacks are likely to be placed here"
+core = 6.x

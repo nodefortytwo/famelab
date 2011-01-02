@@ -1,0 +1,145 @@
+.form-item{
+    clear:both;
+    float:left;
+}
+label{
+    float:left;
+    font-weight: bold;
+}
+.form-radios label{
+    font-weight: normal;
+}
+.form-text,
+.form-textarea{
+    clear:both;
+    float:left;
+}
+
+ .form-submit{
+    clear:both;
+    float:left;
+    margin-top:10px;
+}
+
+form fieldset{
+    width:98%;
+    padding:1%;
+    border: 1px solid #ccc;
+}
+
+/*
+** Collapsing fieldsets
+*/
+html.js fieldset.collapsed {
+  border-bottom-width: 0;
+  border-left-width: 0;
+  border-right-width: 0;
+  margin-bottom: 0;
+  height: 1em;
+}
+html.js fieldset.collapsed * {
+  display: none;
+}
+html.js fieldset.collapsed legend {
+  display: block;
+}
+html.js fieldset.collapsible legend a {
+  padding-left: 15px; /* LTR */
+  background: url(/misc/menu-expanded.png) 5px 75% no-repeat; /* LTR */
+}
+html.js fieldset.collapsed legend a {
+  background-image: url(/misc/menu-collapsed.png); /* LTR */
+  background-position: 5px 50%; /* LTR */
+}
+/* Note: IE-only fix due to '* html' (breaks Konqueror otherwise). */
+* html.js fieldset.collapsed legend,
+* html.js fieldset.collapsed legend *,
+* html.js fieldset.collapsed table * {
+  display: inline;
+}
+/* For Safari 2 to prevent collapsible fieldsets containing tables from dissapearing due to tableheader.js. */
+html.js fieldset.collapsible {
+  position: relative;
+}
+html.js fieldset.collapsible legend a {
+  display: block;
+}
+/* Avoid jumping around due to margins collapsing into collapsible fieldset border */
+html.js fieldset.collapsible .fieldset-wrapper {
+  overflow: auto;
+}
+
+form .description{
+    clear:both;
+    color:#666666;
+}
+
+form .description li{
+    margin-left:20px;
+}
+
+.password-strength,
+span.password-confirm
+{
+    visibility: hidden;
+}
+
+.password-confirm {
+    clear:both;
+    float:left;
+
+}
+form p{
+    clear: both;
+}
+#edit-pass-wrapper{
+    position: relative;
+
+}
+.password-strength,
+.password-description{
+   position: absolute;
+   top:0;
+   left:330px;
+   width:400px;
+}
+.password-description{
+    top:1.5em;
+}
+.password-strength .password-title{
+    float:left;
+    font-weight:bold;
+
+}
+
+.password-result{
+    float:left;
+    padding-left: 5px;
+}
+
+/*User Login Stuff*/
+#user-login{
+   position: relative;
+}
+#user-login .form-item,
+#user-login .form-item input{
+    width:300px;
+}
+#user-login .item-list{
+    float:right;
+    position: absolute;
+    top:0;
+    left:330px;
+
+}
+
+#user-login .item-list ul{
+    list-style: none;
+}
+
+#user-login .rpx-link{
+    background-color:#F4F4F4;
+    display:block;
+    border:#E4E4E4;
+    padding:20px;
+}

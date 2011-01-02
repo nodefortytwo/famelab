@@ -10,8 +10,9 @@ regions[header] = "Header"
 regions[footer] = "Footer"
 scripts[] = "js/tao.js"
 
-stylesheets[screen][] = "core.css"
-stylesheets[screen][] = "admin.css"
+stylesheets[screen][] = "_css/core.css"
+stylesheets[screen][] = "_css/admin.css"
+stylesheets[screen][] = "_css/form.css"
 
 
 ; Omit core stylesheets.

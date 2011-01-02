@@ -33,7 +33,7 @@ a.tabledrag-handle {
     text-decoration: none;
 }
 a.tabledrag-handle .handle {
-    background: url("_img/drupal/draggable.png") no-repeat scroll 0 0 transparent;
+    background: url("../_img/drupal/draggable.png") no-repeat scroll 0 0 transparent;
     height: 20px;
     width: 20px;
 }
