@@ -610,7 +610,7 @@ function _rpx_update_user_login_form( &$form, &$form_state ) {
     $icons .= l(theme('rpx_icon', $provider, 'rpx-icon'), $sign_in_url, array('html' => TRUE, 'query' => array('token_url' => $token_url), 'attributes' => array('class' => 'rpxnow', 'onclick' => 'return false;')));
   }
   $items[] = array(
-    'data' => l((variable_get('rpx_signin_string', RPX_SIGNIN_STRING)=='') ? RPX_SIGNIN_STRING : variable_get('rpx_signin_string', RPX_SIGNIN_STRING), $sign_in_url, array('query' => array('token_url' => $token_url), 'attributes' => array('class' => 'rpxnow', 'onclick' => 'return false;'))) .'<br />'. $icons,
+    'data' => '<h2>Or use OpenID</h2>' . l((variable_get('rpx_signin_string', RPX_SIGNIN_STRING)=='') ? RPX_SIGNIN_STRING : variable_get('rpx_signin_string', RPX_SIGNIN_STRING), $sign_in_url, array('query' => array('token_url' => $token_url), 'attributes' => array('class' => 'rpxnow', 'onclick' => 'return false;'))) .'<br />'. $icons,
     'class' => 'rpx-link',
   );
   
@@ -727,7 +727,7 @@ function _rpx_add_to_account_block() {
   $sign_in_url = "$realm_scheme://$realm/openid/v2/signin";
   $token_url = _rpx_token_url(array('add_to_account' => 'true'));
   
-  $output = l('Add 3rd party identifier', $sign_in_url, array('query' => array('token_url' => $token_url), 'attributes' => array('class' => 'rpxnow', 'onclick' => 'return false;')));
+  $output = l('Add OpenID Accounts', $sign_in_url, array('query' => array('token_url' => $token_url), 'attributes' => array('class' => 'rpxnow', 'onclick' => 'return false;')));
   return $output;
 }
 
