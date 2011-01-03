@@ -31,6 +31,7 @@ function theme_media_youtube_video_upload_failed($message, $status = array()) {
 }
 
 function template_preprocess_media_youtube_default_external(&$variables) {
+   
   // Merge in our default variables.
   $variables = array_merge($variables, $variables['variables']);
 
@@ -50,6 +51,7 @@ function template_preprocess_media_youtube_default_external(&$variables) {
  * @TODO: Break this down; it's too big!!!
  */
 function template_preprocess_media_youtube_flash(&$variables) {
+  
   static $count;
   // Merge in our default variables.
   $variables = array_merge($variables, $variables['variables']);
@@ -60,6 +62,8 @@ function template_preprocess_media_youtube_flash(&$variables) {
   $width = $variables['width'];
   $height = $variables['height'];
   $autoplay = $variables['autoplay'];
+  $width = 640;
+  $height = 385;
   if ($video_id = check_plain($video_id)) {
     // Display a message if a video is unavailable.
     if (($variables['item']['status'] == EMFIELD_STATUS_UNAVAILABLE) && !$variables['no_unavailable_message']) {

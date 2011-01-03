@@ -26,13 +26,9 @@
 <div id="nav-group-wrapper" class="full-width">
     <div id="nav-group" class="container-16">
         <div id="nav-group-inner" class="grid-16">
-            <?php if ($main_menu_links || $secondary_menu_links): ?>
-            <div id="site-menu" class="grid-16 alpha">
-            <?php print $main_menu_links; ?>
-            <?php print $secondary_menu_links; ?>
-            </div>
+            <?php if ($header): ?>
+                <?php print $header; ?>
             <?php endif; ?>
-        </div>
     </div>
 </div>
 
