@@ -42,24 +42,31 @@
     padding-top:10px;
 }
 
-.bottom-row .panel-pane{
+.front .bottom-row .panel-pane{
     min-height:60px;
-    background-color:#0061A7;
+    background-color:#86b5d5;
     color:white;
-    padding:15px;
+    padding:10px;
+    border:1px solid #fff;
+    text-align: center;
+    position: relative;
+}
+
+.bottom-row .panel-pane h2{
+    font-size: 12px;
 }
 
 .bottom-row .panels-flexible-region-3-second  .panel-pane{
-     background-color:#EAA420;
+     background-color:#e4d09f;
 }
 
 .bottom-row .panels-flexible-region-3-third  .panel-pane{
-     background-color:#C90031;
+     background-color:#d78ea5;
 }
 
 .bottom-row .panels-flexible-region-3-forth  .panel-pane{
-     background-color:#EAA420;
+     background-color:#a2d1a5;
 }
 .bottom-row .panels-flexible-region-3-fifth  .panel-pane{
-     background-color:#44A631;
+     background-color:#a2d1a5;
 }
