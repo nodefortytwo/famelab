@@ -2,6 +2,28 @@
 function famelab_glu_init(){
 
 }
+
+function famelab_glu_feedapi_mapper($op, $node, $field_name, $feed_element = array(), $sub_field = ''){
+
+     switch ($op){
+         case 'describe':
+             return t('Maps a URL to an EmField');
+             break;
+         case 'list':
+             return true;
+             break;
+         case 'map';
+            if (!is_array($feed_element)) {
+                $field = $node->$field_name;
+                $field[0]['value'] = $feed_element;
+                $node->$field_name = $field;
+            }
+            return $node;
+            break;
+     }
+}
+
+
 function famelab_glu_nodeapi(&$node, $op, $a3 = NULL, $a4 = NULL){
     switch ($op){
         case 'validate':
