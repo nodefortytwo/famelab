@@ -13,6 +13,7 @@ scripts[] = "js/tao.js"
 stylesheets[screen][] = "_css/core.css"
 stylesheets[screen][] = "_css/admin.css"
 stylesheets[screen][] = "_css/form.css"
+stylesheets[screen][] = "_css/front.css"
 
 
 ; Omit core stylesheets.

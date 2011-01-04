@@ -52,7 +52,10 @@ body{
     background-color:#f8f8f8;
     padding-bottom:20px;
 }
-
+.clear-block{
+    clear:both;
+    display: block;
+}
 .full-width{
     width:100%;
     float:left;
@@ -123,24 +126,79 @@ h1#site-name a{
     border-top:1px solid #393b3a;
 }
 
-#site-menu ul,
-#site-menu li{
+#block-nice_menus-1{
+    border:0;
+    background: transparent;
+}
+#nice-menu-1 ul, #nice-menu-1 li{
+    background-color: white;
+    border:0;
+}
+#nice-menu-1 li{
+    border:1px solid #efefef;
+    border-width: 0 1px 1px 1px;
+    padding:0px 1em;
+    max-width:95px;
+    text-align:center;
+    height:40px;
+}
+
+/*Hacky fixed width override for smaller menu items NOT GOOD*/
+
+#nice-menu-1 li.menu-path-node-23{width:57px;}
+#nice-menu-1 li.menu-path-node-2{width:70px;}
+
+
+#block-nice_menus-1 ul.nice-menu-down>li{
+    border-left: 0;
+    border-bottom: 0;
+}
+
+#nice-menu-1 a,
+#nice-menu-1 a:visited{
+    color:black;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+#nice-menu-1 li.active-trail,
+#nice-menu-1 li:hover{
+    background-color: #00A5E5;
+   
+}
+
+#nice-menu-1 li.active-trail>a,
+#nice-menu-1 li:hover>a{
+    color:white;
+}
+#nice-menu-1 li ul li ul{
+    left:14.5em;
+    top:0px;
+
+}
+
+/*
+#nice-menu-1 ul,
+#nice-menu-1 li{
     display:block;
     list-style: none;
     float:left;
     margin:0;
     padding:0;
+    background-color: white;
+    border:none;
 }
-
-#site-menu a{
+#nice-menu-1 li.menuparent{
+  padding-right:5px;
+}
+#nice-menu-1 a{
     display: block;
     float:left;
     padding:2px 10px;
     color:black;
-    text-decoration: none;
+    text-decoration: none; 
     text-transform: uppercase;
 }
-
+*/
 #page-group-wrapper{
     background-color:#e0edf3;
     padding:10px 0;

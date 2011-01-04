@@ -69,6 +69,6 @@
   <div class="content">
     <?php print $content ?>
   </div>
-
+  <div class="clear-block">&nbsp;</div>
   <?php print $links; ?>
 </div>
