@@ -268,6 +268,7 @@ function emvideo_youtube_thumbnail($field, $item, $formatter, $node, $width, $he
  *    the html of the embedded video
  */
 function emvideo_youtube_video($video_id, $width, $height, $field, $item, $node, $autoplay, $options = array()) {
+    
   $options['video_id'] = isset($options['video_id']) ? $options['video_id'] : $video_id;
   $options['width'] = isset($options['width']) ? $options['width'] : $width;
   $options['height'] = isset($options['height']) ? $options['height'] : $height;
