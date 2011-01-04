@@ -1,0 +1,479 @@
+/*
+Colours:
+Pink                =   #E4006A
+Transparent Pink    =   #d78ea5
+Blue                =   #00A5E5
+Transparent Blue    =   #86b5d5
+Dark Blue           =   #0061A7
+Green               =   #44A631
+Transparent Green   =   #
+Yellow              =   #E5C516
+Orange              =   #EAA420
+Transparent Orange  =   #e4d09f
+Red                 =   #C90031
+Teal                =   #008B7D
+
+*/
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td {
+    background-repeat: no-repeat;
+}
+
+p, dl, hr, h1, h2, h3, h4, h5, h6, ol, ul, pre, table, address, fieldset {
+    margin-bottom: 10px;
+}
+
+h1{
+    font-size: 20px;
+}
+
+h1#page-title{
+    font-size: 35px;
+    display: block;
+    border-bottom: 1px solid #889398
+}
+
+h2{
+    font-size: 16px;
+}
+h3{
+    font-size: 14px;
+    font-weight:bold;
+}
+h4{
+    font-size: 14px;
+}
+h5{
+    font-size: 12px;
+}
+
+
+
+
+body{
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 75%;
+    
+    background-color:#f8f8f8;
+    padding-bottom:20px;
+}
+.clear-block{
+    clear:both;
+    display: block;
+}
+.full-width{
+    width:100%;
+    float:left;
+
+}
+
+#header-group-wrapper{
+    background:#171614;
+}
+
+#header-group{
+ 
+}
+
+#header-group-inner{
+   padding:20px 0;
+}
+
+h1#site-name a{
+    text-indent: -9999px;
+    background-image: url(../_img/famelab_logo_blue.png);
+    width:399px;
+    height:123px;
+    display:block;
+}
+
+#supporting-logo {
+    height:111px;
+    background-image: url(../_img/ch_logo.png);
+    background-position: center right;
+    text-indent: -9999px;
+}
+
+#search-box{
+    float:right;
+    background:white;
+    width:225px;
+
+}
+#search label{
+    display:none;
+}
+
+#search input{
+    border:0;
+    background:white;
+    display: block;
+    float:left;
+    color:#0061A7;
+    height:20px;
+ }
+ #search input.form-text{
+     width:162px;
+}
+
+#search input.form-submit{
+    height:22px;
+    float:right;
+    border-left: 1px solid black;
+}
+
+#nav-group-wrapper{
+    background-image: url(../_img/nav_bg.gif);
+    background-repeat: repeat-x;
+    background-position: bottom;
+    background-color: #feffff;
+    min-height: 20px;
+    border-top:1px solid #393b3a;
+}
+
+<<<<<<< HEAD
+#block-nice_menus-1{
+    border:0;
+    background: transparent;
+}
+#nice-menu-1 ul, #nice-menu-1 li{
+    background-color: white;
+    border:0;
+}
+#nice-menu-1 li{
+    border:1px solid #efefef;
+    border-width: 0 1px 1px 1px;
+    padding:0px 1em;
+    max-width:95px;
+    text-align:center;
+    height:40px;
+}
+
+/*Hacky fixed width override for smaller menu items NOT GOOD*/
+
+#nice-menu-1 li.menu-path-node-23{width:57px;}
+#nice-menu-1 li.menu-path-node-2{width:70px;}
+
+
+#block-nice_menus-1 ul.nice-menu-down>li{
+    border-left: 0;
+    border-bottom: 0;
+}
+
+#nice-menu-1 a,
+#nice-menu-1 a:visited{
+    color:black;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+#nice-menu-1 li.active-trail,
+#nice-menu-1 li:hover{
+    background-color: #00A5E5;
+   
+}
+
+#nice-menu-1 li.active-trail>a,
+#nice-menu-1 li:hover>a{
+    color:white;
+}
+#nice-menu-1 li ul li ul{
+    left:14.5em;
+    top:0px;
+
+}
+
+/*
+#nice-menu-1 ul,
+#nice-menu-1 li{
+    display:block;
+    list-style: none;
+    float:left;
+    margin:0;
+    padding:0;
+    background-color: white;
+    border:none;
+}
+#nice-menu-1 li.menuparent{
+  padding-right:5px;
+}
+#nice-menu-1 a{
+    display: block;
+=======
+#block-menu_block-2{
+    margin:0;
+    padding:0;
+    float:left;
+    width:100%;
+}
+
+#block-menu_block-2 ul{
+    float:left;
+    width:100%;
+    margin-bottom: 0;
+}
+
+#block-menu_block-2 li{
+>>>>>>> d1bd57125ffa0050bda47de45be581be2611a4ae
+    float:left;
+    display:block;
+}
+
+#block-menu_block-2 li a{
+    padding:2px 10px;
+<<<<<<< HEAD
+    color:black;
+    text-decoration: none; 
+=======
+    display:block;
+    border-right:1px solid #efefef;
+>>>>>>> d1bd57125ffa0050bda47de45be581be2611a4ae
+    text-transform: uppercase;
+    font-size:12px;
+    text-decoration: none;
+    color:black;
+    max-width: 90px;
+    min-height: 40px;
+    text-align: center;
+}
+
+#block-menu_block-2 li a:hover{
+    background-color: #0061A7;
+    color:white;
+}
+*/
+#page-group-wrapper{
+    background-color:#e0edf3;
+    padding:10px 0;
+}
+
+.tabs{
+    position:absolute;
+    top:0;
+    right: 0;
+    width:500px
+}
+.tabs ul{
+    width:auto;
+    clear:both;
+    display:block;
+    float:right;
+    background-color: #f9f9f9;    
+}
+.tabs ul,
+.tabs li{
+    display:block;
+    list-style: none;
+    float:left;
+    margin:0;
+    padding:0;
+}
+
+.tabs li a{
+      padding:3px 5px;
+      text-decoration: none;
+      color:black;
+      display: block;
+      background-color: #f9f9f9;
+
+}
+.tabs li a:hover,
+.tabs li.active a{
+    background-color:#cedbe1;
+}
+
+.secondary{
+    top:24px;
+}
+
+#main-content{
+    background-color:white;
+    padding:20px 2%;
+    float:left;
+    width:96%;
+  }
+
+.node ul.links{
+  position:absolute;
+  left:0;
+  bottom:0;
+  width:759px;
+  background-color: #fafcfd;
+  display: block;
+  list-style: none;
+  margin:0;
+  padding:0;
+}
+
+.node ul.links li{
+    padding:5px 0 5px 10px;
+    float:left;
+    display: block;
+}
+
+.block{
+    background-color: #fff;
+    border:1px solid white;
+
+}
+
+.block h2{
+    display: block;
+    width:95%;
+    background-color:#EAA420;
+    color:white;
+    font-size: 13px;
+    padding:2px 1% 2px 4%;
+    margin-bottom:5px
+}
+.block h2 a{
+    display:block;
+    width:100%;
+    color:white;
+    text-decoration: none;
+}
+.block h2 a:hover{
+    color:black;
+}
+.block ul{
+    list-style: none;
+}
+
+#block-user-1 ul.menu{
+    diplay:block;
+    width:100%;
+}
+#block-user-1 ul.menu li{
+    diplay:block;
+    border-top:1px solid white;
+
+}
+
+#block-user-1 ul.menu li a{
+    color:black;
+    text-decoration: none;
+    width:95%;
+    padding-left:5%;
+    background-color: #f9f9f9;
+    display:block;
+}
+#block-user-1 ul.menu li a:hover{
+    background-color: #cedbe1;
+}
+
+#boxes-box-sponsors img{
+    padding-bottom: 5px;
+}
+
+#user-login-form #edit-submit{
+    background-color: #0061A7;
+    border:0;
+    width:100%;
+    color:white;
+    padding:3px 0;
+    margin-top:2px;
+}
+
+#user-login-form .item-list ul{
+    diplay:block;
+
+    width:100%;
+}
+#user-login-form .item-list ul li{
+    diplay:block;
+    border-top:1px solid white;
+
+}
+
+#user-login-form .item-list ul li a{
+    color:black;
+    text-decoration: none;
+    width:100%;
+    background-color: #f9f9f9;
+    display:block;
+}
+
+
+#footer-group-wrapper{
+    
+    padding:20px 0;
+    background-color:#f4f4f4;
+    border-top:1px solid #e4e4e4;
+    border-bottom:1px solid #e4e4e4;
+}
+
+#footer-group-wrapper .block{
+    background-color: transparent;
+    border:none;
+
+}
+
+dl.quote{
+    display:block;
+    float:left;
+    width:100%;
+    background-color:#fafcfd;
+}
+
+dl.quote dt{
+    font-family: "Reenie Beanie";
+    font-size: 27px;
+}
+dl.quote dd{
+    font-weight: bold;
+    padding-left:10px;
+}
+dl.quote dd:before{
+content: "-  ";
+}
+/*
+** Floating header for tableheader.js
+*/
+table.sticky-header {
+  margin-top: 0;
+  background: #fff;
+}
+
+.item-list .pager {
+  clear: both;
+  text-align: center;
+}
+.item-list .pager li {
+  background-image:none;
+  display:inline;
+  list-style-type:none;
+  padding: 0.5em;
+}
+.pager-current {
+  font-weight:bold;
+}
+
+th.active img {
+  display: inline;
+}
+tr.even, tr.odd {
+  background-color: #eee;
+  border-bottom: 1px solid #ccc;
+  padding: 0.1em 0.6em;
+}
+tr.drag {
+  background-color: #fffff0;
+}
+tr.drag-previous {
+  background-color: #ffd;
+}
+td.active {
+  background-color: #ddd;
+}
+td.checkbox, th.checkbox {
+  text-align: center;
+}
+tbody {
+  border-top: 1px solid #ccc;
+}
+tbody th {
+  border-bottom: 1px solid #ccc;
+}
+thead th {
+  text-align: left; /* LTR */
+  padding-right: 1em; /* LTR */
+  border-bottom: 3px solid #ccc;
+}
