@@ -271,7 +271,8 @@ h1#site-name a{
     margin: .3em 0;
 }
 
-#sidebar-left .block-menu_block li a:hover{
+#sidebar-left .block-menu_block li a:hover,
+#sidebar-left .block-menu_block li a.active{
     color:white;
     background-color:#889398;
     text-decoration: none;
