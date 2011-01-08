@@ -23,7 +23,13 @@ function famelab_alumni_menu(){
     return $items;
 
 }
-
+//Redirect Users to the their user page
 function famelab_alumni_your_account(){
-    return 'hi';
+    global $user;
+    $path = drupal_lookup_path('alias', 'user/' . $user->uid);
+    if ($path){
+        drupal_goto($path);
+    }else{
+        drupal_goto('user/' . $user->uid);
+    }
 }
