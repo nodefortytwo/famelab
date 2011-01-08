@@ -14,7 +14,7 @@ stylesheets[screen][] = "_css/core.css"
 stylesheets[screen][] = "_css/admin.css"
 stylesheets[screen][] = "_css/form.css"
 stylesheets[screen][] = "_css/front.css"
-
+stylesheets[screen][] = "_css/panels.css"
 
 ; Omit core stylesheets.
 ; Note that several stylesheets are left included because of their non-invasive

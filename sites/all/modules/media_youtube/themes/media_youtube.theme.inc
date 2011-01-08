@@ -62,8 +62,7 @@ function template_preprocess_media_youtube_flash(&$variables) {
   $width = $variables['width'];
   $height = $variables['height'];
   $autoplay = $variables['autoplay'];
-  $width = 640;
-  $height = 385;
+
   if ($video_id = check_plain($video_id)) {
     // Display a message if a video is unavailable.
     if (($variables['item']['status'] == EMFIELD_STATUS_UNAVAILABLE) && !$variables['no_unavailable_message']) {
