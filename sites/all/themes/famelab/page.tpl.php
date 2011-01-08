@@ -6,7 +6,7 @@ include('global-header.tpl.php');
    
     </div>
     
-    <?php print $breadcrumb; ?>
+   <?php print $breadcrumb; ?>
 
     <div id="main" class="column <?php print ns('grid-16', $left, 4, $right, 3) . ' ' . ns('push-4', !$left, 4); ?> omega alpha">
       

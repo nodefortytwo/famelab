@@ -190,6 +190,23 @@ h1#site-name a{
     padding:10px 0;
 }
 
+/*Breadcrumb*/
+#breadcrumb ul{
+    display: block;
+    float:left;
+    list-style: none;
+}
+
+#breadcrumb li{
+    display: block;
+    float:left;
+    padding-left: 10px;
+}
+#breadcrumb li.first{
+    padding-left:0;
+}
+
+/*tabs (local tasks)*/
 .tabs{
     position:absolute;
     top:0;
@@ -227,6 +244,41 @@ h1#site-name a{
 
 .secondary{
     top:24px;
+}
+
+/* Left Nav */
+
+#sidebar-left .block-menu_block{
+    width:100%;
+    float:left;
+    border:0;
+    border-top:1px solid #889398;
+    background: none;
+    margin-top: 37px;
+}
+
+#sidebar-left .block-menu_block li{
+    font-size: 15px;
+    border-bottom: 1px solid #cedbe1;
+}
+
+#sidebar-left .block-menu_block li a{
+    color:#889398;
+    padding:.1em 5% ;
+    display: block;
+    background-color: white;
+    width:90%;
+    margin: .3em 0;
+}
+
+#sidebar-left .block-menu_block li a:hover{
+    color:white;
+    background-color:#889398;
+    text-decoration: none;
+}
+
+#sidebar-left .block-menu_block li.last{
+    border-bottom: 1px solid #889398;
 }
 
 #main-content{
