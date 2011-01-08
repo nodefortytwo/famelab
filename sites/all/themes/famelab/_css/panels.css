@@ -21,7 +21,60 @@
   padding: 0;
 }
 
+.pane-content{
+    float:left;
+    width:100%;
+}
 
 #main .panels-flexible-region-inside{
    padding: 0;
+}
+
+h2.pane-title{
+    background-color: #0061A7;
+    background-repeat: repeat;
+    color:white;
+    font-weight: bold;
+    padding:0 1em;
+    line-height: 1.8em;
+    font-size: 13px;
+    float:left;
+    margin:0;
+}
+
+.pane-top-border .pane-content{
+    clear:both;
+    border-top:2px solid #0061A7;
+
+}
+
+.pane-black .pane-content{
+    background-color: black;
+}
+
+.pane-white .pane-content{
+    background-color: white;
+}
+
+.pane-content .item-list ul{
+    list-style: none;
+    float:left;
+    width:100%;
+    padding:0;
+    margin:0;
+}
+
+.pane-content .item-list ul li{
+    float:left;
+    width:94%;
+    padding:3px 3%;
+    border-bottom: 1px solid #efefef;
+}
+
+.pane-content .item-list ul li.first{
+    margin-top:5px;
+}
+
+.pane-content .item-list ul li.last{
+    border-bottom: 0;
 }

@@ -15,16 +15,16 @@ function fame_reg_block($op = 'list', $delta = 0, $edit = array()) {
                 case 0:
                     global $user;
                     if ($user->uid == 0){
-                        $link = 'node/1';
-                        $link_text = 'Sign in';
-                        //$title = '<a href="/?token_url=http%3A%2F%2Ffamelab.node42.co.uk%2Frpx%2Fend_point%3Fdestination%3D'.urlencode($link).'" class="rpxnow" onclick="return false;">'.$link_text.'</a>';
-                        $title = l('Sign in', 'user');
-                        $link_text = 'Create Account';
-                        $body = '<h2><a href="/user/register">'.$link_text.'</a></h2>';
+                        $title = 'Join Famelab';
+                        $links[] = l('Sign In', 'user');
+                        $links[] = l('Create Account', 'user/register');
                     }else{
-                        $title = '';
-                        $body = '<h2>' . l('Edit profile', 'user/' . $user->uid) . '</h2>';
+                        $title = 'Your Account';
+                        $links[] = l('Edit profile', 'user/' . $user->uid);
                     }
+
+                    $body = theme('item_list', $links);
+
                     $block = array(
                         'subject' => $title,
                         'content' => $body,

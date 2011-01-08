@@ -27,7 +27,7 @@ h1{
 }
 
 h1#page-title{
-    font-size: 35px;
+    font-size: 25px;
     display: block;
     border-bottom: 1px solid #889398
 }
@@ -47,7 +47,14 @@ h5{
 }
 
 
+a{
+    color:#00A5E5;
+    text-decoration: none;
+}
 
+a:hover{
+    text-decoration: underline;
+}
 
 body{
     font-family: "Droid Sans",Tahoma,Helvetica,sans-serif;
