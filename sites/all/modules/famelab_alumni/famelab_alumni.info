@@ -1,0 +1,3 @@
+name = "Famelab Alumni"
+description = "Provides menu links and other tweaks for the alumni section"
+core = 6.x

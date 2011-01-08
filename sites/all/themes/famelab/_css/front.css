@@ -12,6 +12,9 @@
     background-color:black;
     background-position: top;
 }
+.views_slideshow_slide{
+    padding:10px 0 40px;
+}
 
 .view-home-carousel  .views-field-title .field-content{
     background-color: #0061A7;
@@ -23,7 +26,6 @@
 }
 
 .view-home-carousel  .views-field-body .field-content{
-    border-top: 1px solid #0061A7;
     background-image: url(../_img/trans-black-40.png);
     background-repeat: repeat;
     color:white;;

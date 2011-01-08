@@ -41,49 +41,67 @@
   padding-bottom: 0;
 }
 
-.panels-flexible-column-4-main {
+.panels-flexible-column-2-main {
   float: left;
   width: 99.0000%;
 }
 
-.panels-flexible-4-inside {
+.panels-flexible-2-inside {
   padding-right: 0px;
 }
 
-.panels-flexible-4 {
+.panels-flexible-2 {
   width: auto;
 }
 
-.panels-flexible-region-4-top_left {
+.panels-flexible-column-2-3 {
+  position: relative;
   float: left;
-  width: 49.5000%;
+  background-color: transparent;
+  width: 300px;
 }
 
-.panels-flexible-region-4-top_right {
+.panels-flexible-column-2-5 {
+  position: relative;
   float: left;
-  width: 49.5000%;
+  background-color: transparent;
+  width: 400px;
 }
 
-.panels-flexible-row-4-2-inside {
+.panels-flexible-row-2-2-inside {
+  padding-left: 700px;
+  margin-left: -700px;
   padding-right: 0px;
 }
 
-.panels-flexible-region-4-center_left {
-  float: left;
-  width: 49.5000%;
+* html .panels-flexible-row-2-2-inside {
+  left: 700px;
 }
 
-.panels-flexible-region-4-right {
+.panels-flexible-region-2-top_left {
   float: left;
-  width: 24.7500%;
+  width: 99.0000%;
 }
 
-.panels-flexible-region-4-center_right {
-  float: left;
-  width: 24.7500%;
+.panels-flexible-row-2-4-inside {
+  padding-right: 0px;
 }
 
-.panels-flexible-row-4-1-inside {
+.panels-flexible-region-2-top_right {
+  float: left;
+  width: 99.0000%;
+}
+
+.panels-flexible-row-2-6-inside {
+  padding-right: 0px;
+}
+
+.panels-flexible-region-2-bottom {
+  float: left;
+  width: 99.0000%;
+}
+
+.panels-flexible-row-2-1-inside {
   padding-right: 0px;
 }
 

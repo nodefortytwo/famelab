@@ -1,0 +1,29 @@
+<?php
+
+function famelab_alumni_perm() {
+  return array('view alumni content');
+}
+
+function famelab_alumni_init(){
+
+}
+
+function famelab_alumni_menu(){
+
+    $items = array();
+
+    $items['alumni/your_account'] = array(
+        'title' => 'Your Account',
+        'page callback' => 'famelab_alumni_your_account',
+        'access arguments' => array('view alumni content'),
+        'type' => MENU_SUGGESTED_ITEM,
+        'menu_name' => 'primary-links'
+        );
+
+    return $items;
+
+}
+
+function famelab_alumni_your_account(){
+    return 'hi';
+}
