@@ -1,5 +1,5 @@
 <?php
-// $Id: feedapi_inherit.module,v 1.1.2.14.2.7 2009/07/02 16:38:16 aronnovak Exp $
+// $Id: feedapi_inherit.module,v 1.1.2.14.2.8 2009/10/31 16:04:00 aronnovak Exp $
 
 /**
  * @file
@@ -121,8 +121,20 @@ function _feedapi_inherit_do_inherit(&$item_node, $feed_node) {
       $item_node->taxonomy = array();
     }
     foreach ($terms as $tid => $term) {
-      if (!$item_node->taxonomy[$tid]) {
-        $item_node->taxonomy[$tid] = $term;
+      $vid = $term->vid;
+      $vocabulary = taxonomy_vocabulary_load($vid);
+      if ($vocabulary->multiple) {
+        if (!(isset($item_node->taxonomy[$vid]) && is_array($item_node->taxonomy[$vid]))) {
+          $item_node->taxonomy[$vid] = array();
+        }
+        if (!in_array($tid, $item_node->taxonomy[$vid])) {
+          $item_node->taxonomy[$vid][$tid] = $tid;
+        }
+      }
+      else {
+        if (!$item_node->taxonomy[$vid]) {
+          $item_node->taxonomy[$vid] = $tid;
+        }
       }
     }
   }
