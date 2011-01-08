@@ -1,0 +1,27 @@
+/* panels styles */
+.panels-flexible-region-inside {
+  padding: 0;
+}
+
+.panels-flexible-row {
+  margin: auto -2px 20px -2px;
+  display: table;
+  float: none;
+  padding: 0;
+  width: auto;
+}
+
+.panels-flexible-column-1-main {
+  float: left;
+  width: auto;
+}
+
+.panels-flexible-region {
+  float: left;
+  padding: 0;
+}
+
+
+#main .panels-flexible-region-inside{
+   padding: 0;
+}

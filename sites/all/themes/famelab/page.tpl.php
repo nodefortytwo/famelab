@@ -8,7 +8,7 @@ include('global-header.tpl.php');
     
     <?php print $breadcrumb; ?>
 
-    <div id="main" class="column <?php print ns('grid-16', $left, 4, $right, 3) . ' ' . ns('push-4', !$left, 4); ?>">
+    <div id="main" class="column <?php print ns('grid-16', $left, 4, $right, 3) . ' ' . ns('push-4', !$left, 4); ?> omega alpha">
       
       <?php if ($title): ?>
         <h1 class="title" id="page-title"><?php print $title; ?></h1>

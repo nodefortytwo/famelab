@@ -1,5 +1,5 @@
 <?php
-// $Id: feedapi_node.views.inc,v 1.1.2.4 2009/01/23 13:47:10 alexb Exp $
+// $Id: feedapi_node.views.inc,v 1.1.2.5 2010/06/09 11:33:56 aronnovak Exp $
 
 /**
  * @file
@@ -77,6 +77,7 @@ function feedapi_node_views_data() {
     ),
     'filter' => array(
       'handler' => 'views_handler_filter_numeric',
+      'allow empty' => TRUE,
     ),
     'argument' => array(
       'handler' => 'views_handler_argument_numeric',

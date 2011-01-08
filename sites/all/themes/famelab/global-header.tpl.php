@@ -25,16 +25,16 @@
 
 <div id="nav-group-wrapper" class="full-width">
     <div id="nav-group" class="container-16">
-        <div id="nav-group-inner" class="grid-16">
+        <div id="nav-group-inner" class="grid-16 alpha omega">
             <?php if ($header): ?>
                 <?php print $header; ?>
             <?php endif; ?>
     </div>
 </div>
-
+</div>
 <div id="page-group-wrapper" class="full-width">
     <div id="page-group" class="container-16">
-        <div id="page-group-inner" class="grid-16">
+        <div id="page-group-inner" class="grid-16 alpha omega">
 
 
 

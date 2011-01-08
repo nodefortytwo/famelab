@@ -50,7 +50,7 @@ h5{
 
 
 body{
-    font-family: Arial,Helvetica,sans-serif;
+    font-family: "Droid Sans",Tahoma,Helvetica,sans-serif;
     font-size: 75%;
     
     background-color:#f8f8f8;
@@ -122,12 +122,12 @@ h1#site-name a{
 }
 
 #nav-group-wrapper{
-    background-image: url(../_img/nav_bg.gif);
+    background-image: url(../_img/nav_bg_carbon.gif);
     background-repeat: repeat-x;
     background-position: bottom;
     background-color: #feffff;
-    min-height: 20px;
-    border-top:1px solid #393b3a;
+    min-height: 53px;
+    border-top:1px solid #242424;
 }
 
 #block-menu_block-2{
@@ -135,6 +135,8 @@ h1#site-name a{
     padding:0;
     float:left;
     width:100%;
+    background:transparent;
+    border:none;
 }
 
 #block-menu_block-2 ul{
@@ -146,23 +148,33 @@ h1#site-name a{
 #block-menu_block-2 li{
     float:left;
     display:block;
+    border:0;
 }
 
 #block-menu_block-2 li a{
-    padding:2px 10px;
+    padding:5px 13px;
     display:block;
-    border-right:1px solid #efefef;
-    text-transform: uppercase;
-    font-size:12px;
+    text-transform:lowercase;
+    font-size:13px;
     text-decoration: none;
-    color:black;
-    max-width: 90px;
-    min-height: 40px;
+    color:#efefef;
+    font-weight:bold;
     text-align: center;
+    border-right:1px solid #242424;
+    min-height: 43px;
+    max-width:120px;
+    
+}
+
+#block-menu_block-2 li.first a{
+    border-left:1px solid #242424;
 }
 
 #block-menu_block-2 li a:hover{
-    background-color: #0061A7;
+    color:white;
+}
+
+#block-menu_block-2 li.active a{
     color:white;
 }
 
@@ -221,7 +233,7 @@ h1#site-name a{
   position:absolute;
   left:0;
   bottom:0;
-  width:759px;
+  width:100%;
   background-color: #fafcfd;
   display: block;
   list-style: none;
@@ -342,6 +354,7 @@ dl.quote{
 dl.quote dt{
     font-family: "Reenie Beanie";
     font-size: 27px;
+    line-height: 1em;
 }
 dl.quote dd{
     font-weight: bold;

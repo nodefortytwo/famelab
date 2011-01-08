@@ -1,4 +1,26 @@
-// $Id: CHANGELOG.txt,v 1.1.2.4.2.23 2009/08/12 19:19:43 aronnovak Exp $
+// $Id: CHANGELOG.txt,v 1.1.2.4.2.32 2009/11/09 22:37:58 alexb Exp $
+
+FeedAPI 1.9, XXXX-XX-XX 
+-----------------------
+
+- 
+
+FeedAPI 1.9beta3, 2009-11-09 
+----------------------------
+
+- Support managing simplepie.inc with Libraries module (#583728).
+- Add hook to interfere after a refresh operation. hook_feedapi_after_purge($feed). (#598904)
+- A series of small bug fixes.
+- Add hook_feedapi_after_purge() (#598904)
+
+FeedAPI 1.9beta1, 2009-09-18
+----------------------------
+- Allow aggregation from local files
+- Feed Element Mapper 2.x support
+- Drupal 6.14 compatibility: Fix bug that stopped FeedAPI from refreshing 
+  at cron time #350788
+- Series of minor bug fixes
+
 FeedAPI 1.8, 2009-08-12
 -----------------------
 - Missing {} in an update hook in feedapi.install
@@ -12,7 +34,7 @@ changed.
 - Possibility of saving such feed URLs that are inaccessible for the parser
   for whatever reason
 
-FeedAPI 1.7beta2, XXXX-XX-XX
+FeedAPI 1.7beta2, 2009-06-19
 ----------------------------
 - Drush commands (create, refresh, config)
 - Simpletest 2.x compatible test suite
