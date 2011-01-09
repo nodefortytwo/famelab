@@ -284,10 +284,11 @@ h1#site-name a{
 
 #main-content{
     background-color:white;
-    padding:20px 2%;
     float:left;
-    width:96%;
+    width:100%;
+    padding: 10px 0;
   }
+
 
 .node ul.links{
   position:absolute;

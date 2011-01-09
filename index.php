@@ -32,8 +32,8 @@ if (is_int($return)) {
   }
 }
 elseif (isset($return)) {
-  // Print any value (including an empty string) except NULL or undefined:
-  print theme('page', $return);
+    // Print any value (including an empty string) except NULL or undefined:
+    print theme('page', $return);
 }
 
 drupal_page_footer();
