@@ -41,67 +41,39 @@
   padding-bottom: 0;
 }
 
-.panels-flexible-column-2-main {
+.panels-flexible-column-5-main {
   float: left;
   width: 99.0000%;
 }
 
-.panels-flexible-2-inside {
+.panels-flexible-5-inside {
   padding-right: 0px;
 }
 
-.panels-flexible-2 {
+.panels-flexible-5 {
   width: auto;
 }
 
-.panels-flexible-column-2-3 {
-  position: relative;
+.panels-flexible-region-5-top_left {
   float: left;
-  background-color: transparent;
-  width: 300px;
+  width: 49.5000%;
 }
 
-.panels-flexible-column-2-5 {
-  position: relative;
+.panels-flexible-region-5-top_right {
   float: left;
-  background-color: transparent;
-  width: 400px;
+  width: 49.5000%;
 }
 
-.panels-flexible-row-2-2-inside {
-  padding-left: 700px;
-  margin-left: -700px;
+.panels-flexible-row-5-1-inside {
   padding-right: 0px;
 }
 
-* html .panels-flexible-row-2-2-inside {
-  left: 700px;
-}
-
-.panels-flexible-region-2-top_left {
+.panels-flexible-region-5-center {
   float: left;
   width: 99.0000%;
 }
 
-.panels-flexible-row-2-4-inside {
-  padding-right: 0px;
-}
-
-.panels-flexible-region-2-top_right {
-  float: left;
-  width: 99.0000%;
-}
-
-.panels-flexible-row-2-6-inside {
-  padding-right: 0px;
-}
-
-.panels-flexible-region-2-bottom {
-  float: left;
-  width: 99.0000%;
-}
-
-.panels-flexible-row-2-1-inside {
+.panels-flexible-row-5-main-row-inside {
   padding-right: 0px;
 }
 
