@@ -156,16 +156,26 @@ function fame_reg_create_account_submit($form, $form_state){
         'pass' => user_password(), // random password
         'mail' => $form_state['values']['email'],
         'status' => 0,
-        'init' => $form_state['values']['email'],
-        'profile_title' => $form_state['values']['title'],
-        'profile_firstname' => $form_state['values']['firstname'],
-        'profile_surname' => $form_state['values']['surname'],
-        'profile_town' => $form_state['values']['city'],
-        'profile_country' => $form_state['values']['country'],
+        'init' => $form_state['values']['email'],        
         'roles' => $roles
     );
     $account = user_save(null, $newUser);
     if (is_object($account)){
+
+        $user_profile = new stdClass();
+        $user_profile->type = 'alumni_profile';
+        $user_profile->title = $account->name . "'s Profile";
+        $user_profile->field_title[0]['value'] = $form_state['values']['title'];
+        $user_profile->field_firstname[0]['value'] = $form_state['values']['firstname'];
+        $user_profile->field_surname[0]['value'] = $form_state['values']['surname'];
+        $user_profile->field_city[0]['value'] = $form_state['values']['city'];
+        $user_profile->field_country[0]['value'] = $form_state['values']['country'];
+        $user_profile = node_prepare($user_profile);
+        $user_profile->uid = $account->uid;
+        $user_profile->name = $account->name;
+
+        node_save($user_profile);
+
         drupal_goto('user/register/complete/' . $account->uid);
     }else{
         drupal_set_message('User registration has failed. Please contact famelab directly. (ERR/REG/1)');
@@ -180,9 +190,13 @@ function fame_reg_create_account_complete($uid){
         drupal_goto('user/register');
     }
 
-    $html = '<p>' . 'Thank you for registering %firstname,' . '</p>';
+    var_dump($user);
+
+    $html = '<div id="content-wrapper">';
+    $html .= '<p>' . 'Thank you for registering %firstname,' . '</p>';
     $html .= '<p>' . 'A site administrator will look at your application shortly and get back to you via e-mail as soon as possible.' . '</p>';
     $html .= '<p><strong>FameLab Web Team</strong></p>';
-    $html = t($html, array('%firstname' => $user->profile_firstname));
-    return $html;
+    $html .= '</div>';
+   
+    return t($html, array('%firstname' => $user->name));
 }
