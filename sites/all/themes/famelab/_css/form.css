@@ -117,6 +117,12 @@ form p{
     padding-left: 5px;
 }
 
+.tips{clear:both; margin-left: 20px;}
+
+.node-form{
+    padding:0 10px;
+}
+
 /*User Login Stuff*/
 #user-login{
    position: relative;
