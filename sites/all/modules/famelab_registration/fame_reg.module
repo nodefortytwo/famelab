@@ -21,6 +21,7 @@ function fame_reg_block($op = 'list', $delta = 0, $edit = array()) {
                     }else{
                         $title = 'Your Account';
                         $links[] = l('Edit profile', 'user/' . $user->uid);
+                        $links[] = l('Logout', 'logout');
                     }
 
                     $body = theme('item_list', $links);

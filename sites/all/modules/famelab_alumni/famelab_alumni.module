@@ -35,3 +35,7 @@ function famelab_alumni_your_account(){
         drupal_goto('user/' . $uid);
     }
 }
+
+function famelab_alumni_form_alter(&$form, &$form_state, $form_id){
+
+}
