@@ -1,0 +1,4 @@
+name = "n42_twitter"
+description = "A custome twitter intergration module"
+core = 6.x
+
