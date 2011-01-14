@@ -289,7 +289,11 @@ h1#site-name a{
     padding: 10px 0;
   }
 
-
+#main-content form,
+#main-content .node,
+#main-content #content-wrapper{
+      padding:0 10px;
+}
 .node ul.links{
   position:absolute;
   left:0;
@@ -382,7 +386,7 @@ h1#site-name a{
 
 }
 
-.item-list ul li a{
+#sidebar-left .item-list ul li a{
     color:black;
     text-decoration: none;
     width:100%;
