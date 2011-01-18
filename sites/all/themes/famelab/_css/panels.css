@@ -1,13 +1,13 @@
 /* panels styles */
 .panels-flexible-region-inside {
-  padding: 0;
+  padding: 0 10px;
 }
 
 .panels-flexible-row {
-  margin: auto -2px 20px -2px;
+  margin: 0;
   display: table;
   float: none;
-  padding: 0;
+  padding: 10px 0;
   width: auto;
 }
 
@@ -24,10 +24,6 @@
 .pane-content{
     float:left;
     width:100%;
-}
-
-#main .panels-flexible-region-inside{
-   padding: 0;
 }
 
 h2.pane-title{

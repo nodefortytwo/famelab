@@ -1,0 +1,6 @@
+<?php
+
+function content_profile_privacy_init(){
+
+}
+

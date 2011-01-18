@@ -190,8 +190,6 @@ function fame_reg_create_account_complete($uid){
         drupal_goto('user/register');
     }
 
-    var_dump($user);
-
     $html = '<div id="content-wrapper">';
     $html .= '<p>' . 'Thank you for registering %firstname,' . '</p>';
     $html .= '<p>' . 'A site administrator will look at your application shortly and get back to you via e-mail as soon as possible.' . '</p>';

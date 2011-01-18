@@ -1,0 +1,4 @@
+name = "Content Profile Privacy"
+description = "Allows users to configure the visablity of information shown within content profile pages"
+package = "Content Profile"
+core = 6.x
