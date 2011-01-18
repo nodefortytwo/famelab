@@ -1,6 +1,0 @@
-<?php
-
-function n42_twitter_init(){
-    print ('hi');
-    die();
-}

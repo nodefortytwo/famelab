@@ -20,7 +20,7 @@ include('global-header.tpl.php');
       <?php print $messages; ?>
       <?php print $help; ?>
 
-      <div id="main-content" class="region clear-block">
+      <div id="main-content" class="region clear-block <?php print ns('grid-16', $left, 4, $right, 3)?> omega alpha">
         <?php print $content; ?>
       </div>
       

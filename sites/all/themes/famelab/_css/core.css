@@ -63,6 +63,10 @@ body{
     background-color:#f8f8f8;
     padding-bottom:20px;
 }
+
+table{
+    width:100%;
+}
 .clear-block{
     clear:both;
     display: block;
@@ -284,14 +288,13 @@ h1#site-name a{
 
 #main-content{
     background-color:white;
-    float:left;
-    width:100%;
     padding: 10px 0;
   }
 
 #main-content form,
 #main-content .node,
-#main-content #content-wrapper{
+#main-content #content-wrapper,
+#main-content .faq-content{
       padding:0 10px;
 }
 .node ul.links{
@@ -482,3 +485,16 @@ thead th {
   border-bottom: 3px solid #ccc;
 }
 
+.emvideo-modal-iframe{
+    margin: 0 !important;
+    padding:0 !important;
+}
+
+.emvideo-modal-iframe #admin-toolbar{
+    display:none !important;
+}
+
+.emvideo-modal-iframe #media-youtube-1 {
+    margin: 0px auto;
+    width: 640px;
+}
