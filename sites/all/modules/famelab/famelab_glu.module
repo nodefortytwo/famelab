@@ -1,1 +1,4 @@
 <?php
+function famelab_glu_init(){
+
+}

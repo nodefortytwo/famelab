@@ -1,0 +1,71 @@
+<?php
+global $api_key;
+$api_key = 'ABQIAAAAuJmfCEX7NZHtiuXRtYUPCxScFrxffNo77mYOeXiz0SNXAsCCXhTFttZePHdU0aPDnYzjS3vz6IzBEw';
+
+function famelab_map_menu(){
+    $items = array();
+
+    $items['famelab_map'] = array(
+        'title' => 'Famelab Map',
+        'page callback' => 'famelab_map_map',
+        'access arguments' => array('access content'),
+        'type' => MENU_CALLBACK,
+    );
+
+    return $items;
+}
+
+function famelab_map_init(){
+    //node_load(203);
+    die('done');
+}
+
+function famelab_map_map(){
+    drupal_set_html_head('<script src="http://maps.google.com/maps/api/js?sensor=false"" type="text/javascript"></script>');
+    drupal_add_js(drupal_get_path('module', 'famelab_map') . '/jquery.gmap3.js', 'module', 'header');
+
+
+
+
+    drupal_add_js(famelab_map_js(), 'inline', 'header');
+
+    return '<div id="map_canvas" style="width:100%; height:500px"></div>';
+}
+
+
+function famelab_map_js(){
+    ob_start();
+    ?>
+    var poly1 = [
+        { "lat": 43.0379081608, "lng": -89.451271661 },
+        { "lat": 43.060613611, "lng": -89.45127166 },
+        { "lat": 43.06086445, "lng": -89.4711843 },
+        { "lat": 43.0454357, "lng": -89.47118438 }
+    ];
+
+    var poly2 = [
+        { "lat": 43.015194305, "lng": -89.455563195 },
+        { "lat": 43.0154453329, "lng": -89.4252649627 },
+        { "lat": 43.001197884, "lng": -89.42826903686 },
+        { "lat": 43.001197884, "lng": -89.459425576 }
+    ];
+
+    $(document).ready(function () {
+        // create the map
+        var map = $("#map_canvas").gmap3(
+        {
+            lat: 50.202,
+            lng: 13.2683,
+            zoom: 4
+        });
+        map.toggleDebug();
+
+        map.addPolygon(poly1);
+    });
+    <?php
+    $js = ob_get_contents();
+    ob_end_clean();
+
+    return $js;
+
+}

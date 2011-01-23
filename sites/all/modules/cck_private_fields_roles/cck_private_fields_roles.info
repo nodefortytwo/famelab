@@ -1,0 +1,5 @@
+name = CCK Private Fields Roles
+description = Extends CCK Private Fields to be role specific
+dependencies[] = cck_private_fields
+package = CCK
+core = 6.x
