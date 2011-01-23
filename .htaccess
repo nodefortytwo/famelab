@@ -113,4 +113,7 @@ DirectoryIndex index.php
   RewriteRule ^(.*)$ index.php?q=$1 [L,QSA]
 </IfModule>
 
+php_value output_buffering On
+php_value output_handler mb_output_handler
+
 # $Id: .htaccess,v 1.90.2.5 2010/02/02 07:25:22 dries Exp $

@@ -18,7 +18,7 @@
             <?php if ($linked_site_name): ?>
             <h1 id="site-name" class="grid-7 alpha"><?php print $linked_site_name; ?></h1>
             <?php endif; ?>
-            <div id="supporting-logo">Festivals</div>
+            
         </div>
     </div>
 </div>

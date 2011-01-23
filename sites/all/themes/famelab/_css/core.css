@@ -76,7 +76,7 @@ table{
     float:left;
 
 }
-
+#map_canvas { height: 100% }
 #header-group-wrapper{
     background:#171614;
 }
@@ -136,12 +136,13 @@ h1#site-name a{
     background-image: url(../_img/nav_bg_carbon.gif);
     background-repeat: repeat-x;
     background-position: bottom;
-    background-color: #feffff;
+    background-color: black;
     min-height: 53px;
     border-top:1px solid #242424;
 }
 
-#block-menu_block-2{
+#block-menu_block-2,
+#block-menu_block-3{
     margin:0;
     padding:0;
     float:left;
@@ -150,19 +151,22 @@ h1#site-name a{
     border:none;
 }
 
-#block-menu_block-2 ul{
+#block-menu_block-2 ul,
+#block-menu_block-3 ul{
     float:left;
     width:100%;
     margin-bottom: 0;
 }
 
-#block-menu_block-2 li{
+#block-menu_block-2 li,
+#block-menu_block-3 li{
     float:left;
     display:block;
     border:0;
 }
 
-#block-menu_block-2 li a{
+#block-menu_block-2 li a,
+#block-menu_block-3 li a{
     padding:5px 13px;
     display:block;
     text-transform:lowercase;
@@ -177,15 +181,15 @@ h1#site-name a{
     
 }
 
-#block-menu_block-2 li.first a{
+#block-menu_block-2 li.first a,
+#block-menu_block-3 li.first a{
     border-left:1px solid #242424;
 }
 
-#block-menu_block-2 li a:hover{
-    color:white;
-}
-
-#block-menu_block-2 li.active a{
+#block-menu_block-2 li a:hover,
+#block-menu_block-2 li.active a,
+#block-menu_block-3 li a:hover,
+#block-menu_block-3 li.active a{
     color:white;
 }
 

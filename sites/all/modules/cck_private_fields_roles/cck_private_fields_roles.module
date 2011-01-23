@@ -1,0 +1,17 @@
+<?php
+
+function cck_private_fields_roles_init(){
+    drupal_load('module', 'cck_private_fields');
+    cck_private_fields_notify('enable', 'cck_private_fields_roles');
+}
+
+/**
+ * Implementation of hook_cck_private_fields_view_access().
+ */
+function cck_private_fields_roles_cck_private_fields_view_access($field, $node, $account){
+    if ($account->roles[3]){
+        return true;
+    }else{
+        return false;
+    }
+}

@@ -41,7 +41,7 @@ function _cck_private_fields_node_form_alter(&$form, &$form_state, $private_fiel
     $privacy_status_options[CCK_FIELDS_PRIVACY_STATUS_PRIVATE] = array(
       'name' => t('Private'),
       'class' => 'cck-private-field-status-icon-private',
-      'label' => t('Private - visible to you and your friends.'),
+      'label' => t('Private - visible only to other alumni.'),
     );
   }
 
