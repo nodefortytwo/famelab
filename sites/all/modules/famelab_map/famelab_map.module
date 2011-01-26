@@ -5,19 +5,19 @@ $api_key = 'ABQIAAAAuJmfCEX7NZHtiuXRtYUPCxScFrxffNo77mYOeXiz0SNXAsCCXhTFttZePHdU
 function famelab_map_menu(){
     $items = array();
 
-    $items['famelab_map'] = array(
-        'title' => 'Famelab Map',
+    $items['international'] = array(
+        'title' => 'Participating Countries',
         'page callback' => 'famelab_map_map',
         'access arguments' => array('access content'),
-        'type' => MENU_CALLBACK,
+        'menu_name' => 'primary-links',
+        'type' => MENU_NORMAL_ITEM,
     );
 
     return $items;
 }
 
 function famelab_map_init(){
-    //node_load(203);
-    die('done');
+ 
 }
 
 function famelab_map_map(){
@@ -29,42 +29,52 @@ function famelab_map_map(){
 
     drupal_add_js(famelab_map_js(), 'inline', 'header');
 
+
+
     return '<div id="map_canvas" style="width:100%; height:500px"></div>';
 }
 
+function famelab_map_get_data(){
+    $view = views_get_view('Countries');
+    $display_id = 'default';
+    $view->set_display($display_id);
+    $view->set_items_per_page(0);
+    $view->render();
+
+    return ($view->result);
+}
 
 function famelab_map_js(){
     ob_start();
     ?>
-    var poly1 = [
-        { "lat": 43.0379081608, "lng": -89.451271661 },
-        { "lat": 43.060613611, "lng": -89.45127166 },
-        { "lat": 43.06086445, "lng": -89.4711843 },
-        { "lat": 43.0454357, "lng": -89.47118438 }
-    ];
+    function createInfo(title, content) {
 
-    var poly2 = [
-        { "lat": 43.015194305, "lng": -89.455563195 },
-        { "lat": 43.0154453329, "lng": -89.4252649627 },
-        { "lat": 43.001197884, "lng": -89.42826903686 },
-        { "lat": 43.001197884, "lng": -89.459425576 }
-    ];
-
+        return '<div id="popup"><h2 class="popup-title">' + title + '</h2><div id="popup-body">' + content + '</div></div>';
+    }
+    
     $(document).ready(function () {
         // create the map
         var map = $("#map_canvas").gmap3(
         {
-            lat: 50.202,
+            lat: 22.602,
             lng: 13.2683,
-            zoom: 4
+            zoom: 2
         });
-        map.toggleDebug();
 
-        map.addPolygon(poly1);
-    });
     <?php
     $js = ob_get_contents();
     ob_end_clean();
+
+    $data = famelab_map_get_data();
+    foreach ($data as $node){
+        $node->node_revisions_body = json_encode(check_markup($node->node_revisions_body));
+
+      
+        $js .= 'map.addMarkerByLatLng(' . $node->node_data_field_icon_colour_field_lat_value . ', ' . $node->node_data_field_icon_colour_field_lon_value . ', "'.$node->node_title.'", createInfo("'.$node->node_title.'", '.$node->node_revisions_body.'));';
+
+    }
+
+    $js .= '});';
 
     return $js;
 
