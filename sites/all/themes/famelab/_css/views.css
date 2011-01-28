@@ -1,6 +1,41 @@
+.view-filters{
+    float:left;
+    margin-bottom:10px;
+    border:1px solid black;
+    border-width:1px 0;
+    padding:5px 1%;
+    width:98%;
+}
+
+.view-filters .form-text{
+    width:150px;
+}
 .view-alumni-search{
     padding:10px;
 }
+
+table.views-table{
+    padding-top:10px;
+}
+table.views-table thead tr{
+    background-color:#889398;
+    border-bottom:3px solid white;
+
+    color:white;
+    margin:2px 0;
+}
+table.views-table th,
+table.views-table td{
+    padding:3px 5px;
+    border-bottom:2px solid white;
+    border-left:1px solid #889398;
+    border-right:1px solid #889398;
+}
+
+table.views-table thead tr a{
+     color:#EEE;
+}
+
 
 /* view-display-id-panel_pane_1 = Name*/
 .view-display-id-panel_pane_1 .views-field-value-2,
