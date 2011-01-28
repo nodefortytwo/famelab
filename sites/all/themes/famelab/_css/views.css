@@ -74,3 +74,25 @@ table.views-table thead tr a{
     width:100%;
     padding-top:10px;
 }
+
+.view-Quotes{
+    padding:10px;
+}
+
+.view-Quotes .views-row{
+       display:block;
+    float:left;
+    width:100%;
+    background-color:#fafcfd;
+}
+
+.view-Quotes .views-field-body{
+    font-family: "Reenie Beanie";
+    font-size: 27px;
+    line-height: 1em;
+}
+
+.view-Quotes .views-field-title{
+     font-weight: bold;
+    padding-left:10px;
+}
