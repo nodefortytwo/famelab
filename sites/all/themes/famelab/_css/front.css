@@ -69,27 +69,29 @@
 }
 
 .front .pane-homepage-video-panel-pane-1 td.col-1,
-.front .pane-homepage-video-panel-pane-1 td.col-2,
-.front .pane-homepage-video-panel-pane-1 td.col-3,
-.front .pane-homepage-video-panel-pane-1 td.col-4{
+.front .pane-homepage-video-panel-pane-2 td.col-1{
     width:25%;
     border-right: 1px solid #efefef;
 
 }
 
-.front .pane-homepage-video-panel-pane-1 table{
+.front .pane-homepage-video-panel-pane-1 table,
+.front .pane-homepage-video-panel-pane-2 table{
     width:100%;
     background-color: #fafcfd;
     border-top:1px solid #efefef;
 }
 
-.front .pane-homepage-video-panel-pane-1 tr{
+.front .pane-homepage-video-panel-pane-1 tr,
+.front .pane-homepage-video-panel-pane-2 tr{
     border-bottom: 5px solid transparent;
 }
-.front .pane-homepage-video-panel-pane-1 td{
+.front .pane-homepage-video-panel-pane-1 td,
+.front .pane-homepage-video-panel-pane-2 td{
     text-align: center;
 }
-.front .pane-homepage-video-panel-pane-1 td .views-field-field-embedded-video-embed{
+.front .pane-homepage-video-panel-pane-1 td .views-field-field-embedded-video-embed,
+.front .pane-homepage-video-panel-pane-2 td .views-field-field-embedded-video-embed{
     background-color:white;
     padding:5px 0;
 }
@@ -108,37 +110,4 @@
      width:100%;
      margin:0 -10px;
      padding:0 10px;
-}
-
-.front .bottom-row {
-    padding-top:10px;
-}
-
-.front .bottom-row .panel-pane{
-    min-height:60px;
-    background-color:#86b5d5;
-    color:white;
-    padding:10px;
-    border:1px solid #fff;
-    text-align: center;
-    position: relative;
-}
-
-.front .bottom-row .panel-pane h2{
-    font-size: 12px;
-}
-
-.front .bottom-row .panels-flexible-region-3-second  .panel-pane{
-     background-color:#e4d09f;
-}
-
-.front .bottom-row .panels-flexible-region-3-third  .panel-pane{
-     background-color:#d78ea5;
-}
-
-.front .bottom-row .panels-flexible-region-3-forth  .panel-pane{
-     background-color:#a2d1a5;
-}
-.front .bottom-row .panels-flexible-region-3-fifth  .panel-pane{
-     background-color:#a2d1a5;
 }
