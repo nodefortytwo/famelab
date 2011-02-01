@@ -74,7 +74,7 @@ table.views-table thead tr a{
     border-top:1px solid #0061A7;
     float:left;
     width:100%;
-    padding-top:10px;
+    padding:10px 0;
 }
 
 .view-Quotes{
