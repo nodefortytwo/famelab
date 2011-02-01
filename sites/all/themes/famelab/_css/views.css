@@ -52,14 +52,13 @@ table.views-table thead tr a{
 }
 
 /* view-display-id-panel_pane_3 = Main details*/
-.view-display-id-panel_pane_3,
-.view-display-id-panel_pane_4{
+.view-display-id-panel_pane_3{
     padding-top: 10px;
 }
 .view-display-id-panel_pane_3 label,
 .view-display-id-panel_pane_4 label{
     background-color: #0061A7;
-    background-repeat: repeat;
+    background-repeat: repeat; 
     color:white;
     font-weight: bold;
     padding:0 1em;
