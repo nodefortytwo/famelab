@@ -77,6 +77,10 @@ table.views-table thead tr a{
     padding:10px 0;
 }
 
+.view-display-id-panel_pane_4 li{
+    border-bottom: 0;
+}
+
 .view-Quotes{
     padding:10px;
 }
