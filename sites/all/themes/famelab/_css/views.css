@@ -77,7 +77,7 @@ table.views-table thead tr a{
     padding:10px 0;
 }
 
-.view-display-id-panel_pane_4 li{
+.pane-content .view-display-id-panel_pane_4 .item-list ul li{
     border-bottom: 0;
 }
 
