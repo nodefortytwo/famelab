@@ -291,6 +291,25 @@ h1#site-name a{
     border-bottom: 1px solid #889398;
 }
 
+
+#sidebar-left .block-menu_block li ul{
+     border-top: 1px dashed #999;
+     margin:0;
+}
+#sidebar-left .block-menu_block li li {
+    border-bottom:1px solid #999;
+}
+#sidebar-left .block-menu_block li li.last{
+    border-bottom: 0;
+}
+
+#sidebar-left .block-menu_block li li a{
+    padding:.1em 7.5% ;
+    background-color: #cedbe1;
+    width:85%;
+    color:#555;
+}
+
 #main-content{
     background-color:white;
     padding: 10px 0;
