@@ -295,7 +295,10 @@ h1#site-name a{
 #sidebar-left .block-menu_block li ul{
      border-top: 1px dashed #999;
      margin:0;
+     display:none;
 }
+#sidebar-left .block-menu_block li.active-trail ul{display:block;}
+
 #sidebar-left .block-menu_block li li {
     border-bottom:1px solid #999;
 }
