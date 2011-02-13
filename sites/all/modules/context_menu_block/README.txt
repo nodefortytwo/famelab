@@ -1,4 +1,4 @@
-$Id: README.txt,v 1.2.2.1 2010/07/11 02:41:41 itafroma Exp $
+$Id: README.txt,v 1.2.2.3 2011/02/13 05:32:36 itafroma Exp $
 
 CONTENTS OF THIS FILE
 ---------------------
@@ -13,10 +13,8 @@ CONTENTS OF THIS FILE
 INTRODUCTION
 ------------
 
-The Context: Menu Block module allows the Menu Block module to be aware of
-contexts provided by the Context module. 
-
-Specifically, it informs menu blocks of active menu context reactions.
+Context: Menu Block allows the Menu Block module to be aware of contexts provided
+by the Context module by informing menu blocks of active menu context reactions.
 
 For a full description of the module, visit the project page:
   http://drupal.org/project/context_menu_block
@@ -27,28 +25,28 @@ To submit bug reports and feature suggestions, or to track changes:
 REQUIREMENTS
 ------------
 
-- Drupal 6.x
-- Menu Block (http://drupal.org/project/menu_block); tested with the 6.x-2.x 
-  branch.
-- Context (http://drupal.org/project/context). Tested with both the 6.x-2.x and
-  the 6.x-3.x branches.
+- Drupal 6
+- Menu Block 2 [1]
+- Context 3 [2]
 
-NOTE: Previously, there were two branches corresponding to each version of
-Context. As of Context: Menu Block 6.x-3.0-beta2, these branches have been
-merged and the Context: Menu Block 6.x-2.x branch has been discontinued. Please
-use the Context: Menu Block 6.x-3.x branch for either version of Context.
+NOTE: As of Context: Menu Block 6.x-3.0, support for Context 2 has been 
+discontinued. If you're running Context 2 on your site, you'll need to upgrade
+to Context 3 in order to continue using Context: Menu Block.
 
-For additional releases that may support other versions, visit the project page:
-  http://drupal.org/project/context_menu_block
+[1] http://drupal.org/project/menu_block
+[2] http://drupal.org/project/context
 
 INSTALLATION
 ------------
 
-Install as usual, see http://drupal.org/node/70151 for further information.
+Install as usual. see the handbook page on installing contributed modules [1]
+for further information.
 
 If your context reaction uses a second or higher level menu item, the menu block
 for the menu must have "Expand all children of this tree" selected in its block 
 configuration.
+
+[1] http://drupal.org/getting-started/install-contrib/modules
 
 CONTACT
 -------
@@ -59,13 +57,13 @@ Current maintainer:
 ACKNOWLEDGEMENTS
 ----------------
 
-This module is borne from Menu Block issue #751700, "Setting active with Context 
-Module" (http://drupal.org/node/751700). It contains bug fixes and additional
-customizations to provide Context 3 support.
+Context Menu Block is borne from the module created by Luke Berg [1] and
+Nik LePage [2] in issue #751700 [3]. It contains additonal bug fixes and
+provides Context 3 support.
 
-Original authors:
-- Luke Berg (nauthiz693) - http://drupal.org/user/728256
-- Nik LePage (NikLP) - http://drupal.org/user/71221
+[1] http://drupal.org/user/728256
+[2] http://drupal.org/user/71221
+[3] http://drupal.org/node/751700
 
 MORE INFORMATION
 ----------------

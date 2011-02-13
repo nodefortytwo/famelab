@@ -1,5 +1,5 @@
 <?php
-// $Id: fb.module,v 1.137 2011/01/06 23:50:52 yogadex Exp $
+// $Id: fb.module,v 1.137.2.4 2011/02/10 00:26:00 yogadex Exp $
 
 /**
  * @file
@@ -146,6 +146,7 @@ function fb_init() {
   fb_js_settings('ajax_event_url', url(FB_PATH_AJAX_EVENT, array(
                                          'absolute' => TRUE,
                                        )));
+
   // Data structure to pass to FB.init();
   $fb_init_settings = array(
     'xfbml' => FALSE,
@@ -239,12 +240,6 @@ function fb_init() {
 
     fb_js_settings('reload_url', url($destination, array('absolute' => TRUE, 'fb_canvas' => fb_is_canvas())));
 
-    // Facebook's javascript will attempt to set cookies, but doesn't hurt to
-    // set the old-fashioned way, too.
-    if (FALSE && $_fb && $_fb->getSession() && !isset($_COOKIE['fbs_' . $_fb_app->apikey])) {
-      // ??? Does this actually help?  Is this ever reached?
-      $_fb->setSession($_fb->getSession(), TRUE);
-    }
   }
 
   if ($channel = variable_get(FB_VAR_JS_CHANNEL, TRUE)) {
@@ -279,19 +274,20 @@ function fb_init() {
     fb_js_settings('js_sdk_url', variable_get(FB_VAR_JS_SDK, $default));
   }
 
-  $js_sdk_url = fb_js_settings('js_sdk_url');
-  drupal_set_html_head("<script type=\"text/javascript\" src=\"$js_sdk_url\"></script>");
-
-  // Add javascript to all pages.
+  // Add our module's javascript.
   drupal_add_js(drupal_get_path('module', 'fb') . '/fb.js');
-  $js_settings = fb_js_settings();
-  drupal_add_js(array('fb' => $js_settings), 'setting');
+
+  // See also fb_footer(), where we initialize facebook's SDK.
 }
 
 /**
  *
- * Adds the javascript setting with the supplied key/value.  This function merely keeps track
- * of the settings and writes them as late as possible (in the fb_preprocess_page function).
+ * Adds the javascript setting with the supplied key/value.  This function
+ * merely keeps track of the settings and writes them as late as possible.
+ * Currently, in the fb_footer() function.  There has been a lot of
+ * experimentation as to the best place to initialize the facebook javascript
+ * SDK.  The footer appears to be the best place because we may not know all
+ * settings until well after hook_init().
  *
  * @param $key
  *   The javascript setting name.  If the key is null then nothing is modified and the settings are returned.
@@ -346,12 +342,14 @@ function fb_api_init($fb_app) {
     // We don't have a cached resource for this app, so we're going to create one.
     $fb = new Facebook(array(
                          'appId' => $fb_app->apikey,
-                         'secret' => $fb_app->secret,
+                         'secret' => isset($fb_app->secret) ? $fb_app->secret : NULL,
                          'cookie' => variable_get(FB_VAR_USE_COOKIE, TRUE),
                        ));
-    // Facebook certs are not valid.
-    Facebook::$CURL_OPTS[CURLOPT_SSL_VERIFYPEER] = FALSE;
-    Facebook::$CURL_OPTS[CURLOPT_SSL_VERIFYHOST] = FALSE;
+
+    // Not sure if these are still needed.
+    //Facebook::$CURL_OPTS[CURLOPT_SSL_VERIFYPEER] = FALSE;
+    //Facebook::$CURL_OPTS[CURLOPT_SSL_VERIFYHOST] = FALSE;
+    //Facebook::$CURL_OPTS[CURLOPT_VERBOSE] = 1;
 
     // Cache the result, in case we're called again.
     $cache[$fb_app->apikey] = $fb;
@@ -390,6 +388,19 @@ function _fb_api_init($fb_app = NULL) {
 
 
 /**
+ * Helper function to get the most commonly used values.  In your custom
+ * module, call extract(fb_vars()); to set $fb_app, $fb, and $fbu.
+ */
+function fb_vars() {
+  return array(
+    'fb' => $GLOBALS['_fb'],
+    'fb_app' => $GLOBALS['_fb_app'],
+    'fbu' => fb_facebook_user(),
+  );
+}
+
+
+/**
  * Helper to get the tokens needed to accss facebook's API.
  *
  * Since facebook's php sdk is a joke, we have to implement the most basic
@@ -417,7 +428,7 @@ function fb_get_token($fb = NULL, $fbu = NULL) {
     if (!isset($cache[$cache_key])) {
       $path = "https://graph.facebook.com/oauth/access_token?client_id=" . $fb->getAppId() . "&client_secret=" . $fb->getApiSecret() . "&type=client_cred";
       $http = drupal_http_request($path);
-      if (isset($http->data)) {
+      if ($http->code == 200 && isset($http->data)) {
         $data = explode('=', $http->data);
         $token = $data[1];
         if ($token)
@@ -436,7 +447,7 @@ function fb_get_token($fb = NULL, $fbu = NULL) {
       // @TODO look up another user's access token.
     }
   }
-  return $cache[$cache_key];
+  return isset($cache[$cache_key]) ? $cache[$cache_key] : NULL;
 }
 
 
@@ -501,7 +512,7 @@ function fb_call_method($fb, $method, $params = array()) {
 
   $http = drupal_http_request($url);
 
-  if ($http->data) {
+  if (!isset($http->error) && isset($http->data)) {
     $data = json_decode($http->data, TRUE);
     // Yes, it's double encoded.  At least sometimes.
     if (is_string($data)) {
@@ -554,19 +565,39 @@ function fb_fql_query($fb, $query, $params = array()) {
  */
 function fb_footer($is_front) {
   global $_fb, $_fb_app;
-  // Necessary?  All facebook examples seem to have it.
+
+  // No javascript on strict FBML pages.
+  if (fb_is_tab()) {
+    return;
+  }
+
+  // This element recommended by facebook. http://developers.facebook.com/docs/reference/javascript/
   $output = "<div id=\"fb-root\"></div>\n";
 
+  $settings = fb_js_settings();
+
+  $output .= "<script type=\"text/javascript\">\n";
+  $output .= "<!--//--><![CDATA[//><!--\n";
+  $output .= "jQuery.extend(Drupal.settings, " . json_encode(array('fb' => fb_js_settings())) . ");\n";
   $js_array = fb_invoke(FB_OP_JS, array('fb' => $GLOBALS['_fb'], 'fb_app' => $GLOBALS['_fb_app']), array());
   if (count($js_array)) {
-    $output .= "<script type=\"text/javascript\">\n";
     // The function we define in the footer will be called after FB is initialized.
     $output .= "FB_JS.initHandler = function() {\n";
+    //$output .= "debugger;\n";
     $output .= implode("\n", $js_array);
     $output .= "};\n";
     $output .= "jQuery(document).bind('fb_init', FB_JS.initHandler);\n";
-    $output .= "\n</script>\n";
   }
+
+    // Load the JS SDK asynchronously.
+  // http://developers.facebook.com/docs/reference/javascript/
+  $output .= "var e = document.createElement('script');\n";
+  $output .= "e.async = true;\n";
+  $output .= "e.src = Drupal.settings.fb.js_sdk_url;\n";
+  $output .= "document.getElementById('fb-root').appendChild(e);\n";
+
+  $output .= "\n//--><!]]>\n";
+  $output .= "\n</script>\n";
   return $output;
 }
 
@@ -1402,7 +1433,6 @@ function fb_ajax_event($event_type) {
         // fb_user.module is not enabled.
         if (!$_POST['fbu'] && isset($_SESSION['fb'][$_fb_app->apikey])) {
           _fb_logout();
-          dpm("Logged out!", __FUNCTION__);
         }
       }
 

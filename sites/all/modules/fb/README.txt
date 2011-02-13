@@ -8,7 +8,7 @@ Primary author and maintainer: Dave Cohen (http://www.dave-cohen.com/contact)
 Do  NOT contact  the  maintainer  with a question  that  can be  easily
 answered with a web search.  You will not receive a reply.
 
-Branch: HEAD (version 3.x for Drupal 6.x)
+Branch: DRUPAL-6--3 (version 3.x for Drupal 6.x)
 
 This file is more current than online documentation.  When in doubt, trust this file.
 Online documentation: http://drupal.org/node/195035, has more detail.

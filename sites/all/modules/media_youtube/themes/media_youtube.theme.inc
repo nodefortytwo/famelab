@@ -1,5 +1,5 @@
 <?php
-// $Id: media_youtube.theme.inc,v 1.1.2.6 2010/11/12 15:58:57 aaron Exp $
+// $Id: media_youtube.theme.inc,v 1.1.2.8 2011/02/04 17:29:53 aaron Exp $
 
 /**
  * @file
@@ -30,8 +30,22 @@ function theme_media_youtube_video_upload_failed($message, $status = array()) {
   return "<div class='media-youtube-status-upload-failed'>$message</div>";
 }
 
+function template_preprocess_media_youtube_html5(&$variables) {
+  // Merge in our default variables.
+  $variables = array_merge($variables, $variables['variables']);
+
+  $video_id = $variables['video_id'];
+  $variables['url'] = isset($variables['url']) ? $variables['url'] : "http://www.youtube.com/v/$video_id";
+  $variables['url'] = check_plain($variables['url']);
+  $variables['width'] = check_plain($variables['width']);
+  $variables['height'] = check_plain($variables['height']);
+  $variables['fullscreen_value'] = check_plain($variables['fullscreen_value']);
+  $variables['iframe_title'] = isset($variables['iframe_title']) ? check_plain($variables['iframe_title']) : t('@title', array('@title' => media_youtube_variable_get('iframe_title')));
+  $variables['classes'] = isset($variables['classes']) ? $variables['classes'] : array('media-youtube-html5');
+  $variables['class'] = check_plain(implode(' ', $variables['classes']));
+}
+
 function template_preprocess_media_youtube_default_external(&$variables) {
-   
   // Merge in our default variables.
   $variables = array_merge($variables, $variables['variables']);
 
@@ -51,7 +65,6 @@ function template_preprocess_media_youtube_default_external(&$variables) {
  * @TODO: Break this down; it's too big!!!
  */
 function template_preprocess_media_youtube_flash(&$variables) {
-  
   static $count;
   // Merge in our default variables.
   $variables = array_merge($variables, $variables['variables']);
@@ -62,7 +75,6 @@ function template_preprocess_media_youtube_flash(&$variables) {
   $width = $variables['width'];
   $height = $variables['height'];
   $autoplay = $variables['autoplay'];
-
   if ($video_id = check_plain($video_id)) {
     // Display a message if a video is unavailable.
     if (($variables['item']['status'] == EMFIELD_STATUS_UNAVAILABLE) && !$variables['no_unavailable_message']) {
@@ -244,7 +256,7 @@ function template_preprocess_media_youtube_flash(&$variables) {
       // Use object tags rather than embed.
       // See http://www.alistapart.com/articles/flashsatay
       $output = <<<FLV
-<div id="$div_id"><object type="application/x-shockwave-flash" data="$flv_path" width="$width" height="$height" id="$id"><param name="movie" value="$flv_path" /><param name="flashvars" value="$flashvars" /><param name="wmode" value="transparent" />$noembed</object></div>
+<div id="$div_id"><object type="application/x-shockwave-flash" data="$flv_path" width="$width" height="$height" id="$id"><param name="movie" value="$flv_path" /><param name="flashvars" value="$flashvars" /><param name="allowFullScreen" value="$fullscreen_value"/><param name="wmode" value="transparent" />$noembed</object></div>
 FLV;
     }
     else {

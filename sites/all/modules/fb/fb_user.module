@@ -1,5 +1,5 @@
 <?php
-// $Id: fb_user.module,v 1.102 2011/01/06 23:50:52 yogadex Exp $
+// $Id: fb_user.module,v 1.102.2.1 2011/02/10 00:22:37 yogadex Exp $
 
 /**
  * @file
@@ -925,10 +925,18 @@ function _fb_user_get_uid($fbu, $fb_app = NULL) {
 function fb_user_get_local_user_by_email($fbu) {
   global $_fb;
   if (isset($_fb) && $fbu) {
-    $info = $_fb->api($fbu);
-    if (isset($info['email']) &&
-        ($email = $info['email'])) {
-      return user_load(array('mail' => $email));
+    try {
+      $info = $_fb->api($fbu);
+      if (isset($info['email']) &&
+          ($email = $info['email'])) {
+        return user_load(array('mail' => $email));
+      }
+    }
+    catch (Exception $e) {
+      // This can occur when user logs out of facebook in another window, then returns to our site.
+      if (fb_verbose()) {
+        fb_log_exception($e, t('Failed to get facebook user email.'));
+      }
     }
   }
 }
