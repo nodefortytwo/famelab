@@ -1,5 +1,10 @@
-$Id: CHANGELOG.txt,v 1.1.2.4 2010/10/20 22:48:10 itafroma Exp $
+$Id: CHANGELOG.txt,v 1.1.2.7 2011/02/13 05:40:44 itafroma Exp $
 Context: Menu Block Module 6.x
+
+Context: Menu Block 6.x-3.0-rc1
+-------------------------------
+#1060078 by Mark Trapp: Provide better documentation
+#1059560 by Mark Trapp: Remove support for Context 6.x-2.x
 
 Context: Menu Block 6.x-3.0-beta3
 ---------------------------

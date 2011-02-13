@@ -1,8 +1,10 @@
 
 // This function called by facebook's javascript when it is loaded.
+// http://developers.facebook.com/docs/reference/javascript/
 window.fbAsyncInit = function() {
 
   FB.init(Drupal.settings.fb.fb_init_settings);
+
   FB.XFBML.parse();
 
   // Async function to complete init, only if session state is unknown.
@@ -243,15 +245,10 @@ Drupal.behaviors.fb = function(context) {
     jQuery(document).bind('fb_session_change', FB_JS.sessionChangeHandler);
   }
 
-  if (typeof(FB) == 'undefined') {
-    // Include facebook's javascript.
-    jQuery.getScript(Drupal.settings.fb.js_sdk_url);
-  }
-  else if (FB._apiKey != Drupal.settings.fb.apikey) {
-    fbAsyncInit();
-  }
-  else {
-    // Render XFBML markup.
+  // Once upon a time, we initialized facebook's JS SDK here.  But now that is done in fb_footer().
+
+  if (typeof(FB) != 'undefined') {
+    // Render any XFBML markup that may have been added by AJAX.
     $(context).each(function() {
       var elem = $(this).get(0);
       FB.XFBML.parse(elem);

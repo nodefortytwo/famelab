@@ -1,5 +1,5 @@
 <?php
-// $Id: fb.admin.inc,v 1.22 2011/01/06 23:50:52 yogadex Exp $
+// $Id: fb.admin.inc,v 1.22.2.1 2011/02/10 00:20:55 yogadex Exp $
 /**
  * @file
  * Admin pages and forms for Drupal for Facebook.
@@ -41,10 +41,11 @@ function fb_admin_page() {
       $row[] = $fb_app->label . ($fb_app->status ? '' : ' ' . t('(<em>not enabled</em>)'));
 
       // About.
-      $row[] = l($fb_app->application_name, 'http://www.facebook.com/apps/application.php?id=' . $fb_app->id);
+      $row[] = l(isset($fb_app->application_name) ? $fb_app->application_name : $fb_app->label, 'http://www.facebook.com/apps/application.php?id=' . $fb_app->id);
 
       // Canvas Page.
-      if ($fb_app->canvas_name != $fb_app->canvas) {
+      if (isset($fb_app->canvas_name) &&
+          $fb_app->canvas_name != $fb_app->canvas) {
         drupal_set_message(t('Canvas page for %label is out of sync!  Facebook believes it is %fbcanvas, while our database believes %canvas.  Edit and save the application to remedy this.', array('%label' => $fb_app->label, '%fbcanvas' => $fb_app->canvas_name, '%canvas' => $fb_app->canvas)), 'error');
       }
       if ($fb_app->canvas) {
@@ -170,7 +171,7 @@ function fb_admin_get_app_properties(&$fb_app) {
 
   // Update $fb_app with the values we got from facebook api.
   foreach ($props_map as $key) {
-    if ($props[$key]) {
+    if (isset($props[$key])) {
       $fb_app->$key = $props[$key];
     }
   }

@@ -9,7 +9,6 @@
  * This will display YouTube's embedded video.
  */
 ?>
-
 <div id="media-youtube-<?php print $id; ?>" class="<?php print $classes; ?>">
   <?php print $output; ?>
 </div>

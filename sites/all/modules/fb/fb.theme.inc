@@ -1,5 +1,5 @@
 <?php
-// $Id: fb.theme.inc,v 1.15 2010/12/28 22:05:10 yogadex Exp $
+// $Id: fb.theme.inc,v 1.16 2011/01/08 00:02:35 yogadex Exp $
 /**
  * @file
  * Implementation of theme functions.
@@ -55,6 +55,10 @@ function theme_fb_username($fbu, $object, $orig) {
 function theme_fb_user_picture($fbu, $object, $orig) {
   if (!$fbu)
     return $orig;
+
+  $fbu = $params['fbu'];
+  $object = $params['account'];
+  $orig = $params['orig'];
 
   // http://developers.facebook.com/docs/reference/fbml/profile-pic
   $fbml = "<fb:profile-pic linked=false uid=\"$fbu\"></fb:profile-pic>";
