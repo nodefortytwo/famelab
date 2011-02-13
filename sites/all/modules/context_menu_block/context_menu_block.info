@@ -6,8 +6,8 @@ package = Context
 dependencies[] = context
 dependencies[] = menu_block
 ; Information added by drupal.org packaging script on January 1, 1970 - 00:00
-version = "6.x-3.0-rc1"
+version = "6.x-3.x-dev"
 core = "6.x"
 project = "context_menu_block"
-datestamp = "1297576049"
+datestamp = "1297599216"
 
