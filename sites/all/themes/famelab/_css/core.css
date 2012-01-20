@@ -682,8 +682,9 @@ thead th {
 	padding-top: 13px;
 }
 
-.view-id-Judges .field-view-title{
+.view-id-Judges .views-field-title{
 	font-size: 14px;
 	font-weight: bold;
+	clear:both;
 }
 
