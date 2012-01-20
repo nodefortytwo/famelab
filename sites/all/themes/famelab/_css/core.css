@@ -671,3 +671,19 @@ thead th {
 .views-table{
     clear:both;
 }
+
+.view-id-Judges{
+	padding:10px;
+}
+
+.view-id-Judges .views-field-field-image-fid img{
+	float: left;
+	padding-right: 9px;
+	padding-top: 13px;
+}
+
+.view-id-Judges .field-view-title{
+	font-size: 14px;
+	font-weight: bold;
+}
+
