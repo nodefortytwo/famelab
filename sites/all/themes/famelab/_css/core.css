@@ -649,19 +649,22 @@ thead th {
     margin-left: 20px;
 }
 
-#block-boxes-follow_us{
+#block-boxes-follow_us,
+.pane-2{
     clear:both;
     float:left;
     width: 100%;
 }
 
-#block-boxes-follow_us .content{
+#block-boxes-follow_us .content,
+.pane-2 .content{
     float:left;
     background-color: white;
     margin-top:-5px;
         width: 100%;
 }
-#block-boxes-follow_us ul li{
+#block-boxes-follow_us ul li,
+.pane-2 ul li{
     list-style: none;
     display: block;
     float:left;
