@@ -27,11 +27,21 @@ h1{
 }
 
 h1#page-title{
-    font-size: 25px;
+    font-size: 20px;
     display: block;
-    border-bottom: 1px solid #889398
+    border-bottom: 1px solid #889398;
+    float:left;
+    margin-bottom: 10px;
+    width:100%;
 }
 
+h1#page-title span{
+   background-color:#0061A7;
+   display:block;
+   float:left;
+   color:white;
+   padding:2px 10px;
+}
 h2{
     font-size: 16px;
 }
@@ -76,12 +86,23 @@ table{
     float:left;
 
 }
+.float-right{
+    float:right;
+}
+.float-left{
+    float:left;
+}
 #map_canvas { height: 100% }
 
 #header-group-wrapper{
     background:#171614;
+    
 }
 
+.uk #header-group-wrapper{
+    background-image: url(../_img/bg-home.jpg);
+    background-position: center center;
+}
 #header-group{
  
 }
@@ -92,10 +113,15 @@ table{
 
 h1#site-name a{
     text-indent: -9999px;
-    background-image: url(../_img/famelab_logo_blue.png);
+    background-image: url(../_img/famelab_int_logo_blue.png);
     width:399px;
-    height:123px;
+    height:115px;
     display:block;
+    background-repeat: no-repeat;
+}
+
+.uk h1#site-name a{
+   background-image: url(../_img/famelab_nesta_logo_blue.png);
 }
 
 #supporting-logo {
@@ -178,8 +204,18 @@ h1#site-name a{
     text-align: center;
     border-right:1px solid #242424;
     min-height: 43px;
-    max-width:120px;
+    max-width:97px;
     
+}
+
+#block-menu_block-3 li a{
+   max-width:130px;
+}
+
+#block-menu_block-3 li.menu-mlid-608 a,
+#block-menu_block-3 li.menu-mlid-1003 a,
+#block-menu_block-3 li.menu-mlid-375 a{
+   max-width:90px;
 }
 
 #block-menu_block-2 li.first a,
@@ -257,7 +293,9 @@ h1#site-name a{
 
 /* Left Nav */
 
-#sidebar-left .block-menu_block{
+#sidebar-left .block-menu_block,
+#sidebar-left #block-views-news_events-block_1,
+#sidebar-left #block-views-news_events_uk-block_1{
     width:100%;
     float:left;
     border:0;
@@ -266,12 +304,16 @@ h1#site-name a{
     margin-top: 37px;
 }
 
-#sidebar-left .block-menu_block li{
+#sidebar-left .block-menu_block li,
+#sidebar-left #block-views-news_events-block_1 li,
+#sidebar-left #block-views-news_events_uk-block_1 li{
     font-size: 15px;
     border-bottom: 1px solid #cedbe1;
 }
 
-#sidebar-left .block-menu_block li a{
+#sidebar-left .block-menu_block li a,
+#sidebar-left #block-views-news_events-block_1 li a,
+#sidebar-left #block-views-news_events_uk-block_1 li a{
     color:#889398;
     padding:.1em 5% ;
     display: block;
@@ -336,11 +378,11 @@ h1#site-name a{
   padding:0;
 }
 
-.node ul.links li{
-    padding:5px 0 5px 10px;
-    float:left;
-    display: block;
+.node .content ul{
+    margin-left:16px;
 }
+
+.node ul
 
 .block{
     background-color: #fff;
@@ -524,4 +566,108 @@ thead th {
 .emvideo-modal-iframe #media-youtube-1 {
     margin: 0px auto;
     width: 640px;
+}
+
+.emvideo-thumbnail-replacement span{
+    left:65px;
+}
+
+#map_canvas{
+    margin: 10px 0;
+}
+
+#main-content .view-news-events ul,
+#main-content .view-news-events-uk ul{
+    list-style: none;
+    padding-left: 20px;
+}
+
+#main-content .view-news-events li,
+#main-content .view-news-events-uk li{
+    margin-bottom: 10px;
+
+}
+
+.emvideo-thumbnail-replacement span {
+  background: url(../_img/emvideo-play.png) no-repeat;
+  /*The image should have the mouseover image to the right and the normal image to the left*/
+  height: 112px;
+  width: 72px;
+  /*Reposition accordingly*/
+  left:55px;
+  top:10px;
+}
+.emvideo-thumbnail-replacement span:hover {
+  background-position: -85px 0;
+}
+
+
+#block-fame_reg-0{
+    clear:both;
+    float: left;
+    width: 100%;
+    background: white;
+}
+
+#block-fame_reg-0 .content{
+    float: left;
+    width: 100%;
+   
+}
+#block-fame_reg-0 .item-list{
+    float: left;
+    width: 100%;
+}
+
+#block-fame_reg-0 .item-list ul{
+    list-style: none;
+    float:left;
+    width:100%;
+    padding:0; 
+    margin:0;
+}
+
+#block-fame_reg-0 .item-list ul li{
+    float:left;
+    width:94%;
+    padding:3px 3%;
+    border-bottom: 1px solid #efefef;
+}
+
+#block-fame_reg-0 .item-list ul li a{
+    background-color: transparent;
+}
+#block-fame_reg-0 .item-list ul li.first{
+    margin-top:0;
+}
+
+#block-fame_reg-0  .item-list ul li.last{
+    border-bottom: 0;
+}
+
+#COSPlayer{
+    margin-left: 20px;
+}
+
+#block-boxes-follow_us{
+    clear:both;
+    float:left;
+    width: 100%;
+}
+
+#block-boxes-follow_us .content{
+    float:left;
+    background-color: white;
+    margin-top:-5px;
+        width: 100%;
+}
+#block-boxes-follow_us ul li{
+    list-style: none;
+    display: block;
+    float:left;
+    padding:5px 8px 0 8px;
+}
+
+.views-table{
+    clear:both;
 }

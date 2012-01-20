@@ -149,9 +149,10 @@ ini_set('url_rewriter.tags',        '');
 ini_set('display_error',        'on');
 ini_set('post_max_size',        '100M');
 ini_set('upload_max_filesize',        '100M');
-ini_set('error_reporting','E_ALL & ~E_NOTICE');
+ini_set('error_reporting','E_ALL');
 ini_set('max_execution_time',        '1000');
 ini_set('max_input_time',        '1000');
+ini_set('memory_limit', '128M');
 
 /**
  * If you encounter a situation where users post a large amount of text, and

@@ -1,5 +1,4 @@
 <?php
-// $Id: fb.install,v 1.22 2011/01/04 12:44:58 yogadex Exp $
 
 /**
  * @file
@@ -7,12 +6,26 @@
  *
  */
 
+// Normally fb_settings.inc is included in settings.php or by fb.module, but that is not available during update.php.
+if (!function_exists('fb_settings')) {
+  module_load_include('inc', 'fb', 'fb_settings');
+}
+
 /**
  * Implementation of hook_requirements().
  */
 function fb_requirements($phase) {
   $t = get_t();
   $items = array();
+
+  // fb.module and Facebook's PHP libs require JSON extensions.
+  if (!function_exists('json_encode')) {
+    $items[] = array(
+      'value' => $t('Not found'),
+      'severity' => REQUIREMENT_ERROR,
+      'description' => $t('JSON extension for PHP'),
+    );
+  }
 
   // Disable these checks at install time, because failure then causes more
   // problems, due to module dependencies and Drupal's poor handling of
@@ -43,12 +56,21 @@ function fb_requirements($phase) {
   $items[] = $status;
 
   $status = array('title' => $t('Facebook PHP SDK'));
-  $fb_platform = variable_get(FB_VAR_API_FILE, 'sites/all/libraries/facebook-php-sdk/src/facebook.php');
+
+  // Find Facebook's PHP SDK.  Use libraries API if enabled.
+  $fb_lib_path = function_exists('libraries_get_path') ? libraries_get_path('facebook-php-sdk') : 'sites/all/libraries/facebook-php-sdk';
+  $fb_platform = variable_get(FB_VAR_API_FILE, $fb_lib_path . '/src/facebook.php');
 
   if (class_exists('Facebook')) {
-    $status['description'] = $t('Facebook PHP SDK loaded.');
-    $status['severity'] = REQUIREMENT_OK;
-    $status['value'] = $t('Loaded');
+    $status['value'] = Facebook::VERSION;
+    if (Facebook::VERSION < "3" || Facebook::VERSION > "4") {
+      $status['description'] = $t('Expected version 3.x.y of Facebook PHP SDK.');
+      $status['severity'] = REQUIREMENT_ERROR;
+    }
+    else {
+      $status['description'] = $fb_platform;
+      $status['severity'] = REQUIREMENT_OK;
+    }
   }
   elseif (include($fb_platform)) { // include() better than file_exists().
     $status['description'] = $t('Facebook SDK found at %path',

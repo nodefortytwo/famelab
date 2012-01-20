@@ -1,5 +1,4 @@
 <?php
-// $Id: fb_form.module,v 1.29 2011/01/06 23:50:52 yogadex Exp $
 /**
  * @file
  *
@@ -126,52 +125,6 @@ function fb_form_multi_add_invite_form() {
   return $form;
 }
 
-/**
- * Helper function to produce a request or invite form.  Note that this does
- * not produce a full form (i.e. never use
- * drupal_get_form('fb_form_request_form')).  The caller is expected to fill
- * out the rest of the form before returning it for use with drupal_get_form.
- *
- * DEPRECATED
- */
-function fb_form_request_formXXX($config = array()) {
-  global $_fb, $_fb_app; // only works on canvas pages.
-
-  // Default config
-  $config = array_merge(array('type' => $_fb_app->label,
-                              'content' => 'INVITE CONTENT XXX',
-                              'action' => 'http://apps.facebook.com/' . $_fb_app->canvas,
-                              'invite' => 'true',
-                              'method' => 'POST',
-                        ), $config);
-
-  // form type fb:request-form
-  $form = array('#fb_form_type_hack' => 'fb_form_request', /* becomes #type during form_alter */
-                '#attributes' => array('type' => $config['type'],
-                                       'content' => htmlentities($config['content']),
-                                       'invite' => $config['invite'],
-                ),
-                '#action' => $config['action'],
-  );
-
-  // Caller must add fb:multi-friend-selector or some other selector.
-
-  return $form;
-}
-
-
-/**
- * Based on theme_form, this renders an fb:request-form.
- */
-function theme_fb_form_requestXXX($element) {
-  // TODO: verify attributes required by facebook are found.
-
-  // Anonymous div to satisfy XHTML compliance.
-  $action = $element['#action'] ? 'action="' . check_url($element['#action']) . '" ' : '';
-  $output = '<fb:request-form '. $action .' method="'. $element['#method'] .'" '. 'id="'. $element['#id'] .'"'. drupal_attributes($element['#attributes']) .">\n<div>". $element['#children'] ."\n</div></fb:request-form>\n";
-
-  return $output;
-}
 
 // Because the fb:request-form includes its own buttons, including the particularly annoying skip button, this submit callback is not used.  Will probably delete it.  If I can't make it work properly.
 function fb_form_multi_add_invite_form_submit() {

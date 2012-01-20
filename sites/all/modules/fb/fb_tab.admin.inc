@@ -1,5 +1,4 @@
 <?php
-// $Id: fb_tab.admin.inc,v 1.6 2010/11/02 18:42:39 yogadex Exp $
 
 /**
  * @file
@@ -8,6 +7,7 @@
 
 /**
  * Implementation of hook_fb_admin().
+ *
  */
 function fb_tab_fb_admin($op, $data, &$return) {
   $fb = isset($data['fb']) ? $data['fb'] : NULL;
@@ -15,8 +15,27 @@ function fb_tab_fb_admin($op, $data, &$return) {
   $config = _fb_tab_get_config($fb_app);
   if ($op == FB_ADMIN_OP_SET_PROPERTIES) {
     $return['tab_default_name'] = $config['tab_default_name'];
-    $return['profile_tab_url'] = $config['profile_tab_url'];
-    //$return['edit_url'] = $config['edit_url']; // Apparently not used by facebook.
+
+    if ($config['profile_tab_url']) {
+      $return['profile_tab_url'] = url($config['profile_tab_url'], array(
+                                         'absolute' => TRUE,
+                                         'fb_canvas' => FALSE,
+                                       ));;
+    }
+    else {
+      $return['profile_tab_url'] = '';
+    }
+
+    if ($config['edit_url']) {
+      // http://forum.developers.facebook.net/viewtopic.php?id=88920
+      $return['edit_url'] =  url($config['edit_url'], array(
+                                   'absolute' => TRUE,
+                                   'fb_canvas' => $fb_app->label, // @TODO make canvas optional
+                                 ));;
+    }
+    else {
+      $return['edit_url'] = '';
+    }
   }
   elseif ($op == FB_ADMIN_OP_LIST_PROPERTIES) {
     $return[t('Profile Tab Name')] = 'tab_default_name';
@@ -25,6 +44,42 @@ function fb_tab_fb_admin($op, $data, &$return) {
     $return[t('Installable')] = 'installable';
   }
 }
+
+
+/**
+ * Form builder; Configure settings for this site.
+ *
+ * @ingroup forms
+ * @see system_settings_form()
+ */
+function fb_tab_admin_settings() {
+
+  $form['process_settings'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('Tab URL processing'),
+    '#description' => t('This option alters links, so that instead of changing the iframe\'s URL, they change the top frame.  This adds some overhead to each tab served. Still, most sites will want this enabled.'),
+  );
+  $form['process_settings'][FB_TAB_VAR_PROCESS_IFRAME] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Enable processing on iframe tabs.'),
+    '#default_value' => variable_get(FB_TAB_VAR_PROCESS_IFRAME, TRUE),
+    '#description' => t('Uncheck if you want the user to stay on the tab, instead of linking to canvas page or website. <br/>If unchecked, settings below have no effect.'),
+  );
+  $form['process_settings'][FB_TAB_VAR_PROCESS_TO_CANVAS] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Links send user to canvas pages.'),
+    '#default_value' => variable_get(FB_TAB_VAR_PROCESS_TO_CANVAS, TRUE),
+    '#description' => t('If unchecked, links send user to normal website.'),
+  );
+  $form['process_settings'][FB_TAB_VAR_PROCESS_ABSOLUTE] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Replace absolute hrefs, not just relative links.'),
+    '#default_value' => variable_get(FB_TAB_VAR_PROCESS_ABSOLUTE, TRUE),
+  );
+
+  return system_settings_form($form);
+}
+
 
 /**
  * See fb_tab_form_alter.
@@ -75,15 +130,14 @@ function fb_tab_admin_form_alter(&$form, &$form_state, $form_id) {
       '#default_value' => $config['profile_tab_url'],
       '#description' => t('Recommended value is %tab_path.  You may choose another if you have defined a custom menu item or view.', array('%tab_path' => FB_TAB_PATH_VIEW)),
     );
-    /* XXX is this used by facebook?
+
     $form['fb_app_data']['fb_tab']['edit_url'] = array(
       '#type' => 'textfield',
       '#title' => 'Edit URL',
       '#default_value' => $config['edit_url'],
       '#description' => t('Recommended value is %edit_url.', array(
-                            '%edit_url' => url(FB_TAB_PATH_FORM, array('absolute'=> TRUE)))),
+                            '%edit_url' => FB_TAB_PATH_FORM,
+                          )),
     );
-    $form['fb_app_data']['fb_tab']['edit_url']['#description'] .= '<br/>' . t('Note that this field is apparently unused by facebook.');
-    */
   }
 }

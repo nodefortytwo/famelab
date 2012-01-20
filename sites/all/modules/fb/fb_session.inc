@@ -1,5 +1,4 @@
 <?php
-// $Id: fb_session.inc,v 1.21 2011/01/06 07:53:52 yogadex Exp $
 /**
  * @file
  * This file is a replacement for Drupal's session.inc.  Although not

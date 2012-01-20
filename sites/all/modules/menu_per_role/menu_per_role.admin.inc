@@ -1,6 +1,4 @@
 <?php
-// $Id: menu_per_role.admin.inc,v 1.1.2.1 2011/02/05 02:12:58 alexiswilke Exp $
-
 /**
  * @file
  * Administration form for menu items.
@@ -52,6 +50,14 @@ function menu_per_role_settings_form($form_state) {
     '#default_value' => variable_get('menu_per_role_admin_see_all', 0),
   );
 
+  $form['menu_per_role_hide_show'] = array(
+    '#type' => 'radios',
+    '#title' => t('Select what is shown when editing menu items'),
+    '#options' => array(0 => t('Hide and Show check boxes'), 1 => t('Only Hide check boxes'), 2 => t('Only Show check boxes')),
+    '#description' => t('By default, both list of check boxes are shown when editing a menu item (in the menu administration area or while editing a node.) This option let you choose to only show the "Show menu item only to selected roles" or "Hide menu item from selected roles". WARNING: changing this option does not change the existing selection. This means some selection will become invisible when you hide one of the set of check boxes...'),
+    '#default_value' => variable_get('menu_per_role_hide_show', 0),
+  );
+
   return system_settings_form($form);
 }
 
@@ -61,7 +67,7 @@ function menu_per_role_settings_form($form_state) {
 function _menu_per_role_form_alter(&$form, $form_state, $form_id) {
   if ($form_id == 'menu_edit_item') {
     $f = &$form;
-    $form['submit']['#weight'] = 10;
+    $form['submit']['#weight'] = 9;
     // this callback does not work in nodes because the mlid is not available, see menu_per_role_nodeapi()
     $form['#submit'][] = '_menu_per_role_form_submit';
   }
@@ -83,20 +89,25 @@ function _menu_per_role_form_alter(&$form, $form_state, $form_id) {
       '#weight' => 5,
       '#description' => t('Check to know whether the user has proper visibility permissions to see this menu item. Note that both checks are always performed.'),
     );
-    $f['menu_per_role']['menu_per_role_roles'] = array(
-      '#type' => 'checkboxes',
-      '#title' => t('Show menu item only to selected roles'),
-      '#options' => user_roles(),
-      '#default_value' => $default_value_roles,
-      '#description' => t('Check no role to leave the access permission to the default. A user who is not part of at least one of the selected roles will not see this menu item.'),
-    );
-    $f['menu_per_role']['menu_per_role_hide_from_roles'] = array(
-      '#type' => 'checkboxes',
-      '#title' => t('Hide menu item from selected roles'),
-      '#options' => user_roles(),
-      '#default_value' => $default_value_hide_from_roles,
-      '#description' => t('Check no role to leave the access permission to the default. A user who is part of any one of these roles will not see this menu item.'),
-    );
+    $hide_show = variable_get('menu_per_role_hide_show', 0);
+    if ($hide_show == 0 || $hide_show == 2) {
+      $f['menu_per_role']['menu_per_role_roles'] = array(
+        '#type' => 'checkboxes',
+        '#title' => t('Show menu item only to selected roles'),
+        '#options' => user_roles(),
+        '#default_value' => $default_value_roles,
+        '#description' => t('Check no role to leave the access permission to the default. A user who is not part of at least one of the selected roles will not see this menu item.'),
+      );
+    }
+    if ($hide_show == 0 || $hide_show == 1) {
+      $f['menu_per_role']['menu_per_role_hide_from_roles'] = array(
+        '#type' => 'checkboxes',
+        '#title' => t('Hide menu item from selected roles'),
+        '#options' => user_roles(),
+        '#default_value' => $default_value_hide_from_roles,
+        '#description' => t('Check no role to leave the access permission to the default. A user who is part of any one of these roles will not see this menu item.'),
+      );
+    }
   }
 }
 
@@ -114,23 +125,28 @@ function _menu_per_role_form_submit($form, &$form_state) {
     if ($mlid) {
       // hide but to those roles
       $rids = array();
-      $roles = isset($form_state['values']['menu_per_role_roles']) ?
-                     $form_state['values']['menu_per_role_roles']
-                     : $form_state['values']['menu']['menu_per_role']['menu_per_role_roles'];
-      foreach ($roles as $rid => $checked) {
-        if ($checked) {
-          $rids[] = $rid;
+      $hide_show = variable_get('menu_per_role_hide_show', 0);
+      if ($hide_show == 0 || $hide_show == 2) {
+        $roles = isset($form_state['values']['menu_per_role_roles']) ?
+                       $form_state['values']['menu_per_role_roles']
+                       : $form_state['values']['menu']['menu_per_role']['menu_per_role_roles'];
+        foreach ($roles as $rid => $checked) {
+          if ($checked) {
+            $rids[] = $rid;
+          }
         }
       }
       $rids_str = implode(',', $rids);
       // show but to those roles
       $hrids = array();
-      $roles = isset($form_state['values']['menu_per_role_hide_from_roles']) ?
-                     $form_state['values']['menu_per_role_hide_from_roles']
-                     : $form_state['values']['menu']['menu_per_role']['menu_per_role_hide_from_roles'];
-      foreach ($roles as $rid => $checked) {
-        if ($checked) {
-          $hrids[] = $rid;
+      if ($hide_show == 0 || $hide_show == 1) {
+        $roles = isset($form_state['values']['menu_per_role_hide_from_roles']) ?
+                       $form_state['values']['menu_per_role_hide_from_roles']
+                       : $form_state['values']['menu']['menu_per_role']['menu_per_role_hide_from_roles'];
+        foreach ($roles as $rid => $checked) {
+          if ($checked) {
+            $hrids[] = $rid;
+          }
         }
       }
       $hrids_str = implode(',', $hrids);
@@ -143,6 +159,7 @@ function _menu_per_role_form_submit($form, &$form_state) {
           // (although with MySQL this may fail because db_affected_rows() may only return
           // rows that have been changed instead of the # of rows that match the WHERE clause.)
           if ($db_type != 'pgsql') {
+            // MySQL hack
             $insert = !db_result(db_query("SELECT 1 FROM {menu_per_role} WHERE mlid = %d", $mlid));
           }
           else {
@@ -161,7 +178,7 @@ function _menu_per_role_form_submit($form, &$form_state) {
       // reset the menus
       menu_cache_clear_all();
     }
-    else if (isset($form_state['values']['menu_per_role_roles'])) {
+    elseif (isset($form_state['values']['menu_per_role_roles'])) {
       drupal_set_message(t('The menu link identifier was not defined on Submit in <b>Menu per Role</b>. You are most certainly adding a new menu item. For this feature to work when adding a menu item, you must apply the patch defined in <a href="http://drupal.org/node/326210" target="_blank">node #326210</a>. That patch is included in this module for that purpose.'), 'error');
     }
   }

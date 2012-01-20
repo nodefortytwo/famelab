@@ -1,5 +1,4 @@
 <?php
-// $Id: fb_friend.install,v 1.3 2011/01/04 12:52:53 yogadex Exp $
 /**
  * @file
  * Installs database tables and settings required by fb_friend module.
@@ -46,7 +45,7 @@ function fb_friend_schema() {
         'type' => 'int',
         'not null' => TRUE,
         'default' => 0),
-      'label' => array( /* Would it be better to store apikey? */
+      'label' => array( /* Would it be better to store id? */
         'type' => 'varchar',
         'length' => 255,
         'not null' => TRUE,

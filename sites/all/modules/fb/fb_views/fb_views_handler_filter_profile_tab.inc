@@ -1,5 +1,4 @@
 <?php
-// $Id: fb_views_handler_filter_profile_tab.inc,v 1.6 2010/11/02 18:49:01 yogadex Exp $
 /**
  * @file
  * Filter handler for profile tab user.

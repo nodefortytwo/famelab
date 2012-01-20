@@ -1,5 +1,4 @@
 <?php
-// $Id: fb_example.module,v 1.15 2011/01/06 22:14:46 yogadex Exp $
 /**
  * @file
  *
@@ -22,7 +21,7 @@ function fb_example_link($type, $object, $teaser = FALSE) {
     if (variable_get('fb_example_link_add_like', TRUE)) { // Switch to control this behavior.
       $url = fb_scrub_urls(url('node/' . $object->nid, array('absolute' => TRUE)));
       $items['dff_like'] = array(
-        'title' => "<fb:like href={$url}></fb:like>",
+        'title' => "<fb:like send=\"true\" ref=\"node/$object->nid\" href={$url}></fb:like>",
         'html' => TRUE,
       );
     }
@@ -88,7 +87,7 @@ function fb_example_form_alter(&$form, $form_state, $form_id) {
       // Add checkbox to control feed publish.
       $form['fb_example']['stream_publish'] = array(
         '#type' => 'checkbox',
-        '#title' => 'Share on Facebook',
+        '#title' => t('Share on Facebook'),
         '#default_value' => TRUE,
       );
     }
@@ -96,7 +95,7 @@ function fb_example_form_alter(&$form, $form_state, $form_id) {
       // Add checkbox to control feed publish.
       $form['fb_example']['stream_publish'] = array(
         '#type' => 'checkbox',
-        '#title' => 'Share on Facebook',
+        '#title' => t('Share on Facebook'),
         '#default_value' => TRUE,
       );
     }
@@ -315,7 +314,7 @@ function fb_example_fb($op, $data, &$return) {
  *   asking for information.
  *   - FB_USER_OP_PRE_USER - You have a chance to the name or other account
  *     attributes, before a new user account is created.
- *   - FB_OP_POST_USER - A new user account was created for a facebook user
+ *   - FB_USER_OP_POST_USER - A new user account was created for a facebook user
  *     who authorized an app.
  *
  * @param $data
@@ -366,9 +365,14 @@ function fb_example_fb_user($op, $data, &$return) {
  */
 function fb_example_preprocess_page(&$variables) {
   if (module_exists('fb_canvas') && fb_is_canvas()) {
+    include_once drupal_get_path('module', 'fb') . '/fb.process.inc';
+
     // Process links in these regions.
     foreach (array('content', 'header', 'footer', 'left', 'preface_first', 'preface_middle', 'preface_last') as $region) {
-      $variables[$region] = fb_canvas_process($variables[$region], array('add_target' => TRUE, 'absolute_links' => TRUE));
+      $variables[$region] = fb_process($variables[$region], array(
+                                         'add_target' => '_top',
+                                         'absolute_links' => TRUE,
+                                       ));
     }
   }
 }

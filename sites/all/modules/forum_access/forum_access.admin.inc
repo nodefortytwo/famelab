@@ -1,5 +1,4 @@
 <?php
-// $Id: forum_access.admin.inc,v 1.43.2.5 2010/09/07 21:41:06 salvis Exp $
 
 /**
  * @file forum_access.admin.inc
@@ -201,9 +200,9 @@ function _forum_access_forum_form(&$form, &$form_state, $is_container) {
 
   // Find our moderator ACL:
   if (isset($tid)) {  // edit, not new
-    $acl_id = db_result(db_query("SELECT acl_id from {acl} WHERE module = 'forum_access' AND name = '%d'", $tid));
+    $acl_id = acl_get_id_by_number('forum_access', $tid);
     if (!$acl_id) { // create one
-      $acl_id = acl_create_new_acl('forum_access', $tid);
+      $acl_id = acl_create_new_acl('forum_access', NULL, $tid);
       // update every existing node in this forum to use this acl.
       $result = db_query("SELECT nid FROM {term_node} WHERE tid = %d", $tid);
       while ($node = db_fetch_object($result)) {
@@ -465,7 +464,7 @@ function _forum_access_forum_form_after_build_acl0($form, $form_state) {
   if (isset($form['#post']['forum_access']['template']['taxonomy'])) {
     // Get ACL's user_list for the template and replace it before ACL's after_build function gets its shot at it.
     $template_tid = reset(array_values($form['#post']['forum_access']['template']['taxonomy']));
-    if ($acl_id = db_result(db_query("SELECT acl_id from {acl} WHERE module = 'forum_access' AND name = '%d'", $template_tid))) {
+    if ($acl_id = acl_get_id_by_number('forum_access', $template_tid)) {
       $f = acl_edit_form($acl_id, 'DUMMY');
       $form['user_list']['#value'] = $f['user_list']['#default_value'];
     }
@@ -902,7 +901,7 @@ function _forum_access_create_moderator_rid($verbose = FALSE) {
       variable_set('forum_access_moderator_rid', $rid);
       $permission = new stdClass();
       $permission->rid = $rid;
-      $permission->perm = 'administer comments, administer nodes';
+      $permission->perm = 'administer comments, administer nodes, post comments, post comments without approval';
       drupal_write_record('permission', $permission);
       $msg = t('!Forum_Access has created a new role named %role and given it the %administer_nodes and %administer_comments permissions. This role is used internally by !Forum_Access. You can change the name of the role as you like, but you must keep it unmodified otherwise.', $variables);
       if ($verbose) {

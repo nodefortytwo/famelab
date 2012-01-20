@@ -9,9 +9,7 @@
   <?php print $scripts; ?>
 </head>
 
-
 <body class="<?php print $body_classes; ?> ">
-
 <div id="header-group-wrapper" class="full-width">
     <div id="header-group" class="container-16">
         <div id="header-group-inner" class="grid-16">

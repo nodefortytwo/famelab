@@ -6,10 +6,20 @@
  * Preprocessor for page.tpl.php template file.
  */
 function ninesixty_preprocess_page(&$vars, $hook) {
+    
+  if (strpos($vars['body_classes'], ' uk ')){
+      $uk = true;
+  }
+ 
   // For easy printing of variables.
   $vars['logo_img']         = $vars['logo'] ? theme('image', substr($vars['logo'], strlen(base_path())), t('Home'), t('Home')) : '';
-  $vars['linked_logo_img']  = $vars['logo_img'] ? l($vars['logo_img'], '<front>', array('attributes' => array('rel' => 'home'), 'title' => t('Home'), 'html' => TRUE)) : '';
-  $vars['linked_site_name'] = $vars['site_name'] ? l($vars['site_name'], '<front>', array('attributes' => array('rel' => 'home'), 'title' => t('Home'))) : '';
+  if ($uk){
+    $vars['linked_logo_img']  = $vars['logo_img'] ? l($vars['logo_img'], 'uk', array('attributes' => array('rel' => 'home'), 'title' => t('Home'), 'html' => TRUE)) : '';
+    $vars['linked_site_name'] = $vars['site_name'] ? l($vars['site_name'], 'uk', array('attributes' => array('rel' => 'home'), 'title' => t('Home'))) : '';
+  }else{
+    $vars['linked_logo_img']  = $vars['logo_img'] ? l($vars['logo_img'], '<front>', array('attributes' => array('rel' => 'home'), 'title' => t('Home'), 'html' => TRUE)) : '';
+    $vars['linked_site_name'] = $vars['site_name'] ? l($vars['site_name'], '<front>', array('attributes' => array('rel' => 'home'), 'title' => t('Home'))) : '';
+  }
   $vars['main_menu_links']      = theme('links', $vars['primary_links'], array('class' => 'links main-menu'));
   $vars['secondary_menu_links'] = theme('links', $vars['secondary_links'], array('class' => 'links secondary-menu'));
 

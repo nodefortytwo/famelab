@@ -43,7 +43,7 @@ function fb_test_create_form($form_state, $fb_app) {
 
   // Which permissions?
   $perms = array();
-  drupal_alter('fb_required_perms', $perms);
+  drupal_alter('fb_required_perms', $perms); // @TODO pass fb_app to this function.
   if (count($perms)) {
     $default_perms = implode(',', $perms);
   }
@@ -63,7 +63,6 @@ function fb_test_create_form($form_state, $fb_app) {
 }
 
 function fb_test_create_form_submit($form, &$form_state) {
-  dpm(func_get_args(), __FUNCTION__);
   $values = $form_state['values'];
   $fb_app = $form['#fb_app'];
   try {
@@ -107,7 +106,7 @@ function fb_test_accounts_form($form_state, $fb_app) {
 
       $options[$test_account['id']] = $markup;
     }
-    if (count($options)) {
+    if (!empty($options)) {
       $form['checkboxes'] = array(
         '#type' => 'checkboxes',
         '#options' => $options,
@@ -149,7 +148,6 @@ function fb_test_accounts_form_submit($form, &$form_state) {
 
   try {
     if ($values['operation'] == 'friends') {
-      dpm($values, __FUNCTION__);
       foreach ($values['checkboxes'] as $fbu => $selected) {
         if ($selected && isset($form['#fb_test_accounts'][$fbu]['access_token'])) {
           foreach ($values['checkboxes'] as $fbu2 => $selected2) {
@@ -177,8 +175,22 @@ function fb_test_accounts_form_submit($form, &$form_state) {
         }
       }
     }
+    elseif ($values['operation'] == 'delete') {
+      foreach ($values['checkboxes'] as $fbu => $selected) {
+        if ($selected) {
+          $result = $fb->api($fbu, 'DELETE', array('access_token' => fb_get_token($fb)));
+          if ($result) {
+            drupal_set_message(t('Deleted test account %fbu', array(
+                                   '%fbu' => $fbu,
+                                 )));
+          }
+        }
+      }
+    }
     else {
-      dpm("Operation $values[operation] not implemented.", __FUNCTION__);
+      if (function_exists('dpm')) {
+        dpm("Operation $values[operation] not implemented.", __FUNCTION__);
+      }
     }
   }
   catch (Exception $e) {

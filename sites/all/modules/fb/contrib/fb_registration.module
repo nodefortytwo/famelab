@@ -78,6 +78,12 @@ function fb_registration_form_alter(&$form, &$form_state, $form_id) {
           if (is_array($value) && $value['name']) {
             $state['values'][$key] = $value['name']; // Simply for drupal form api.
           }
+          elseif ($key == 'email' && is_string($value)) {
+            // Drupal expects 'mail', not 'email'.
+            if (!isset($state['values']['mail'])) {
+              $state['values']['mail'] = $value;
+            }
+          }
         }
 
         drupal_execute($form_id, $state);

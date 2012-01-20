@@ -26,12 +26,12 @@ function fb_permission_map($fb) {
   static $perms;
 
   // http://developers.facebook.com/docs/reference/fql/permissions_info
-  $result = fb_fql_query($fb, "SELECT permission_name, header, summary FROM permissions_info WHERE 1"); // FQL, no {curly_brackets}
+  $result = fb_fql_query($fb, "SELECT permission_name, header, summary FROM permissions_info WHERE 1", // FQL, no {curly_brackets}
+                         array('access_token' => fb_get_token($fb)));
 
   if (!isset($perms)) {
-
     foreach ($result as $data) {
-      $perms[$data['permission_name']] = 'Allow %application to ' . $data['summary'];
+      $perms[$data['permission_name']] = 'Allow %application to ' . strtolower($data['summary'] ? $data['summary'] : 'access ' . $data['header']);
     }
   }
   return $perms;
@@ -82,6 +82,7 @@ function fb_permission_user($op, &$edit, &$account, $category = NULL) {
     if ($fb_app) {
       $fb = fb_api_init($fb_app);
       $map = fb_permission_map($fb); // All known permissions.
+
       // Show only permissions we've configured for this app.
       $fb_app_data = fb_get_app_data($fb_app);
       $fb_permission_data = $fb_app_data['fb_permission'];
@@ -110,6 +111,7 @@ function fb_permission_user($op, &$edit, &$account, $category = NULL) {
                                        'ext_perm' => $key,
                                        'uid' => fb_get_fbu($account->uid, $fb_app),
                                      ));
+
         } catch (Exception $e) {
           fb_log_exception($e, t('Call to users.hasAppPermission(%key) failed.', array('%key' => $key)));
         }
@@ -178,6 +180,7 @@ function fb_permission_form_alter(&$form, $state, $id) {
       '#tree' => TRUE,
       '#collapsible' => TRUE,
       '#collapsed' => TRUE,
+      '#description' => t('This list is generated automatically, by querying facebook for all known extended permissions.  Many of these will not actually work!  (When you have 500 million users, your code can suck.)<br/>  Choose only from <a target=_blank href=http://developers.facebook.com/docs/authentication/permissions/>the permissions your application is actually allowed to use</a>.  If you see an "invalid permission" error, return here and un-select that permission.'),
     );
 
     try {

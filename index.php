@@ -1,10 +1,5 @@
 <?php
 
-error_reporting(E_ALL);
-ini_set('display_errors', TRUE);
-ini_set('display_startup_errors', TRUE);
-// $Id: index.php,v 1.94 2007/12/26 08:46:48 dries Exp $
-
 /**
  * @file
  * The PHP page that serves all page requests on a Drupal installation.
@@ -15,7 +10,6 @@ ini_set('display_startup_errors', TRUE);
  * All Drupal code is released under the GNU General Public License.
  * See COPYRIGHT.txt and LICENSE.txt.
  */
-
 
 require_once './includes/bootstrap.inc';
 drupal_bootstrap(DRUPAL_BOOTSTRAP_FULL);
@@ -37,8 +31,8 @@ if (is_int($return)) {
   }
 }
 elseif (isset($return)) {
-    // Print any value (including an empty string) except NULL or undefined:
-    print theme('page', $return);
+  // Print any value (including an empty string) except NULL or undefined:
+  print theme('page', $return);
 }
 
 drupal_page_footer();

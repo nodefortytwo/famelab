@@ -1,5 +1,4 @@
 <?php
-// $Id: fb_devel.install,v 1.10 2011/01/04 12:52:53 yogadex Exp $
 /**
  * @file
  * Install file for fb_devel.module.

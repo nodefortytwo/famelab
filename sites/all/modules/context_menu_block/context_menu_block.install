@@ -1,5 +1,4 @@
 <?php
-// $Id: context_menu_block.install,v 1.1.2.2 2011/02/12 14:02:52 itafroma Exp $
 
 /**
  * @file
@@ -7,33 +6,53 @@
  */
 
 /**
+ * Defines.
+ */
+define('CONTEXT_MENU_BLOCK_CONTEXT_SUPPORTED', '6.x-3.x');
+
+/**
+ * Implementation of hook_enable().
+ */
+function context_menu_block_enable() {
+  $t = get_t();
+  $info = drupal_parse_info_file(drupal_get_path('module', 'context') . '/context.info');
+
+  if (!_context_menu_block_validate_context($info['version'])) {
+    drupal_set_message($t('Context: Menu Block requires Context @branch. Update Context to continue using Context: Menu Block.',
+      array(
+        '@branch' => CONTEXT_MENU_BLOCK_CONTEXT_SUPPORTED,
+      )), 'error');
+  }
+}
+
+/**
  * Implementation of hook_requirements().
  */
 function context_menu_block_requirements($phase) {
-  $t = get_t();
-  
-  // Context: Menu Block requires Context 6.x-3.x. Parse Context's .info file
-  // and determine if it's the correct version.
-  $info_file = drupal_get_path('module', 'context') . '/context.info';
-  $info = drupal_parse_info_file($info_file);
-  
-  $requirements['context_menu_block'] = array(
-    'title' => $t('Context'),
-    'value' => $info['version'],
-  );
+  $requirements = array();
 
-  $module_version = _context_menu_block_parse_version($info['version']);
-  
-  if ($module_version['module']['major'] == 3) {
-    variable_set('context_menu_block_validate', TRUE);
-    $requirements['context_menu_block']['severity'] = REQUIREMENT_OK;
-    $requirements['context_menu_block']['description'] = $t('The correct version of Context is enabled for use with Context: Menu Block.');
-    return $requirements;
+  if ($phase == 'runtime') {
+    $t = get_t();
+    $info = drupal_parse_info_file(drupal_get_path('module', 'context') . '/context.info');
+
+    $requirements['context_menu_block'] = array(
+      'title' => $t('Context'),
+      'value' => $info['version'],
+    );
+
+    if (_context_menu_block_validate_context($info['version'])) {
+      $requirements['context_menu_block']['severity'] = REQUIREMENT_OK;
+      $requirements['context_menu_block']['description'] = $t('The correct version of Context is enabled for use with Context: Menu Block.');
+    }
+    else {
+      $requirements['context_menu_block']['severity'] = REQUIREMENT_ERROR;
+      $requirements['context_menu_block']['description'] = $t('The version of Context enabled is not supported with Context: Menu Block. Download and enable the @branch branch of Context.',
+        array(
+          '@branch' => CONTEXT_MENU_BLOCK_CONTEXT_SUPPORTED,
+        ));
+    }
   }
-  
-  variable_set('context_menu_block_validate', FALSE);
-  $requirements['context_menu_block']['severity'] = REQUIREMENT_ERROR;
-  $requirements['context_menu_block']['description'] = $t('The version of Context enabled is not supported with Context: Menu Block. Download and enable the 6.x-3.x branch of Context.');
+
   return $requirements;
 }
 
@@ -49,23 +68,36 @@ function context_menu_block_uninstall() {
  */
 function context_menu_block_update_6001() {
   $t = get_t();
+  $info = drupal_parse_info_file(drupal_get_path('module', 'context') . '/context.info');
 
-  $info_file = drupal_get_path('module', 'context') . '/context.info';
-  $info = drupal_parse_info_file($info_file);
-  
-  $requirements['context_menu_block'] = array(
-    'title' => $t('Context'),
-    'value' => $info['version'],
-  );
+  if (!_context_menu_block_validate_context($info['version'])) {
+    drupal_set_message($t('Context: Menu Block now requires Context @branch. Update Context to continue using Context: Menu Block.',
+      array(
+        '@branch' => CONTEXT_MENU_BLOCK_CONTEXT_SUPPORTED,
+      )), 'error');
+  }
+}
 
-  $module_version = _context_menu_block_parse_version($info['version']);
-  
-  if ($module_version['module']['major'] != 3) {
-    drupal_set_message($t('Context: Menu Block now requires Context 6.x-3.x. Update Context to continue using Context: Menu Block.'), 'error');
-    variable_set('context_menu_block_validate', FALSE);
+/**
+ * Validate the version of Context enabled.
+ *
+ * @param $version
+ *   The version of Context enabled.
+ *
+ * @return
+ *   TRUE if the correct version of Context is enabled, FALSE otherwise.
+ */
+function _context_menu_block_validate_context($version) {
+  $module_version = _context_menu_block_parse_version($version);
+  $supported_version = _context_menu_block_parse_version(CONTEXT_MENU_BLOCK_CONTEXT_SUPPORTED);
+
+  if ($module_version['module']['major'] == $supported_version['module']['major']) {
+    variable_set('context_menu_block_validate', TRUE);
+    return TRUE;
   }
   else {
-    variable_set('context_menu_block_validate', TRUE);
+    variable_set('context_menu_block_validate', FALSE);
+    return FALSE;
   }
 }
 
@@ -76,11 +108,11 @@ function context_menu_block_update_6001() {
  *   A version string in standard Drupal format (e.g. 6.x-2.x).
  *
  * @return
- *   An array containing the version information broken down by core and module. 
+ *   An array containing the version information broken down by core and module.
  */
 function _context_menu_block_parse_version($version) {
-  preg_match('#(\d+\S*)\.(\S+?)-(\d+\S*)\.(\S+)#', $version, $matches);
-  
+  preg_match('#(\d+[^.]*)\.(\S+?)-(\d+[^.]*)\.(\S+)#', $version, $matches);
+
   $version = array(
     'core' => array(
       'major' => $matches[1],

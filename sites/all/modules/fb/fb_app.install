@@ -1,5 +1,4 @@
 <?php
-// $Id: fb_app.install,v 1.20 2010/11/02 18:49:00 yogadex Exp $
 /**
  * @file
  * Installs database tables and settings required by fb_app module.
@@ -181,3 +180,52 @@ function fb_app_update_6300() {
   fb_install_property_message($ret, st('Event callbacks have changed.'));
   return $ret;
 }
+
+/**
+ * Change app labels to all lower case.
+ *
+ * This include some code specific to fb_connect.module (because easier to do here than fb_connect.install).
+ */
+function fb_app_update_6302() {
+  $ret = array();
+  $query = db_query("SELECT fba_id, label FROM {fb_app} ORDER BY fba_id");
+  while ($app = db_fetch_object($query)) {
+    //change label names to lowercase
+    $label_old = $app->label;
+    $label_new = strtolower($label_old);
+    if ($label_old != $label_new){
+
+      // Change app name to lowercase.
+      $ret[] = update_sql("UPDATE {fb_app} SET label = '$label_new' WHERE fba_id = {$app->fba_id}");
+      drupal_set_message(t("Changed fb application name from %label_old to %label_new. Please adjust any custom code or settings which rely on app's label.", array(
+                             '%label_old' => $label_old,
+                             '%label_new' => $label_new,
+                           )), 'warning');
+
+      // begin fb_connect.module settings which use label.
+      if (variable_get('fb_connect_primary_label', NULL) == $label_old) {
+        // Primary label has changed.
+        variable_set('fb_connect_primary_label', $label_new);
+      }
+
+      // fb_connect.module blocks.
+      $variable_name_old = 'fb_connect_block_login_' . $label_old;
+      $variable_name_new = 'fb_connect_block_login_' . $label_new;
+      $variable_content = variable_get($variable_name_old, NULL);
+      variable_del($variable_name_old);
+      if ($variable_content) {
+        variable_set($variable_name_new, $variable_content);
+      }
+
+      // change deltas of blocks
+      $old_delta = 'login_' . $label_old;
+      $new_delta = 'login_' . $label_new;
+      $ret[] = update_sql("UPDATE {blocks} SET delta = '$new_delta' WHERE (module = 'fb_connect' AND delta = '$old_delta')");
+
+      // end fb_connect.module settings.
+
+    }
+  }
+  return $ret;
+}
+

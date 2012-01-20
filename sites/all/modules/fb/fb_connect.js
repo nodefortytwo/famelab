@@ -1,4 +1,3 @@
-// $Id: fb_connect.js,v 1.30 2010/11/02 18:49:00 yogadex Exp $
 
 /**
  * @file
@@ -23,18 +22,47 @@ Drupal.behaviors.fb_connect = function(context) {
   // Support markup for dialog boxes.
   FB_Connect.enablePopups(context);
 
+  var events = jQuery(document).data('events');
+  if (!events || !events.fb_session_change) {
+    jQuery(document).bind('fb_session_change', FB_Connect.sessionChangeHandler);
+  }
 };
 
 
 
 FB_Connect = function(){};
 
+// JQuery pseudo-event handler.
+FB_Connect.sessionChangeHandler = function(context, status) {
+  jQuery('.block-fb_connect')
+    .ajaxStart(function() {
+      jQuery(this).html('<div class="progress fb_connect_pb"><div class="bar"><div class="filled"></div></div></div>');
+    })
+    .ajaxStop(function() {
+      jQuery(this).html('');
+    })
+  ;
+
+  // Call the default handler, too.
+  FB_JS.sessionChangeHandler(context, status);
+};
+
 // click handler
 FB_Connect.logoutHandler = function(event) {
   if (typeof(FB) != 'undefined') {
     FB.logout(function () {
-      //debugger;
+      // Logged out of facebook.  Need we act on this?
     });
+    // Facebook's invalid cookies persist if third-party cookies disabled.
+    // Let's try to clean up the mess.
+    // @TODO: is this still needed with newer oauth SDK???
+    FB_JS.deleteCookie('fbs_' + FB._apiKey, '/', ''); // app id
+    FB_JS.deleteCookie('fbs_' + Drupal.settings.fb.apikey, '/', ''); // apikey
+  }
+  if (FB.getUser()) { // @TODO: still needed with newer oauth SDK???
+    // Facebook needs more time to log us out. (http://drupal.org/node/1164048)
+    Drupal.settings.fb.reload_url = Drupal.settings.fb_connect.front_url;
+    return false;
   }
 };
 

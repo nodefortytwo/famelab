@@ -1,5 +1,4 @@
 <?php
-// $Id: fb_views_handler_filter_friends.inc,v 1.6 2010/11/14 01:07:33 yogadex Exp $
 /**
  * @file
  * Filter handler for friends of the current user

@@ -1,5 +1,4 @@
 <?php
-// $Id: fb_connect.install,v 1.6 2011/01/04 12:52:53 yogadex Exp $
 /**
  * @file
  * Install functions for fb_connect.module.

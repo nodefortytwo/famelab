@@ -1,5 +1,4 @@
 <?php
-// $Id: user_terms_handler_field_term_user_tid.inc,v 1.1.2.5 2010/02/05 22:06:04 joachim Exp $
 
 /**
  * Field handler for terms. 

@@ -1,5 +1,4 @@
 <?php
-// $Id: fb_user.install,v 1.19 2011/01/04 12:44:58 yogadex Exp $
 /**
  * @file
  * Install file for fb_user.module.

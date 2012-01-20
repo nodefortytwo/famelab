@@ -1,5 +1,4 @@
 <?php
-// $Id: user_terms.admin.inc,v 1.1.2.2 2010/06/22 22:34:37 joachim Exp $
 
 /**
  * @file

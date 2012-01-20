@@ -1,5 +1,4 @@
 <?php
-// $Id: fb_friend.module,v 1.20 2011/01/04 12:33:14 yogadex Exp $
 /**
  * @file
  * This module implements several features specific to Facebook friend networks.

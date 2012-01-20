@@ -1,5 +1,4 @@
 <?php
-// $Id: fb_connect.admin.inc,v 1.8 2010/11/02 18:49:00 yogadex Exp $
 /**
  * @file
  * Admin pages and forms for connect settings.

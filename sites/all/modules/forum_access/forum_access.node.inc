@@ -1,5 +1,4 @@
 <?php
-// $Id: forum_access.node.inc,v 1.16.2.2 2010/09/10 18:14:45 salvis Exp $
 
 /**
  * @file forum_access.node.inc
@@ -33,7 +32,7 @@ function _forum_access_node_form(&$form, &$form_state) {
   }
 
   // Also get all forums they happen to be able to moderate.
-  $result = db_query("SELECT a.name AS tid FROM {acl} a INNER JOIN {acl_user} u ON a.acl_id = u.acl_id WHERE a.module = 'forum_access' AND u.uid = %d", $user->uid);
+  $result = db_query("SELECT a.number AS tid FROM {acl} a INNER JOIN {acl_user} u ON a.acl_id = u.acl_id WHERE a.module = 'forum_access' AND u.uid = %d", $user->uid);
   while ($obj = db_fetch_object($result)) {
     $tids[$obj->tid] = $obj->tid;
   }
@@ -192,7 +191,7 @@ function _forum_access_get_all_roles() {
 
 /**
  * Recreate comment links (they've already been themed), and
- * remove those that aren't accessible to the user.
+ * remove those that aren't accessible to the user (pre-D6.17).
  */
 function _forum_access_preprocess_comment(&$variables) {
   global $user;
@@ -207,7 +206,7 @@ function _forum_access_preprocess_comment(&$variables) {
     _forum_access_disable_moderator();
   }
 
-  if (isset($links['comment_reply']) && (!preg_match('#<li class="[^"]*comment_reply[^"]*".*</li>#U', $variables['links']) || !forum_access_access($tid, 'create', NULL, FALSE))) {
+  if (isset($links['comment_reply']) && (!preg_match('#<li class="[^"]*comment_reply[^"]*".*</li>#U', $variables['links']) || !user_access('post comments') || !forum_access_access($tid, 'create', NULL, FALSE))) {
     unset($links['comment_reply']);
   }
   if (isset($links['comment_edit']) && !forum_access_access($tid, 'update', NULL, FALSE) && !comment_access('edit', $variables['comment'])) {
@@ -224,6 +223,9 @@ function _forum_access_preprocess_comment(&$variables) {
       }
     }
   }
+
+  drupal_alter('link', $links, $variables['node'], $variables['comment']);
+
   if (empty($links)) {
     $links['comment_forbidden'] = array(
       'title' => theme('comment_post_forbidden', $variables['node']),

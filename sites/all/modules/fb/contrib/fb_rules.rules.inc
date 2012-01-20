@@ -1,5 +1,4 @@
 <?php
-// $Id: fb_rules.rules.inc,v 1.1 2010/12/10 00:53:38 yogadex Exp $
 
 /**
  * @file fb_rules.rules.inc

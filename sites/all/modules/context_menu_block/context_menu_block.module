@@ -1,5 +1,4 @@
 <?php
-// $Id: context_menu_block.module,v 1.2.2.5 2011/02/13 05:32:36 itafroma Exp $
 
 /**
  * @file
@@ -132,32 +131,32 @@ function context_menu_tree_add_active_path(&$tree, $active_paths) {
     if (!empty($tree[$key]['link']['href']) && in_array($tree[$key]['link']['href'], $active_paths)) {
       // Set the active trail.
       $tree[$key]['link']['in_active_trail'] = TRUE;
-      
+
       // The Drupal Way is to only set the active menu when the page is actually
       // the active page. However, the context reaction is supposed to set the
       // active menu. So, we need to "fake" the active menu by styling the link
       // as active.
       if (isset($tree[$key]['link']['localized_options']['attributes']['class'])) {
-        $tree[$key]['link']['localized_options']['attributes']['class'] .= " active";
+        $tree[$key]['link']['localized_options']['attributes']['class'] .= ' active';
       }
       else {
-        $tree[$key]['link']['localized_options']['attributes']['class'] = "active";
+        $tree[$key]['link']['localized_options']['attributes']['class'] = 'active';
       }
-      
+
       // Found a match, so break the recursion.
       return TRUE;
     }
-    else if (!empty($tree[$key]['below'])) {
+    elseif (!empty($tree[$key]['below'])) {
       // Check the child menu to see if the active path can be matched.
       $tree[$key]['link']['in_active_trail'] = context_menu_tree_add_active_path($tree[$key]['below'], $active_paths);
-      
+
       // If a match has been found, break the recursion.
       if ($tree[$key]['link']['in_active_trail']) {
         return TRUE;
       }
     }
   }
-  
+
   // If we didn't find an active item, return FALSE.
   return FALSE;
 }

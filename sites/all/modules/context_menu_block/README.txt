@@ -1,4 +1,3 @@
-$Id: README.txt,v 1.2.2.3 2011/02/13 05:32:36 itafroma Exp $
 
 CONTENTS OF THIS FILE
 ---------------------
@@ -58,7 +57,7 @@ ACKNOWLEDGEMENTS
 ----------------
 
 Context Menu Block is borne from the module created by Luke Berg [1] and
-Nik LePage [2] in issue #751700 [3]. It contains additonal bug fixes and
+Nik LePage [2] in issue #751700 [3]. It contains additional bug fixes and
 provides Context 3 support.
 
 [1] http://drupal.org/user/728256

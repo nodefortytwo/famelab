@@ -1,5 +1,4 @@
 <?php
-// $Id: user_terms.module,v 1.1.2.32 2010/09/18 09:58:42 joachim Exp $
 
 /**
  * @file
@@ -97,6 +96,15 @@ function user_terms_user($op, &$edit, &$account, $category = NULL) {
  *   The account from which data is loaded.
  */
 function user_terms_load_profile(&$account) {
+  // Implement our own static caching of account data, because core doesn't
+  // have any, and causes us to come here multiple times when viewing an 
+  // account. @see http://drupal.org/node/685806.
+  static $user_terms = array();
+  if (isset($user_terms[$account->uid])) {
+    $account->user_terms = $user_terms[$account->uid];
+    return;
+  }
+
   $terms  = array();
   $query = "SELECT u.tid, t.vid, t.name FROM {term_user} u 
               INNER JOIN {term_data} t ON t.tid = u.tid 
@@ -109,7 +117,7 @@ function user_terms_load_profile(&$account) {
     $terms[$term['tid']] = $term;
   }
 
-  $account->user_terms = $terms;
+  $user_terms[$account->uid] = $account->user_terms = $terms;
 }
 
 
@@ -248,7 +256,7 @@ function user_terms_form_profile($edit, $account, $category, $register = FALSE) 
     if (!empty($vids)) {
       $form['user_terms'] = array(
         '#type' => 'fieldset',
-        '#title' => t('User terms'),
+        '#title' => check_plain(variable_get('user_terms_group_title', USER_TERMS_GROUP_TITLE)),
         // Term and vocabulary names should be hidden from users without the 
         // basic 'access content' permission.
         '#access' => user_access('access content'),
@@ -398,7 +406,7 @@ function user_terms_save_profile(&$edit, &$account, $category, $register = FALSE
   }
 
   // Persist the new data.
-  $query = "INSERT IGNORE INTO {term_user} (uid, tid) VALUES (%d, %d)";
+  $query = "INSERT INTO {term_user} (uid, tid) VALUES (%d, %d)";
 
   // Save all terms (except zeros).
   foreach (array_filter($user_terms) as $tid) {

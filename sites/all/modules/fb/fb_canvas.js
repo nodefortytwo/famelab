@@ -1,4 +1,3 @@
-// $Id: fb_canvas.js,v 1.6 2010/11/02 18:49:00 yogadex Exp $
 /**
  * @file
  *

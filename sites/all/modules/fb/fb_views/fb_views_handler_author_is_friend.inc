@@ -1,5 +1,4 @@
 <?php
-// $Id: fb_views_handler_author_is_friend.inc,v 1.6 2010/11/02 18:49:01 yogadex Exp $
 /**
  * @file
  * Handler definition for limiting results to friends.

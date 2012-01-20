@@ -1,5 +1,4 @@
 <?php
-// $Id: user_terms.views.inc,v 1.1.2.4 2010/02/19 17:34:28 joachim Exp $
 /**
  * @file user_terms.views.inc
  * Provides integration with views module.

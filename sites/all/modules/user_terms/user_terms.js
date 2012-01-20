@@ -1,4 +1,3 @@
-// $Id: user_terms.js,v 1.1.2.1 2010/10/04 08:47:14 joachim Exp $
 Drupal.behaviors.userTermsBehavior = function (context) {
   function sync_registration() {
     input_enabled = $(this);

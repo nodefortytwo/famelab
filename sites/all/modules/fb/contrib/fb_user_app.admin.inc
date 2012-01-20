@@ -1,5 +1,4 @@
 <?php
-// $Id: fb_user_app.admin.inc,v 1.3 2011/01/06 22:14:46 yogadex Exp $
 /**
  * @file
  * Admin pages and forms for fb_user_app module, which tracks
