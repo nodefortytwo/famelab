@@ -676,6 +676,13 @@ thead th {
 	padding:10px;
 }
 
+.view-id-Judges .views-row{
+	float:left;
+	clear:both;
+	margin-bottom:10px;
+	
+}
+
 .view-id-Judges .views-field-field-image-fid img{
 	float: left;
 	padding-right: 9px;
