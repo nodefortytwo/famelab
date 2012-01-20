@@ -708,5 +708,6 @@ thead th {
 
 .view-hall-of-famelab h3{
 	width:100%;
-	border-top:1px solid #ccc;
+	border-top:1px dashed #ccc;
+	padding-top:10px;
 }
