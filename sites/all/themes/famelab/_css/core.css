@@ -680,7 +680,14 @@ thead th {
 	float:left;
 	clear:both;
 	margin-bottom:10px;
+	padding-bottom:10px;
+	border-bottom:1px dashed #ccc;
 	
+}
+
+.view-id-Judges .views-row p:last-child{
+	padding-bottom:0;
+	margin-bottom:0;
 }
 
 .view-id-Judges .views-field-field-image-fid img{
