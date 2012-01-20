@@ -703,6 +703,10 @@ thead th {
 }
 
 .view-hall-of-famelab table{
-	width:100%;
+	width:100% !important;
 }
 
+.view-hall-of-famelab h3{
+	width:100%;
+	border-top:1px solid #ccc;
+}
