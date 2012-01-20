@@ -657,7 +657,7 @@ thead th {
 }
 
 #block-boxes-follow_us .content,
-.pane-2 .content{
+.pane-2 .pane-content{
     float:left;
     background-color: white;
     margin-top:-5px;
