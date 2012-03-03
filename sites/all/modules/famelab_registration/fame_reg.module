@@ -66,7 +66,7 @@ function fame_reg_create_account(){
 
     $form['intro'] = array(
         '#prefix' => '<p>',
-        '#value' => '<strong>"FameLab Alumni Connect is only open to all FameLab contestants who have competed in the semi-final or final of local, regional or international competitions.  If this describes you please sign up</strong></p><p>Please fill in your details below. When you have submitted the your details one of our administers will check and approve your account. <br/> Once access has been granted you will be able to complete your full profile.',
+        '#value' => '<strong>FameLab Alumni Connect is only open to all FameLab contestants who have competed in the semi-final or final of local, regional or international competitions.  If this describes you please sign up</strong></p><p>Please fill in your details below. When you have submitted the your details one of our administers will check and approve your account. <br/> Once access has been granted you will be able to complete your full profile.',
         '#suffix' => '</p>'
     );
 
@@ -106,18 +106,37 @@ function fame_reg_create_account(){
 
     $form['city'] = array(
       '#type' => 'textfield',
-      '#title' => 'City'
+      '#title' => 'City',
+      '#required' => 'true'
     );
 
     $form['country'] = array(
       '#type' => 'textfield',
-      '#title' => 'Country'
+      '#title' => 'Country',
+      '#required' => 'true'
     );
-
-    $form['famelab_relationship'] = array(
-      '#type' => 'radios',
-      '#title' => 'Relationship with famelab',
-      '#options' => array('Alumni', 'Sponsor', 'Fan', 'Other'),
+    
+    $form['field'] = array(
+      '#type' => 'textfield',
+      '#title' => 'Field',
+      '#required' => 'true'
+    );
+    
+    $form['place'] = array(
+      '#type' => 'textfield',
+      '#title' => 'Place',
+      '#required' => 'true'
+    );
+    
+    $form['class'] = array(
+      '#type' => 'textfield',
+      '#title' => 'Class of',
+      '#required' => 'true'
+    );
+    
+    $form['bio'] = array(
+      '#type' => 'textarea',
+      '#title' => 'Short Bio',
       '#required' => 'true'
     );
 
@@ -144,12 +163,7 @@ function fame_reg_create_account_validate($form, $form_state){
 function fame_reg_create_account_submit($form, $form_state){
     $roles = array();
     
-    if ($form_state['values']['famelab_relationship'] === "0"){
-        $roles[3] = 'alumni';
-    }elseif ($form_state['values']['famelab_relationship'] === "1"){
-        $roles[4] = 'sponsor';
-    }
-
+    $roles[3] = 'alumni';
 
     $newUser = array(
         'name' =>  $form_state['values']['username'],
