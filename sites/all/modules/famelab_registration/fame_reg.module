@@ -66,7 +66,7 @@ function fame_reg_create_account(){
 
     $form['intro'] = array(
         '#prefix' => '<p>',
-        '#value' => 'Please fill in your details below. When you have submitted the your details one of our administers will check and approve your account. <br/> Once access has been granted you will be able to complete your full profile.',
+        '#value' => '<strong>"FameLab Alumni Connect is only open to all FameLab contestants who have competed in the semi-final or final of local, regional or international competitions.  If this describes you please sign up</strong></p><p>Please fill in your details below. When you have submitted the your details one of our administers will check and approve your account. <br/> Once access has been granted you will be able to complete your full profile.',
         '#suffix' => '</p>'
     );
 
