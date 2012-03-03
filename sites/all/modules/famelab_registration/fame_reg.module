@@ -62,6 +62,11 @@ function fame_reg_menu(){
 }
 
 function fame_reg_create_account(){
+    
+    $places = taxonomy_get_tree(1);
+    var_dump($places);
+    die();
+    
     $form = array();
 
     $form['intro'] = array(
