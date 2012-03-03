@@ -131,7 +131,8 @@ function fame_reg_create_account(){
     $form['class'] = array(
       '#type' => 'textfield',
       '#title' => 'Class of',
-      '#required' => 'true'
+      '#required' => 'true',
+      '#description' => 'e.g. 2009'
     );
     
     $form['bio'] = array(
