@@ -63,7 +63,10 @@ function fame_reg_menu(){
 
 function fame_reg_create_account(){
     
-    $places = taxonomy_get_tree(1);
+    $tax_places = taxonomy_get_tree(1);
+    foreach ($tax_places as $tax){
+        $places[$tax->tid] = $tax->name;
+    }
     var_dump($places);
     die();
     
