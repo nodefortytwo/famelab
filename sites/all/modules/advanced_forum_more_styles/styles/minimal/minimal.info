@@ -1,0 +1,14 @@
+; $Id: minimal.info,v 1.1.2.1 2010/06/29 20:27:51 eigentor Exp $
+
+name = Minimal
+description = Reduced Style with different Icons.
+base style = naked
+version = 6.2.x
+core = "6.x"
+
+; Information added by drupal.org packaging script on 2010-06-29
+version = "6.x-2.0-beta1"
+core = "6.x"
+project = "advanced_forum_more_styles"
+datestamp = "1277848805"
+
