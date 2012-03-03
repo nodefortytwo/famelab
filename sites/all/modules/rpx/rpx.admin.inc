@@ -311,7 +311,7 @@ function rpx_profile_settings_form($form_state) {
   );
   $form['mapping']['givenName'] = array(
       '#type' => 'select',
-      '#title' => t('First name'),
+      '#title' => t('First Name'),
       '#default_value' => $map['givenName'],
       '#options' => $options
   );
