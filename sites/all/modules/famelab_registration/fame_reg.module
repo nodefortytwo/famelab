@@ -67,8 +67,7 @@ function fame_reg_create_account(){
     foreach ($tax_places as $tax){
         $places[$tax->tid] = $tax->name;
     }
-    var_dump($places);
-    die();
+    
     
     $form = array();
 
@@ -131,8 +130,9 @@ function fame_reg_create_account(){
     );
     
     $form['place'] = array(
-      '#type' => 'textfield',
+      '#type' => 'select',
       '#title' => 'Place',
+      '#options' => $places,
       '#required' => 'true'
     );
     
