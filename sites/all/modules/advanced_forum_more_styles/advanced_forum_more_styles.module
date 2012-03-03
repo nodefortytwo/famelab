@@ -1,12 +1,9 @@
 <?php
-// $Id: advanced_forum_more_styles.module,v 1.1 2009/07/15 00:55:48 eigentor Exp $ 
+// $Id: advanced_forum_more_styles.module,v 1.1.2.2 2010/06/29 20:27:50 eigentor Exp $ 
 
-function advanced_forum_more_styles_advforum_styles() {
-  $items = array();
-  $items['minimal'] = array(
-    'directory' => 'styles/minimal',
-  );
-
-  return $items;
+function advanced_forum_more_styles_ctools_plugin_directory($module, $plugin) {
+  if ($module == 'advanced_forum') {
+    return 'styles/minimal';
+  }
 }
-
+//drupal_add_css(drupal_get_path('module', 'advanced_forum_more_styles') .'styles/minimal/advanced_forum.minimal.style.css', 'theme', 'all', <FALSE);></FALSE);>

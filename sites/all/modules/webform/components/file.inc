@@ -329,6 +329,7 @@ function _webform_render_file($component, $value = NULL, $filter = TRUE) {
       '_webform_required_file',  // Custom required routine.
     ),
     '#pre_render' => array('webform_element_title_display'),
+    '#translatable' => array('title', 'description'),
     '#webform_component' => $component,
   );
   $element['#webform_required'] = $component['mandatory'];
@@ -338,7 +339,6 @@ function _webform_render_file($component, $value = NULL, $filter = TRUE) {
   $element['#title_display'] = $element[$form_key]['#title_display'];
   $element['#theme_wrappers'] = array('webform_element_wrapper');
   $element['#post_render'] = array('webform_element_wrapper');
-  $element['#webform_component'] = $component;
 
   // Change the 'width' option to the correct 'size' option.
   if ($component['extra']['width'] > 0) {
@@ -371,7 +371,7 @@ function theme_webform_render_file($element) {
   $value = $element['_fid']['#value'] ? $element['_fid']['#value'] : $element['_old']['#value'];
 
   if ($value && ($file = webform_get_file($value))) {
-    $firstchild = array_shift(array_keys($element));
+    $firstchild = array_shift(element_children($element));
     $element[$firstchild]['#suffix'] = ' ' . l(t('Download @filename', array('@filename' => webform_file_name($file->filepath))), webform_file_url($file->filepath)) . (isset($element['#suffix']) ? $element['#suffix'] : '');
     $element[$firstchild]['#description'] = '<div class="webform-newfile-message">' . t('Uploading a new file will replace the current file.') . '</div>' . (isset($element[$firstchild]['#description']) ? $element[$firstchild]['#description'] : '');
   }
@@ -525,14 +525,14 @@ function _webform_submit_file($component, $value) {
 function _webform_display_file($component, $value, $format = 'html') {
   $fid = isset($value[0]) ? $value[0] : NULL;
   return array(
-     '#title' => $component['name'],
-     '#value' => $fid ? webform_get_file($fid) : NULL,
-     '#weight' => $component['weight'],
-     '#theme' => 'webform_display_file',
-     '#theme_wrappers' => $format == 'html' ? array('webform_element', 'webform_element_wrapper') : array('webform_element_text'),
-     '#post_render' => array('webform_element_wrapper'),
-     '#webform_component' => $component,
-     '#format' => $format,
+    '#title' => $component['name'],
+    '#value' => $fid ? webform_get_file($fid) : NULL,
+    '#weight' => $component['weight'],
+    '#theme' => 'webform_display_file',
+    '#theme_wrappers' => $format == 'html' ? array('webform_element', 'webform_element_wrapper') : array('webform_element_text'),
+    '#post_render' => array('webform_element_wrapper'),
+    '#format' => $format,
+    '#translatable' => array('title'),
   );
 }
 
@@ -657,4 +657,13 @@ function webform_get_file($fid) {
   }
 
   return $files[$fid];
+}
+
+/**
+ * Implements _webform_attachments_component().
+ */
+function _webform_attachments_file($component, $value) {
+  $file = (array) webform_get_file($value[0]);
+  $files = array($file);
+  return $files;
 }

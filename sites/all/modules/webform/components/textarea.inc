@@ -113,11 +113,16 @@ function _webform_render_textarea($component, $value = NULL, $filter = TRUE) {
     '#theme_wrappers' => array('webform_element_wrapper'),
     '#pre_render' => array('webform_element_title_display'),
     '#post_render' => array('webform_element_wrapper'),
-    '#webform_component' => $component,
+    '#translatable' => array('title', 'description'),
   );
 
   if ($component['extra']['disabled']) {
-    $element['#attributes']['readonly'] = 'readonly';
+    if ($filter) {
+      $element['#attributes']['readonly'] = 'readonly';
+    }
+    else {
+      $element['#disabled'] = TRUE;
+    }
   }
 
   if (isset($value)) {
@@ -139,7 +144,7 @@ function _webform_display_textarea($component, $value, $format = 'html') {
     '#post_render' => array('webform_element_wrapper'),
     '#format' => $format,
     '#value' => isset($value[0]) ? $value[0] : '',
-    '#webform_component' => $component,
+    '#translatable' => array('title'),
   );
 }
 

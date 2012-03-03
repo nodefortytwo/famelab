@@ -114,6 +114,7 @@ function _webform_edit_select($component) {
       '#key_type' => 'mixed',
       '#key_type_toggle' => t('Customize keys (Advanced)'),
       '#key_type_toggled' => $component['extra']['custom_keys'],
+      '#default_value_pattern' => '^%.+\[.+\]$',
       '#disabled' => !empty($component['extra']['options_source']),
       '#weight' => 1,
     );
@@ -267,7 +268,7 @@ function _webform_render_select($component, $value = NULL, $filter = TRUE) {
     '#theme_wrappers' => array('webform_element_wrapper'),
     '#pre_render' => array('webform_element_title_display'),
     '#post_render' => array('webform_element_wrapper'),
-    '#webform_component' => $component,
+    '#translatable' => array('title', 'description', 'options'),
   );
 
   // Convert the user-entered options list into an array.
@@ -488,8 +489,9 @@ function _webform_display_select($component, $value, $format = 'html') {
     '#theme_wrappers' => $format == 'html' ? array('webform_element', 'webform_element_wrapper') : array('webform_element_text'),
     '#post_render' => array('webform_element_wrapper'),
     '#format' => $format,
+    '#options' => _webform_select_options($component, !$component['extra']['aslist']),
     '#value' => (array) $value,
-    '#webform_component' => $component,
+    '#translatable' => array('title', 'options'),
   );
 }
 
@@ -537,8 +539,19 @@ function _webform_submit_select($component, $value) {
 function theme_webform_display_select($element) {
   $component = $element['#webform_component'];
 
-  // Convert submitted 'safe' values to un-edited, original form.
-  $options = _webform_select_options($component, TRUE);
+  // Flatten the list of options so we can get values easily. These options
+  // may be translated by hook_webform_display_component_alter().
+  $options = array();
+  foreach ($element['#options'] as $key => $value) {
+    if (is_array($value)) {
+      foreach ($value as $subkey => $subvalue) {
+        $options[$subkey] = $subvalue;
+      }
+    }
+    else {
+      $options[$key] = $value;
+    }
+  }
 
   $items = array();
   if ($component['extra']['multiple']) {

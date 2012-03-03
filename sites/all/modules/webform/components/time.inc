@@ -100,7 +100,7 @@ function _webform_render_time($component, $value = NULL, $filter = TRUE) {
     '#theme_wrappers' => array('webform_element_wrapper'),
     '#pre_render' => array('webform_element_title_display'),
     '#post_render' => array('webform_element_wrapper'),
-    '#webform_component' => $component,
+    '#translatable' => array('title', 'description'),
   );
 
   // Set the value from Webform if available.
@@ -254,7 +254,7 @@ function _webform_display_time($component, $value, $format = 'html') {
     '#hourformat' => $component['extra']['hourformat'],
     '#value' => $value,
     '#pre_render' => array('webform_element_title_display'),
-    '#webform_component' => $component,
+    '#translatable' => array('title'),
   );
 }
 
