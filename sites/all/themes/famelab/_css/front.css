@@ -164,7 +164,7 @@ overflow: hidden;
     clear:both;
 }
 
-#twtr-widget-1{
+.front #twtr-widget-1{
 	margin-top:-10px;
 }
 .uk-front .pane-1 ul,
