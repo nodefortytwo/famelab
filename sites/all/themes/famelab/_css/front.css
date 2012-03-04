@@ -184,11 +184,17 @@ overflow: hidden;
     padding:5px 8px 0 8px;
 }
 
-.front .pane-2 .pane-content,
+
 .front .pane-3 .pane-content{
    background-color: white;
    padding:0 0 0 3%;
    width:97%;
+}
+
+.front .pane-2 .pane-content{
+	background-color: white;
+   	padding:0 0 0 0;
+   	width:100%;
 }
 
 .front .pane-3 .pane-content{
