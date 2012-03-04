@@ -72,6 +72,8 @@ overflow: hidden;
     width:680px;
 	text-align:center;
 	background-color:white;
+	float:left;
+	background-color: #0061A7;
 }
 .uk-front #media-youtube-1 *{
 	margin:10px auto;
