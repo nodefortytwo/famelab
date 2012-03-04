@@ -68,6 +68,17 @@ function fame_reg_create_account(){
         $places[$tax->tid] = $tax->name;
     }
     
+    $field = array(
+        'Physics',
+        'Chemistry',
+        'Biology',
+        'Medicine',
+        'Engineering',
+        'Mathematics',
+        'Information Technology',
+        'Other'
+    );
+    
     
     $form = array();
 
@@ -124,8 +135,9 @@ function fame_reg_create_account(){
     );
     
     $form['field'] = array(
-      '#type' => 'textfield',
+      '#type' => 'select',
       '#title' => 'Field',
+      '#options' => $field,
       '#required' => 'true'
     );
     
