@@ -77,6 +77,9 @@ overflow: hidden;
 	margin:10px auto;
 }
 
+.uk-front .view-Uk-homepage-videos {
+	margin-top:10px;
+}
 .uk-front .view-Uk-homepage-videos .views-field-title .field-content{
 	background-color: #0061A7;
 	background-repeat: repeat;
