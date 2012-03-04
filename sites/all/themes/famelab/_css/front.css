@@ -69,9 +69,13 @@ overflow: hidden;
 }
 
 .uk-front #media-youtube-1{
-    width:425px;
+    width:680px;
 	text-align:center;
 }
+.uk-front #media-youtube-1 *{
+	margin:10px auto;
+}
+
 .uk-front .panels-flexible-region-9-center,
 .front .panels-flexible-region-4-center {
     width:100%;
