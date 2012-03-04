@@ -71,9 +71,22 @@ overflow: hidden;
 .uk-front #media-youtube-1{
     width:680px;
 	text-align:center;
+	background-color:white;
 }
 .uk-front #media-youtube-1 *{
 	margin:10px auto;
+}
+
+.uk-front .view-Uk-homepage-videos .views-field-title .field-content{
+	background-color: #0061A7;
+	background-repeat: repeat;
+	color: white;
+	font-weight: bold;
+	padding: 0 1em;
+	line-height: 1.8em;
+	font-size: 13px;
+	float: left;
+	margin: 0;
 }
 
 .uk-front .panels-flexible-region-9-center,
