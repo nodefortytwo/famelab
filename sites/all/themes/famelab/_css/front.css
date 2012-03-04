@@ -62,10 +62,14 @@ overflow: hidden;
     background-color: white;
    
 }
-.uk-front #media-youtube-1,
-.front #media-youtube-1{
+.uk-front #media-youtube-1{
     width:425px;
     margin:31px auto;
+}
+
+.uk-front #media-youtube-1{
+    width:425px;
+	text-align:center;
 }
 .uk-front .panels-flexible-region-9-center,
 .front .panels-flexible-region-4-center {
