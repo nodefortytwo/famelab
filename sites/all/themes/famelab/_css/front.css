@@ -209,3 +209,30 @@ overflow: hidden;
 .front .pane-3 .pane-content a{
     color:white;
 }
+
+.front .pane-4 .pane-content{
+   margin-top:10px;
+   background-color:#0061A7;
+   text-transform: uppercase;
+   font-weight: bold;
+   text-align:center;
+    padding:0 2% 0 2%;
+     width:96%;
+}
+.front .pane-4 .pane-content a{
+    color:white;
+}
+
+
+.uk-front .panels-flexible-region-9-top_right .pane-2 .pane-content{
+   margin-top:10px;
+   background-color:#0061A7;
+   text-transform: uppercase;
+   font-weight: bold;
+   text-align:center;
+    padding:0 2% 0 2%;
+     width:96%;
+}
+.uk-front .panels-flexible-region-9-top_right .pane-2 .pane-content a{
+    color:white;
+}
