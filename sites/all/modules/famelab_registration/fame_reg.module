@@ -64,7 +64,11 @@ function fame_reg_menu(){
 function fame_reg_create_account(){
     
     global $user;
-    print $user->uid;
+    if ($user->uid == 1){
+        $node = node_load(936);
+        print_r($node);
+        die();
+    }
     
     $tax_places = taxonomy_get_tree(1);
     foreach ($tax_places as $tax){
