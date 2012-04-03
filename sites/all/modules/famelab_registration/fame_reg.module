@@ -65,7 +65,7 @@ function fame_reg_create_account(){
     
     global $user;
     if ($user->uid == 1){
-        $node = node_load(936);
+        $node = node_load(963);
         print_r($node);
         die();
     }
