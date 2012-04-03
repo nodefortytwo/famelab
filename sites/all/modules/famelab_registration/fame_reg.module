@@ -63,13 +63,6 @@ function fame_reg_menu(){
 
 function fame_reg_create_account(){
     
-    global $user;
-    if ($user->uid == 1){
-        $node = node_load(963);
-        print_r($node);
-        die();
-    }
-    
     $tax_places = taxonomy_get_tree(1);
     foreach ($tax_places as $tax){
         $places[$tax->tid] = $tax->name;
@@ -226,7 +219,8 @@ function fame_reg_create_account_submit($form, $form_state){
         $user_profile = node_prepare($user_profile);
         $user_profile->uid = $account->uid;
         $user_profile->name = $account->name;
-
+        print_r($user_profile);
+        die();
         node_save($user_profile);
 
         drupal_goto('user/register/complete/' . $account->uid);
