@@ -74,14 +74,14 @@ function fame_reg_create_account(){
     }
     
     $field = array(
-        'Physics',
-        'Chemistry',
-        'Biology',
-        'Medicine',
-        'Engineering',
-        'Mathematics',
-        'Information Technology',
-        'Other'
+        array('Physics', 'Physics'),
+        array('Chemistry','Chemistry'),
+        array('Biology', 'Biology'),
+        array('Medicine', 'Medicine'),
+        array('Engineering', 'Engineering'),
+        array('Mathematics', 'Mathematics'),
+        array('Information Technology', 'Information Technology'),
+        array('Other', 'Other')
     );
     
     
@@ -219,8 +219,7 @@ function fame_reg_create_account_submit($form, $form_state){
         $user_profile = node_prepare($user_profile);
         $user_profile->uid = $account->uid;
         $user_profile->name = $account->name;
-        print_r($user_profile);
-        die();
+        
         node_save($user_profile);
 
         drupal_goto('user/register/complete/' . $account->uid);
