@@ -213,7 +213,7 @@ function fame_reg_create_account_submit($form, $form_state){
         $user_profile->field_country[0]['tid'] = $form_state['values']['country'];
         $user_profile->field_place[0]['tid'] = $form_state['values']['place'];
         $user_profile->field_speciality[0]['value'] = $form_state['values']['field'];
-        $user_profile->body['value'] = $form_state['values']['bio'];
+        $user_profile->body = $form_state['values']['bio'];
         $user_profile->field_year_of_graduation[0]['value'] = $form_state['values']['class'];
         
         $user_profile = node_prepare($user_profile);
