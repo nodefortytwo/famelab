@@ -63,13 +63,6 @@ function fame_reg_menu(){
 
 function fame_reg_create_account(){
     
-    global $user;
-    if ($user->uid == 1){
-        $node = node_load(963);
-        print_r($node);
-        die();
-    }
-    
     $tax_places = taxonomy_get_tree(1);
     foreach ($tax_places as $tax){
         $places[$tax->tid] = $tax->name;
@@ -217,8 +210,8 @@ function fame_reg_create_account_submit($form, $form_state){
         $user_profile->field_firstname[0]['value'] = $form_state['values']['firstname'];
         $user_profile->field_surname[0]['value'] = $form_state['values']['surname'];
         $user_profile->field_city[0]['value'] = $form_state['values']['city'];
-        $user_profile->field_country[0]['tid'] = $form_state['values']['country'];
-        $user_profile->field_place[0]['tid'] = $form_state['values']['place'];
+        $user_profile->field_country[0]['value'] = $form_state['values']['country'];
+        $user_profile->field_place[0]['value'] = $form_state['values']['place'];
         $user_profile->field_speciality[0]['value'] = $form_state['values']['field'];
         $user_profile->body = $form_state['values']['bio'];
         $user_profile->field_year_of_graduation[0]['value'] = $form_state['values']['class'];
