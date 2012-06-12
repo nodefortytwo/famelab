@@ -102,7 +102,7 @@ Who will be crowned the FameLab International champion 2012?
                                     <p style="text-align: center;">19 scientists from across four continents will head to The Times Cheltenham Science Festival to compete in the International Final of the world’s greatest science communication competition – FameLab. They will have just three minutes to impress a judging panel including Marcus Brigstocke, Kathy Sykes and Robert Llewellyn in their bid to be crowned the International Champion.
                                         </p>
                                     <p style="text-align: center;">
-                                        period (during live performance times) please refresh your browser.
+                                        This is a live stream. If the screen goes black or freezes for extended period (during live performance times) please refresh your browser.
                                     </p>
                                 </p>
                             </div>
