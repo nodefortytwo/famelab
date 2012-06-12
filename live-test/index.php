@@ -90,14 +90,17 @@
                                         <iframe src="http://strong-rain-7575.herokuapp.com/"  width="640" height="360"></iframe>
                                     </p>
                                     <p style="text-align: center;">
-                                        <strong>Wednesday 21 March 2012.  Stream starts at 7pm</strong>
+                                        <strong>Friday 15 June 2012.  Stream starts at 6pm</strong>
                                     </p>
                                     <p style="text-align: center;">
                                          
                                     </p>
-                                    <p style="text-align: center;">
-                                        This is a live stream. If the screen goes black or freezes for extended
-                                    </p>
+                                    <h2 style="text-align: center;">
+                                        19 scientists. 4 continents. One big question… <br/>
+Who will be crowned the FameLab International champion 2012? 
+                                    </h2>
+                                    <p style="text-align: center;">19 scientists from across four continents will head to The Times Cheltenham Science Festival to compete in the International Final of the world’s greatest science communication competition – FameLab. They will have just three minutes to impress a judging panel including Marcus Brigstocke, Kathy Sykes and Robert Llewellyn in their bid to be crowned the International Champion.
+                                        </p>
                                     <p style="text-align: center;">
                                         period (during live performance times) please refresh your browser.
                                     </p>
