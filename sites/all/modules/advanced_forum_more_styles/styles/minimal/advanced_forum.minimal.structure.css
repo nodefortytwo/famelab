@@ -1,4 +1,3 @@
-/* $Id: advanced_forum.minimal.structure.css,v 1.1.2.2 2010/06/29 21:11:46 eigentor Exp $ */  
 
 /*
 This document contains structural markup such as widths, margins, padding, and 
@@ -47,8 +46,8 @@ ul.forum-links {
 #forum table.forum-table th.forum-last-post {
   width: 15%;
 }
-#forum table.forum-table td.forum-icon {
-  width: 5%;
+#forum table.forum-table th.forum-icon {
+  width: 3%;
 }
 #forum table.forum-table th.forum-name,
 #forum table.forum-table th.forum-last-post,
@@ -116,9 +115,14 @@ ul.forum-links {
   padding: 3px 0 0 0;
 }
 
-#forum td.forum-icon {
-  
+#forum td.forum-list-icon {
   padding: 0 5px;
+}
+#forum td.forum-details {
+ 
+}
+#forum td.forum-last-reply {
+
 }
 
 #forum .description {
@@ -181,7 +185,21 @@ margin: 0;
 table.forum-topics td.icon {
  padding-right: 10px;
 }
-
+.forum-table-topics td.views-field-topic-icon {
+  width: 30px;
+  padding-left: 8px;
+}
+.view-advanced-forum-topic-list:after {
+  clear: both;
+    content: ".";
+    display: block;
+    height: 0;
+    visibility: hidden;
+}
+.forum-tools,
+.forum-tools div {
+  margin: 0;
+}
 /*** FORUM STATISTICS ********************************************************/
 
 #forum-statistics {
@@ -208,6 +226,10 @@ table.forum-topics td.icon {
   margin-right:25px;
   padding: 15px 0 15px 37px;
 }
+.forum-topic-legend {
+  clear: both;
+  margin-top: 15px;
+} 
 div.topic-icon-hot {
   clear: left;
 }
@@ -216,10 +238,22 @@ div.topic-icon-hot {
   padding: 12px 0 20px;
 }
 .forum-topic-legend div {
-  width: 115px;
+  width: 130px;
   margin-right: 20px;
+  padding: 10px 0 0 27px;
+  height: 20px;
+  float: left;
+  clear: none;
   line-height: 1.2;
-  padding:5px 0 5px 27px
+}
+}
+.forum-list-icon-legend .forum-list-icon-wrapper  span {
+  height: 30px; 
+}
+.forum-list-icon-legend {
+  font-size: 0.93em;
+  color: #888;
+  padding-left: 15px; 
 }
 
 /*** FORUM THREADS ***********************************************************/
@@ -282,7 +316,7 @@ div.topic-icon-hot {
 }
 
 .forum-post-panel-sub .author-pane {
-  margin: 5px 0 5px 10px;
+  margin: 12px 0 5px 10px;
 }
 
 .author-pane-name-status .picture {
@@ -295,16 +329,22 @@ div.topic-icon-hot {
   min-height: 50px;
   height: auto !important;
   height: 350px;
+  padding-top: 10px ;
 }
 
 .forum-post-panel-main .content {
-  padding-top: 2px;
+ 
 }
 
-.forum-post-panel-main .post-title,
+.forum-post-panel-main .forum-post-title,
 .forum-post-panel-main .content {
   margin-left: 0;
   padding-left: 10px;
+}
+.forum-post-panel-main .forum-post-title {
+  font-weight: bold;
+  font-size: 1.2em;
+  color: #777;
 }
 
 .forum-post-panel-main p {

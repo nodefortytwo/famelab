@@ -29,7 +29,7 @@
                     <div id="block-menu_block-3" class="block block-menu_block">
                         <div class="content">
                             <div class="menu-block-3 menu-name-menu-uk parent-mlid-486 menu-level-1">
-                                <ul class="menu">
+                                <ul class="menu" style="visibility: hidden;">
                                     <li class="leaf first menu-mlid-371 has-children">
                                         <a href="/uk/competition" title="Details about the FameLab 2011 competition">FameLab UK 2012</a>
                                     </li>

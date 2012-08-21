@@ -1,5 +1,4 @@
 <?php
-// $Id: advanced_forum_more_styles.module,v 1.1.2.2 2010/06/29 20:27:50 eigentor Exp $ 
 
 function advanced_forum_more_styles_ctools_plugin_directory($module, $plugin) {
   if ($module == 'advanced_forum') {

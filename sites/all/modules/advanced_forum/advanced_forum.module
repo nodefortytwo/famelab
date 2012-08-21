@@ -536,7 +536,7 @@ function advanced_forum_preprocess_comment(&$variables) {
     _advanced_forum_topic_nid($variables['node']->nid);
 
     $post_per_page = _comment_get_display_setting('comments_per_page', $variables['node']);
-    $page_number = (!empty($_GET['page'])) ? "page=" . $_GET['page'] : 0;
+    $page_number = (!empty($_GET['page'])) ? $_GET['page'] : 0;
 
     $post_number++;
     $fragment = 'comment-' . $variables['comment']->cid;
