@@ -713,3 +713,10 @@ thead th {
 	border-top:1px dashed #ccc;
 	padding-top:10px;
 }
+
+.academy h1#site-name a{
+   background-image: url(../_img/famelab-academy.png);
+}
+
+
+
