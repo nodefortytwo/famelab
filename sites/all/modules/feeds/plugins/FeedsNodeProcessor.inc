@@ -26,6 +26,7 @@ class FeedsNodeProcessor extends FeedsProcessor {
 
     // Keep track of processed items in this pass, set total number of items.
     $processed = 0;
+    $batch_size = variable_get('feeds_node_batch_size', FEEDS_NODE_BATCH_SIZE);
     if (!$batch->getTotal(FEEDS_PROCESSING)) {
       $batch->setTotal(FEEDS_PROCESSING, count($batch->items));
     }
@@ -73,8 +74,9 @@ class FeedsNodeProcessor extends FeedsProcessor {
       }
 
       $processed++;
-      if ($processed >= variable_get('feeds_node_batch_size', FEEDS_NODE_BATCH_SIZE)) {
-        $batch->setProgress(FEEDS_PROCESSING, $batch->created + $batch->updated);
+      if ($processed >= $batch_size) {
+        $total = $batch->getTotal(FEEDS_PROCESSING);
+        $batch->setProgress(FEEDS_PROCESSING, $total - count($batch->items));
         return;
       }
     }
@@ -83,10 +85,10 @@ class FeedsNodeProcessor extends FeedsProcessor {
     if ($batch->created) {
       drupal_set_message(format_plural($batch->created, 'Created @number @type node.', 'Created @number @type nodes.', array('@number' => $batch->created, '@type' => node_get_types('name', $this->config['content_type']))));
     }
-    elseif ($batch->updated) {
+    if ($batch->updated) {
       drupal_set_message(format_plural($batch->updated, 'Updated @number @type node.', 'Updated @number @type nodes.', array('@number' => $batch->updated, '@type' => node_get_types('name', $this->config['content_type']))));
     }
-    else {
+    if (!$batch->created && !$batch->updated) {
       drupal_set_message(t('There is no new content.'));
     }
     $batch->setProgress(FEEDS_PROCESSING, FEEDS_BATCH_COMPLETE);
@@ -252,15 +254,32 @@ class FeedsNodeProcessor extends FeedsProcessor {
    * Override setTargetElement to operate on a target item that is a node.
    */
   public function setTargetElement(&$target_node, $target_element, $value) {
-    if (in_array($target_element, array('url', 'guid'))) {
-      $target_node->feeds_node_item->$target_element = $value;
-    }
-    elseif ($target_element == 'body') {
-      $target_node->teaser = node_teaser($value);
-      $target_node->body = $value;
-    }
-    elseif (in_array($target_element, array('title', 'status', 'created', 'nid', 'uid'))) {
-      $target_node->$target_element = $value;
+    switch ($target_element) {
+      case 'url':
+      case 'guid':
+        $target_node->feeds_node_item->$target_element = $value;
+        break;
+      case 'body':
+        $target_node->teaser = node_teaser($value);
+        $target_node->body = $value;
+        break;
+      case 'title':
+      case 'status':
+      case 'created':
+      case 'nid':
+      case 'uid':
+        $target_node->$target_element = $value;
+        break;
+      case 'user_name':
+        if ($user = user_load(array('name' => $value))) {
+          $target_node->uid = $user->uid;
+        }
+        break;
+      case 'user_mail':
+        if ($user = user_load(array('mail' => $value))) {
+          $target_node->uid = $user->uid;
+        }
+        break;
     }
   }
 
@@ -292,6 +311,14 @@ class FeedsNodeProcessor extends FeedsProcessor {
       'uid' => array(
         'name' => t('User ID'),
         'description' => t('The Drupal user ID of the node author.'),
+      ),
+      'user_name' => array(
+        'name' => t('Username'),
+        'description' => t('The Drupal username of the node author.'),
+      ),
+      'user_mail' => array(
+        'name' => t('User email'),
+        'description' => t('The email address of the node author.'),
       ),
       'status' => array(
         'name' => t('Published status'),
@@ -352,8 +379,9 @@ class FeedsNodeProcessor extends FeedsProcessor {
    */
   protected function buildNode($nid, $feed_nid) {
     $populate = FALSE;
-    $node = new stdClass();
+
     if (empty($nid)) {
+      $node = new stdClass();
       $node->created = FEEDS_REQUEST_TIME;
       $populate = TRUE;
     }
@@ -362,8 +390,7 @@ class FeedsNodeProcessor extends FeedsProcessor {
         $node = node_load($nid, NULL, TRUE);
       }
       else {
-        $node->nid = $nid;
-        $node->vid = db_result(db_query("SELECT vid FROM {node} WHERE nid = %d", $nid));
+        $node = db_fetch_object(db_query("SELECT created, nid, vid, status FROM {node} WHERE nid = %d", $nid));
         $populate = TRUE;
       }
     }

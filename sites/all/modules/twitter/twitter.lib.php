@@ -60,7 +60,22 @@ class TwitterConf {
 /**
  * Exception handling class.
  */
-class TwitterException extends Exception {}
+class TwitterException extends Exception {
+  /**
+   * Overrides constructor to log the error.
+   */
+  public function __construct($message = NULL, $code = 0, Exception $previous = NULL) {
+    watchdog('twitter', 'Unexpected error: @message', array(
+      '@message' => $message,
+    ), WATCHDOG_ERROR);
+    if (is_null($previous)) {
+      parent::__construct($message, $code);
+    }
+    else {
+      parent::__construct($message, $code, $previous);
+    }
+  }
+}
 
 /**
  * Primary Twitter API implementation class
@@ -167,23 +182,24 @@ class Twitter {
   }
 
   /**
+   * Post a new status.
    *
-   * @see http://apiwiki.twitter.com/Twitter-REST-API-Method%3A-statuses%C2%A0update
+   * @see https://dev.twitter.com/docs/api/1/post/statuses/update
    */
   public function status_update($status, $params = array()) {
     $params['status'] = $status;
     if ($this->source) {
       $params['source'] = $this->source;
     }
-    $values = $this->call('statuses/update', $params, 'POST', TRUE);
-
-    return new TwitterStatus($values);
+    if ($values = $this->call('statuses/update', $params, 'POST', TRUE)) {
+      return new TwitterStatus($values);
+    }
   }
 
-
   /**
+   * Returns profile information about a user.
    *
-   * @see http://apiwiki.twitter.com/Twitter-REST-API-Method%3A-users%C2%A0show
+   * @see https://dev.twitter.com/docs/api/1/get/users/show
    */
   public function users_show($id, $use_auth = TRUE) {
     $params = array();
@@ -194,25 +210,32 @@ class Twitter {
       $params['screen_name'] = $id;
     }
 
-    $values = $this->call('users/show', $params, 'GET', $use_auth);
-    return new TwitterUser($values);
+    if ($values = $this->call('users/show', $params, 'GET', $use_auth)) {
+      return new TwitterUser($values);
+    }
   }
 
   /**
    *
-   * @see http://apiwiki.twitter.com/Twitter-REST-API-Method%3A-account%C2%A0verify_credentials
+   * @see https://dev.twitter.com/docs/api/1/get/account/verify_credentials
    */
   public function verify_credentials() {
-    $values = $this->call('account/verify_credentials', array(), 'GET', TRUE);
-    if (!$values) {
-      return FALSE;
+    if ($values = $this->call('account/verify_credentials', array(), 'GET', TRUE)) {
+      return new TwitterUser($values);
     }
-    return new TwitterUser($values);
   }
 
-
   /**
-   * Method for calling any twitter api resource
+   * Calls a twitter api resource
+   *
+   * @param $path
+   *   string REST resource to be called
+   * @param $params
+   *   array of settings to be sent along
+   * @param $method
+   *   string method to be used (GET or POST)
+   * @param $use_oauth
+   *   boolean indicating if the call should use OAuth authentication of not
    */
   public function call($path, $params = array(), $method = 'GET', $use_auth = FALSE) {
     $url = $this->create_url($path);
@@ -310,7 +333,7 @@ class Twitter {
       $format = $this->format;
     }
     $conf = TwitterConf::instance();
-    $url =  'http://'. $conf->get('api') .'/'. $path;
+    $url =  'http://'. $conf->get('api') .'/1/'. $path;
     if (!empty($format)) {
       $url .= '.'. $this->format;
     }
@@ -337,8 +360,20 @@ class TwitterOAuth extends Twitter {
     }
   }
 
+  protected function create_oauth_url($path, $format = NULL) {
+    if (is_null($format)) {
+      $format = $this->format;
+    }
+    $conf = TwitterConf::instance();
+    $url =  'http://'. $conf->get('api') .'/'. $path;
+    if (!empty($format)) {
+      $url .= '.'. $this->format;
+    }
+    return $url;
+  }
+
   public function get_request_token() {
-    $url = $this->create_url('oauth/request_token', '');
+    $url = $this->create_oauth_url('oauth/request_token', '');
     try {
       $response = $this->auth_request($url);
     }
@@ -350,21 +385,21 @@ class TwitterOAuth extends Twitter {
   }
 
   public function get_authorize_url($token) {
-    $url = $this->create_url('oauth/authorize', '');
+    $url = $this->create_oauth_url('oauth/authorize', '');
     $url.= '?oauth_token=' . $token['oauth_token'];
 
     return $url;
   }
 
   public function get_authenticate_url($token) {
-    $url = $this->create_url('oauth/authenticate', '');
+    $url = $this->create_oauth_url('oauth/authenticate', '');
     $url.= '?oauth_token=' . $token['oauth_token'];
 
     return $url;
   }
 
   public function get_access_token() {
-    $url = $this->create_url('oauth/access_token', '');
+    $url = $this->create_oauth_url('oauth/access_token', '');
     try {
       $response = $this->auth_request($url);
     }

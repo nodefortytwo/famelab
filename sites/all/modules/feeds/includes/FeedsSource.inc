@@ -208,7 +208,7 @@ class FeedsSource extends FeedsConfigurable {
       'type' => $this->id,
       'id' => $this->feed_nid,
       // Schedule as soon as possible if a batch is active.
-      'period' => $this->batch ? 0 : $period,
+      'period' => !empty($this->batch) ? 0 : $period,
       'periodic' => TRUE,
     );
     if ($job['period'] != FEEDS_SCHEDULE_NEVER) {
@@ -313,7 +313,8 @@ class FeedsSource extends FeedsConfigurable {
    *   An array stored for $client.
    */
   public function getConfigFor(FeedsSourceInterface $client) {
-    return $this->config[get_class($client)];
+    $class = get_class($client);
+    return isset($this->config[$class]) ? $this->config[$class] : $client->sourceDefaults();
   }
 
   /**

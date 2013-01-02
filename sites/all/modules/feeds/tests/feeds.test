@@ -92,7 +92,7 @@ class FeedsWebTestCase extends DrupalWebTestCase {
 <body>
   <outline text="Feeds test group" >
        <outline title="Development Seed - Technological Solutions for Progressive Organizations" text="" xmlUrl="'. $path .'developmentseed.rss2" type="rss" />
-       <outline title="Magyar Nemzet Online - H’rek" text="" xmlUrl="'. $path .'feed_without_guid.rss2" type="rss" />
+       <outline title="Magyar Nemzet Online - H\'rek" text="" xmlUrl="'. $path .'feed_without_guid.rss2" type="rss" />
        <outline title="Drupal planet" text="" type="rss" xmlUrl="'. $path .'drupalplanet.rss2" />
     </outline>
 </body>
@@ -407,6 +407,7 @@ class FeedsUnitTestCase extends FeedsUnitTestHelper {
       'example.org/~,$\'*;',
       'caf%C3%A9.example.org',
       '[FEDC:BA98:7654:3210:FEDC:BA98:7654:3210]:80/index.html',
+      'graph.asfdasdfasdf.com/blarg/feed?access_token=133283760145143|tGew8jbxi1ctfVlYh35CPYij1eE',
     );
 
     foreach ($url_schemes as $scheme) {

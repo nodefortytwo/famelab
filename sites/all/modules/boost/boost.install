@@ -251,6 +251,17 @@ function boost_requirements($phase) {
           'value'       => $t('"Disallow: !stats" entry missing in robots.txt', array('!stats' => $base_path . 'boost_stats.php')),
         );
       }
+      if (variable_get('boost_crawl_on_cron', FALSE) && module_exists('securepages')) {
+        $ignore = variable_get('securepages_ignore', '');
+        if (! preg_match('/boost-crawler/', $ignore)) {
+          $requirements['boost_securepages'] = array(
+            'title'       => $t('Boost'),
+            'description' => $t('You are using the securepages module and the Boost crawler. You must add "boost-crawler" to the <a href="@url">list of ignored pages</a> of securepages.', array('@url' => url('admin/build/securepages'))),
+            'severity'    => REQUIREMENT_ERROR,
+            'value'       => $t('Add boost-crawler to the list of ignored pages from securepages.'),
+          );
+        }
+      }
       // if the apache_get_modules function doesn't exist, skip this entirely
       if (function_exists('apache_get_modules')) {
         // Get all available Apache modules.

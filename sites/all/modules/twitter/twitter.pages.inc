@@ -155,7 +155,7 @@ function _twitter_account_list_row($account) {
 function theme_twitter_account_list_form($form) {
   if (variable_get('twitter_import', TRUE) && user_access('import own tweets')) {
     $header = array('', t('Name'), t('Description'), t('Private'), t('Import'), t('Retweets'), t('Delete'));
-  } 
+  }
   else {
     $header = array('', t('Name'), t('Description'), t('Private'), t('Delete'));
   }
@@ -178,7 +178,7 @@ function theme_twitter_account_list_form($form) {
       drupal_render($element['include_retweets']),
       drupal_render($element['delete']),
       );
-    } 
+    }
     else {
       $row = array(
       drupal_render($element['image']),
@@ -203,6 +203,7 @@ function theme_twitter_account_list_form($form) {
 }
 
 function twitter_account_list_form_submit($form, &$form_state) {
+  module_load_include('inc', 'twitter');
   $accounts = $form_state['values']['accounts'];
   foreach($accounts as $account) {
     if (empty($account['delete'])) {
@@ -279,7 +280,7 @@ function twitter_account_form($form_state, $account = NULL) {
       '#required' => TRUE,
       '#title' => t('Twitter user name'),
     );
-    
+
     $form['import'] = array(
       '#type' => 'checkbox',
       '#title' => t('Import statuses from this account'),
@@ -318,16 +319,27 @@ function twitter_account_oauth_validate($form, &$form_state) {
   $twitter = new TwitterOAuth($key, $secret);
   $token = $twitter->get_request_token();
 
-  $_SESSION['twitter_oauth']['account'] = user_load($form['uid']['#value']);  
+  $_SESSION['twitter_oauth']['account'] = user_load($form['uid']['#value']);
   $_SESSION['twitter_oauth']['token'] = $token;
   $_SESSION['twitter_oauth']['destination'] = $_GET['q'];
   drupal_goto($twitter->get_authorize_url($token));
 }
 
-
 function twitter_oauth_callback(&$form_state) {
-  $form['#post']['oauth_token'] = $_GET['oauth_token'];
+  if (isset($_GET['denied']) || empty($_GET['oauth_token'])) {
+    drupal_set_message(t('The connection to Twitter failed. Please try again.'), 'error');
+    global $user;
+    if ($user->uid) {
+      // User is logged in, was attempting to OAuth a Twitter account.
+      drupal_goto('user/' . $user->uid . '/edit/twitter');
+    }
+    else {
+      // Anonymous user, redirect to front page.
+      drupal_goto('<front>');
+    }
+  }
 
+  $form['#post']['oauth_token'] = $_GET['oauth_token'];
   $form['oauth_token'] = array(
     '#type' => 'hidden',
     '#default_value' => $_GET['oauth_token'],

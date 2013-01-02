@@ -44,6 +44,10 @@ class FeedsTermProcessor extends FeedsProcessor {
           if ($feeds_term_item = db_fetch_array(db_query("SELECT imported, guid, url, feed_nid FROM {feeds_term_item} WHERE tid = %d", $term['tid']))) {
             $term['feeds_term_item'] = $feeds_term_item;
           }
+          // Initialize default values.
+          else {
+            $term['feeds_term_item'] = array();
+          }
 
           // Allow other modules to act.
           // @todo this breaks if hooks don't exist, or hooks don't return the term
@@ -54,12 +58,14 @@ class FeedsTermProcessor extends FeedsProcessor {
 
         // Add feeds_term_item data.
         $term['feeds_term_item']['id'] = $this->id;
-        if (!isset($term['feeds_term_item']['feed_nid'])) {
-          $term['feeds_term_item']['feed_nid'] = $source->feed_nid;
-        }
-        if (!isset($term['feeds_term_item']['imported'])) {
-          $term['feeds_term_item']['imported'] = FEEDS_REQUEST_TIME;
-        }
+
+        // Set some defaults.
+        $term['feeds_term_item'] += array(
+          'feed_nid' => $source->feed_nid,
+          'imported' => FEEDS_REQUEST_TIME,
+          'url' => '',
+          'guid' => '',
+        );
 
         // Map targets.
         $term = $this->map($batch, $term);
@@ -219,11 +225,17 @@ class FeedsTermProcessor extends FeedsProcessor {
    * Override setTargetElement to operate on a target item that is a term.
    */
   public function setTargetElement(&$target_item, $target_element, $value) {
-    if (in_array($target_element, array('url', 'guid'))) {
-      $target_item['feeds_term_item'][$target_element] = $value;
-    }
-    else {
-      parent::setTargetElement($target_item, $target_element, $value);
+    switch ($target_element) {
+      case 'url':
+      case 'guid':
+        $target_item['feeds_term_item'][$target_element] = $value;
+        break;
+      case 'weight':
+        $target_item['weight'] = (int) $value;
+        break;
+      default:
+        parent::setTargetElement($target_item, $target_element, $value);
+        break;
     }
   }
 
@@ -245,6 +257,10 @@ class FeedsTermProcessor extends FeedsProcessor {
         'name' => t('Term synonyms'),
         'description' => t('One synonym or an array of synonyms of the taxonomy term.'),
       ),
+      'weight' => array(
+        'name' => t('Term weight'),
+        'description' => t('Weight of the taxonomy term.'),
+      ),
       'url' => array(
         'name' => t('URL'),
         'description' => t('The external URL of the term. E. g. the feed item URL in the case of a syndication feed. May be unique.'),
@@ -258,7 +274,9 @@ class FeedsTermProcessor extends FeedsProcessor {
     );
     // Let implementers of hook_feeds_term_processor_targets() add their targets.
     $vocabulary = $this->vocabulary();
-    drupal_alter('feeds_term_processor_targets', $targets, $vocabulary->vid);
+    if ($vocabulary) {
+      drupal_alter('feeds_term_processor_targets', $targets, $vocabulary->vid);
+    }
     return $targets;
   }
 
@@ -295,8 +313,12 @@ class FeedsTermProcessor extends FeedsProcessor {
    * vocabularies exportable.
    */
   public function vocabulary() {
+    // The default value is 0.
+    if (!$this->config['vocabulary']) {
+      return;
+    }
     $vocabularies = taxonomy_get_vocabularies();
-    if (is_numeric($this->config['vocabulary'])) {
+    if ($this->config['vocabulary'] && is_numeric($this->config['vocabulary'])) {
       return $vocabularies[$this->config['vocabulary']];
     }
     else {

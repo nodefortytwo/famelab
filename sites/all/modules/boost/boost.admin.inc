@@ -1181,7 +1181,7 @@ function boost_admin_boost_performance_page_validate($form, &$form_state) {
     $whitelist_values = explode("\n", $form_state['values']['boost_domain_whitelist']);
     $whitelist_values = array_map('trim', $whitelist_values);
     $whitelist = array_combine($whitelist_values, $whitelist_values);
-    if ($form_state['values']['boost_domain_whitelist'] && function_exists('domain_valid_domain')) {
+    if (function_exists('domain_valid_domain')) {
       foreach ($whitelist as $key => $value) {
         $error_msg = domain_valid_domain($value);
         if (!empty($error_msg)) {
@@ -1194,7 +1194,7 @@ function boost_admin_boost_performance_page_validate($form, &$form_state) {
     $whitelist_wild_values = explode("\n", $form_state['values']['boost_domain_whitelist_wild']);
     $whitelist_wild_values = array_map('trim', $whitelist_wild_values);
     $whitelist_wild = array_combine($whitelist_wild_values, $whitelist_wild_values);
-    if ($form_state['values']['boost_domain_whitelist_wild']) {
+    if (function_exists('domain_valid_domain')) {
       foreach ($whitelist_wild as $key => $value) {
         $value = str_replace('*', 'qwerqwrkasdwiopekasdn', $value);
         $error_msg = domain_valid_domain($value);
@@ -1211,7 +1211,7 @@ function boost_admin_boost_performance_page_validate($form, &$form_state) {
     $blacklist_values = explode("\n", $form_state['values']['boost_domain_blacklist']);
     $blacklist_values = array_map('trim', $blacklist_values);
     $blacklist = array_combine($blacklist_values, $blacklist_values);
-    if ($form_state['values']['boost_domain_blacklist']) {
+    if (function_exists('domain_valid_domain')) {
       foreach ($blacklist as $key => $value) {
         $error_msg = domain_valid_domain($value);
         if (!empty($error_msg)) {
@@ -1646,11 +1646,10 @@ function boost_reset_database_file_submit($form, &$form_state, $first = TRUE) {
   $GLOBALS['conf']['boost_ignore_flush'] = 0;
   if (boost_cache_clear_all()) {
     db_query("TRUNCATE {boost_cache}");
-    db_query("TRUNCATE {boost_cache_settings}");
     db_query("TRUNCATE {boost_cache_relationships}");
     db_query("TRUNCATE {boost_crawler}");
     _boost_rmdir_rf(BOOST_ROOT_CACHE_DIR, TRUE, TRUE, TRUE);
-    drupal_set_message(t('Boost: Static page cache & 4 database tables cleared.'));
+    drupal_set_message(t('Boost: Static page cache & 3 database tables cleared.'));
   }
   else {
     drupal_set_message(t('Boost: Set "Ignore cache flushing:" to \'Disabled\' in the <a href="!link">boost advanced settings</a> & try again.', array('!link' => url('admin/settings/performance/boost', array('fragment' => 'edit-boost-ignore-flush-0-wrapper')))), 'warning');
@@ -1744,7 +1743,7 @@ function boost_admin_button_router($number, $first, $form, &$form_state) {
   if (strpos($value, (string)$number) != 1) {
     $correct = substr($value, 1, 1);
     if ($first) {
-      drupal_set_message(t('FormAPI Bug Encountered; trying to work around the bug. Given: %given Wanted: %wanted.', array('%given' => $number, '%wanted' => $correct)), 'warning');
+      watchdog('boost', t('FormAPI Bug Encountered; trying to work around the bug. Given: %given Wanted: %wanted. Are you running an old version of Drupal core? For more information, see: http://drupal.org/node/630000. Please describe which button was clicked and the complete error message.', array('%given' => $number, '%wanted' => $correct)));
       switch ($correct) {
         case 0:
           boost_clear_cache_submit($form, $form_state, FALSE);
@@ -1764,7 +1763,7 @@ function boost_admin_button_router($number, $first, $form, &$form_state) {
       }
     }
     else {
-      drupal_set_message(t('FormAPI Bug Encountered; try again. Given: %given Wanted: %wanted.', array('%given' => $number, '%wanted' => $correct)), 'error');
+      drupal_set_message(t('FormAPI Bug Encountered; try again. Given: %given Wanted: %wanted. Are you running an old version of Drupal core? For more information, see: http://drupal.org/node/630000. Please describe which button was clicked and the complete error message.', array('%given' => $number, '%wanted' => $correct)), 'error');
     }
     return FALSE;
   }

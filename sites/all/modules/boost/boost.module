@@ -1282,7 +1282,8 @@ function boost_views_async() {
       $m_limit_int = substr($m_limit, 0, -1);
       $m_limit_int = (int) $m_limit_int;
       $m_limit_scale = strtoupper(substr($m_limit, -1));
-      if ($m_limit_scale == 'M') {
+
+      if ($m_limit_scale == 'M' && $m_limit_int < 256) {
         @ini_set('memory_limit', $m_limit_int*4 . 'M');
       }
 
@@ -1367,6 +1368,13 @@ function _boost_view_insert() {
   if (empty($ip)) {
     $ip = $_SERVER['SERVER_ADDR'];
   }
+
+  // Check for IPv6 addresses, must be un square brackets
+  // http://www.sixxs.net/wiki/Detecting_IPv6_In_a_Web_Page
+  if (substr_count($ip, ":") > 0 && substr_count($ip, ".") == 0) {
+    $ip = "[" . $ip . "]";
+  }
+
   $url = 'http://' . $ip . $base_path . 'boost_views.php?' . $query_string;
   $headers['Host'] = $_SERVER['HTTP_HOST'];
 
@@ -2997,7 +3005,7 @@ function boost_htaccess_cache_dir_put() {
 }
 
 function boost_htaccess_cache_dir_generate() {
-  Global $base_path;
+  global $base_path;
 
   // no dot
   $_html = str_replace('.', '', BOOST_FILE_EXTENSION);
@@ -3515,13 +3523,6 @@ function boost_cache_kill_url($urls, $force_flush = TRUE) {
   $result = boost_db_multi_select_in('boost_cache', 'hash_url', "'%s'", $hashes);
   while ($row = db_fetch_array($result)) {
     $files[] = array('filename' => $row['filename'], 'hash' => $row['hash']);
-  }
-  // Try again with a more expensive query
-  if (empty($files)) {
-    $result = boost_db_multi_select_in('boost_cache', 'url', "'%s'", $urls);
-    while ($row = db_fetch_array($result)) {
-      $files[] = array('filename' => $row['filename'], 'hash' => $row['hash']);
-    }
   }
   if (!empty($files)) {
     boost_cache_kill($files, $force_flush);
@@ -5182,15 +5183,16 @@ function _boost_get_menu_router($path = NULL, $get_array = NULL, $reset = FALSE)
     return $menu_router[$index];
   }
 
-  // Declare array keys
   $router_item = array();
-  $router_item['page_type'] = '';
-  $router_item['page_id'] = '';
   // Load the menu item
   $item = menu_get_item($path);
   if (is_array($item)) {
-    $router_item += $item;
+    $router_item = $item;
   }
+  // Declare default array keys if not done.
+  $router_item['page_callback'] = empty($router_item['page_callback']) ? '' : $router_item['page_callback'];
+  $router_item['page_type'] = empty($router_item['page_type']) ? '' : $router_item['page_type'];
+  $router_item['page_id'] = empty($router_item['page_id']) ? '' : $router_item['page_id'];
 
   // Get all args
   $args = arg($path);

@@ -806,10 +806,10 @@ function feeds_plugin_instance($plugin, $id) {
   $args = array( '%plugin' => $plugin, '@id' => $id);
   if (user_access('administer feeds')) {
     $args['@link'] = url('admin/build/feeds/edit/' . $id);
-    drupal_set_message(t('Missing Feeds plugin %plugin. See <a href="@link">@id</a>. Check whether all required libraries and modules are installed properly.', $args), 'warning');
+    drupal_set_message(t('Missing Feeds plugin %plugin. See <a href="@link">@id</a>. Check whether all required libraries and modules are installed properly.', $args), 'warning', FALSE);
   }
   else {
-    drupal_set_message(t('Missing Feeds plugin %plugin. Please contact your site administrator.', $args), 'warning');
+    drupal_set_message(t('Missing Feeds plugin %plugin. Please contact your site administrator.', $args), 'warning', FALSE);
   }
   $class = ctools_plugin_load_class('feeds', 'plugins', 'FeedsMissingPlugin', 'handler');
   return FeedsConfigurable::instance($class, $id);
@@ -949,7 +949,7 @@ function feeds_library_exists($file, $library) {
  *
  * @see valid_url().
  *
- * @todo Replace with valid_url() when http://drupal.org/node/1191252 is fixed.
+ * @todo Replace with valid_url() when http://drupal.org/node/295021 is fixed.
  */
 function feeds_valid_url($url, $absolute = FALSE) {
   if ($absolute) {
@@ -966,7 +966,7 @@ function feeds_valid_url($url, $absolute = FALSE) {
       )
       (?::[0-9]+)?                                            # Server port number (optional)
       (?:[\/|\?]
-        (?:[\w#!:\.\?\+=&@$'~*,;\/\(\)\[\]\-]|%[0-9a-f]{2})   # The path and query (optional)
+        (?:[|\w#!:\.\?\+=&@$'~*,;\/\(\)\[\]\-]|%[0-9a-f]{2})   # The path and query (optional)
       *)?
     $/xi", $url);
   }

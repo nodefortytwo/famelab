@@ -5,12 +5,11 @@
  */
 class twitter_views_handler_field_xss extends views_handler_field {
   function option_definition() {
-    $conf = TwitterConf::instance();
     $options = parent::option_definition();
     $options['link_urls'] = array('default' => TRUE);
     $options['link_usernames'] = array('default' => TRUE);
     $options['link_hashtags'] = array('default' => FALSE);
-    $options['hashtags_url'] = array('default' => 'http://' . $conf->get('search') . '/search?q=%23');
+    $options['hashtags_url'] = array('default' => variable_get('twitter_search', TWITTER_SEARCH) . '/search?q=%23');
     return $options;
   }
 
@@ -59,9 +58,39 @@ class twitter_views_handler_field_xss extends views_handler_field {
  * Field handler to provide simple renderer that turns a URL into a clickable link.
  */
 class twitter_views_handler_field_profile_image extends views_handler_field {
+  // Ensure we have the account name field to be used
+  // as alt and title attributes of the image.
+  function construct() {
+    parent::construct();
+    $this->additional_fields['name'] = 'name';
+  }
+
+  function query() {
+    parent::query();
+    $this->ensure_my_table();
+    $this->add_additional_fields();
+  }
+
   function render($values) {
+    $name = $values->{$this->aliases['name']};
     $value = $values->{$this->field_alias};
-    return theme('image', $value, '', '', array(), FALSE);
+
+    return theme('image', $value, $name, t("@name's twitter picture", array('@name' => $name)), array(), FALSE);
+  }
+}
+
+class twitter_views_handler_field_profile_url extends views_handler_field {
+  function construct() {
+    parent::construct();
+    $this->additional_fields['screen_name'] = 'screen_name';
+  }
+  function query() {
+    $this->ensure_my_table();
+    $this->add_additional_fields();
+  }
+  function render($values) {
+    $value = $values->{$this->aliases['screen_name']};
+    return twitter_profile_url($value);
   }
 }
 
