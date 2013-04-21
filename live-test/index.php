@@ -254,7 +254,7 @@
 							<div class="content">
 								<p>
 									<p style="padding-left: 20px;">
-										<iframe src="http://strong-rain-7575.herokuapp.com/"  width="640" height="360"></iframe>
+										<iframe src="http://strong-rain-7575.herokuapp.com/"  width="720" height="405"></iframe>
 									</p>
 									<p style="text-align: center;">
 										<strong>Friday 23 April 2013.  Stream starts at 7pm</strong>
