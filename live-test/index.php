@@ -90,7 +90,7 @@
                                         <iframe src="http://strong-rain-7575.herokuapp.com/"  width="640" height="360"></iframe>
                                     </p>
                                     <p style="text-align: center;">
-                                        <strong>Friday 15 June 2012.  Stream starts at 6pm</strong>
+                                        <strong>Friday 23 April 2013.  Stream starts at 7pm</strong>
                                     </p>
                                     <p style="text-align: center;">
                                          
