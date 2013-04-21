@@ -262,15 +262,20 @@
 									<p style="text-align: center;">
 										 
 									</p>
-									<h2 style="text-align: center;"> 19 scientists. 4 continents. One big question…
-									<br/>
-									Who will be crowned the FameLab International champion 2012? </h2>
+									<h2 style="text-align: center;"> 11 scientists and engineers from across the country - Who will be crowned the FameLab UK champion 2013?</h2>
 									<p style="text-align: center;">
-										19 scientists from across four continents will head to The Times Cheltenham Science Festival to compete in the International Final of the world’s greatest science communication competition – FameLab. They will have just three minutes to impress a judging panel including Marcus Brigstocke, Kathy Sykes and Robert Llewellyn in their bid to be crowned the International Champion.
+                                       Science communication doesn't get tougher than this!
+                                    </p>
+									<p style="text-align: center;">
+										Eleven of the countries best new science and engineering communicators go head to head at the Bloomsbury Theatre in London in a bid to be crowned 2013's FameLab UK champion and win the right to represent the UK in the International final at The Times Cheltenham Science Festival on June 7th.
 									</p>
+									<p style="text-align: center;">
+                                        Join a panel of esteemed judges and hundreds of audience members for a night of intrigue, amazement and a lot of fun ... All with clarity, content and charisma!
+                                    </p>
 									<p style="text-align: center;">
 										This is a live stream. If the screen goes black or freezes for extended period (during live performance times) please refresh your browser.
 									</p>
+									
 								</p>
 							</div>
 							<div class="clear-block">
