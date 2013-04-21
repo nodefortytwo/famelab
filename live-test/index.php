@@ -253,7 +253,7 @@
 							<div class="meta"></div>
 							<div class="content">
 								<p>
-									<p style="padding-left: 20px;">
+									<p style="margin-left:-10px;">
 										<iframe src="http://strong-rain-7575.herokuapp.com/"  width="720" height="405"></iframe>
 									</p>
 									<p style="text-align: center;">
