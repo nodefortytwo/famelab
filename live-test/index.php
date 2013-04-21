@@ -262,9 +262,9 @@
 									<p style="text-align: center;">
 										 
 									</p>
-									<h2 style="text-align: center;"> 11 scientists and engineers from across the country - Who will be crowned the FameLab UK champion 2013?</h2>
+									<h2 style="text-align: center;"> 11 scientists and engineers from across the country <br/> Who will be crowned the FameLab UK champion 2013?</h2>
 									<p style="text-align: center;">
-                                       Science communication doesn't get tougher than this!
+                                       <strong>Science communication doesn't get tougher than this!</strong>
                                     </p>
 									<p style="text-align: center;">
 										Eleven of the countries best new science and engineering communicators go head to head at the Bloomsbury Theatre in London in a bid to be crowned 2013's FameLab UK champion and win the right to represent the UK in the International final at The Times Cheltenham Science Festival on June 7th.
