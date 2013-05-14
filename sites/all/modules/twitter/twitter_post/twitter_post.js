@@ -15,15 +15,15 @@ Drupal.behaviors.twitter_post = function (context) {
   });
 
   if (!$("#twitter-toggle").attr("checked")) {
-    $("#twitter-textfield-wrapper").hide();
+    $(".form-item-twitter-status").hide();
   }
 
   $("#twitter-toggle").bind("click", function() {
     if ($("#twitter-toggle").attr("checked")) {
-      $("#twitter-textfield-wrapper").show();
+      $(".form-item-twitter-status").show();
     }
     else {
-      $("#twitter-textfield-wrapper").hide();
+      $(".form-item-twitter-status").hide();
     }
   });
 };

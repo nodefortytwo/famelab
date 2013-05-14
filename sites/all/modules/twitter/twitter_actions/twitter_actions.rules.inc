@@ -1,7 +1,7 @@
 <?php
 /**
  * @file
- * Provide better intergration into the rules module
+ * Provides Rules integration in order to post tweets.
  */
 
 /**
@@ -23,4 +23,3 @@ function twitter_actions_rules_action_info_alter(&$actions) {
     'configurable' => TRUE,
   );
 }
-
