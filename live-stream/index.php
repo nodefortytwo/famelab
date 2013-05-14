@@ -241,7 +241,7 @@
 								/
 							</li>
 							<li class="last">
-								Live Steam
+								Live
 							</li>
 						</ul>
 					</div>
@@ -254,10 +254,10 @@
 							<div class="content">
 								<p>
 									<p style="margin-left:-10px;">
-										<iframe src="http://strong-rain-7575.herokuapp.com/"  width="720" height="405"></iframe>
+										<iframe src="http://strong-rain-7575.herokuapp.com/"  width="725" height="410"></iframe>
 									</p>
 									<p style="text-align: center;">
-										<strong>Friday 23 April 2013.  Stream starts at 7pm</strong>
+										<strong>Tuesday 23 April 2013.  Stream starts at 7pm</strong>
 									</p>
 									<p style="text-align: center;">
 										 
