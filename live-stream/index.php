@@ -10,10 +10,10 @@
 		<link rel="shortcut icon" href="/misc/favicon.ico" type="image/x-icon" />
 		<link rel="canonical" href="http://famelab.org/" />
 		<meta name="revisit-after" content="1 day" />
-		<link type="text/css" rel="stylesheet" media="all" href="/sites/default/files/ctools/css/794772a21a181b492bd1653ec15a491b.css?Z" />
-		<link type="text/css" rel="stylesheet" media="all" href="/sites/default/files/css/css_410aba3ccde9a487edc08f88511b660b.css" />
-		<link type="text/css" rel="stylesheet" media="screen" href="/sites/default/files/css/css_665937603475d2b11c5155f9768d9c16.css" />
-		<script type="text/javascript" src="/sites/default/files/js/js_37244cff5f3005637e3a88bfcf1e7b90.js"></script>
+  		<link type="text/css" rel="stylesheet" media="all" href="./794772a21a181b492bd1653ec15a491b.css?o" />
+		<link type="text/css" rel="stylesheet" media="all" href="./css_bb77b879e84c6545b8148baf2ea5cead.css" />
+		<link type="text/css" rel="stylesheet" media="screen" href="./css_4f4924658dd1eb7619a9e21ea3d04936.css" />
+  <script type="text/javascript" src="./js_0014e7b0b149a3973dcbfe2b13214a4b.js"></script>
 		<script type="text/javascript">
 			<!--//--><![CDATA[//><!--
 			jQuery.extend(Drupal.settings, {
@@ -247,7 +247,7 @@
 					</div>
 				</div>
 				<div id="main" class="column grid-12 push-4 omega alpha">
-					<h1 class="title" id="page-title"><span>Live Steam</span></h1>
+					<h1 class="title" id="page-title"><span>Live Stream</span></h1>
 					<div id="main-content" class="region clear-block grid-12 omega alpha">
 						<div id="node-951" class="node clear-block">
 							<div class="meta"></div>
@@ -257,23 +257,24 @@
 										<iframe src="http://strong-rain-7575.herokuapp.com/"  width="725" height="410"></iframe>
 									</p>
 									<p style="text-align: center;">
-										<strong>Tuesday 23 April 2013.  Stream starts at 7pm</strong>
+										<strong>Friday 07 June 2013.  Stream starts just before 6.30 pm UK</strong>
 									</p>
 									<p style="text-align: center;">
 										 
 									</p>
-									<h2 style="text-align: center;"> 11 scientists and engineers from across the country <br/> Who will be crowned the FameLab UK champion 2013?</h2>
+									<h2 style="text-align: center;"> 10 scientists and engineers have battled it out through regional heats, national finals and international semi-finals - now it all comes down to this one event and just 3 minutes!</h2>
+									<p style="text-align: center"><strong>Who will be crowned the international FameLab champion 2013?</strong></p>
 									<p style="text-align: center;">
                                        <strong>Science communication doesn't get tougher than this!</strong>
                                     </p>
 									<p style="text-align: center;">
-										Eleven of the countries best new science and engineering communicators go head to head at the Bloomsbury Theatre in London in a bid to be crowned 2013's FameLab UK champion and win the right to represent the UK in the International final at The Times Cheltenham Science Festival on June 7th.
+										Live from 'the Glastonbury of Science' at The Times Cheltenham Science Festival on June 7th
 									</p>
 									<p style="text-align: center;">
-                                        Join a panel of esteemed judges and hundreds of audience members for a night of intrigue, amazement and a lot of fun ... All with clarity, content and charisma!
+                                        Join a panel of esteemed judges, hundreds of audience members and thousands of viewers from around the world for a night of intrigue, amazement and a lot of fun ... All with clarity, content and charisma!
                                     </p>
 									<p style="text-align: center;">
-										This is a live stream. If the screen goes black or freezes for extended period (during live performance times) please refresh your browser.
+										This will be a live stream. If the screen goes black or freezes for extended period (during live performance times) please refresh your browser.
 									</p>
 									
 								</p>
