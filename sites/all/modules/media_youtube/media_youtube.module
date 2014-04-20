@@ -571,7 +571,7 @@ function media_youtube_emfield_data($video_id) {
   }
   // Get info from a single video.
   else {
-    $url = 'http://youtube.com/v/'. $video_id;
+    $url = 'http://youtube.com/embed/'. $video_id;
     $data['playlist'] = 0;
     // Get the large thumbnail.
     $data['thumbnail']['url'] = 'http://img.youtube.com/vi/'. $video_id .'/0.jpg';

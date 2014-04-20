@@ -35,7 +35,7 @@ function template_preprocess_media_youtube_html5(&$variables) {
   $variables = array_merge($variables, $variables['variables']);
 
   $video_id = $variables['video_id'];
-  $variables['url'] = isset($variables['url']) ? $variables['url'] : "http://www.youtube.com/v/$video_id";
+  $variables['url'] = isset($variables['url']) ? $variables['url'] : "http://www.youtube.com/embed/$video_id";
   $variables['url'] = check_plain($variables['url']);
   $variables['width'] = check_plain($variables['width']);
   $variables['height'] = check_plain($variables['height']);
@@ -51,7 +51,7 @@ function template_preprocess_media_youtube_default_external(&$variables) {
 
   $variables['flashvars'] = drupal_query_string_encode(array('playerMode' => 'embedded'));
   $video_id = $variables['video_id'];
-  $variables['url'] = isset($variables['url']) ? $variables['url'] : "http://www.youtube.com/v/$video_id";
+  $variables['url'] = isset($variables['url']) ? $variables['url'] : "http://www.youtube.com/embed/$video_id";
   $variables['url'] = check_plain($variables['url']);
   $variables['width'] = check_plain($variables['width']);
   $variables['height'] = check_plain($variables['height']);
