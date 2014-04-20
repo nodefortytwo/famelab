@@ -267,13 +267,15 @@
 								<p style="text-align:center;"><strong>Want to be there in person? TICKETS are only £8 and available here:</strong> <a href="http://www.thebloomsbury.com/event/run/0775">http://www.thebloomsbury.com/event/run/0775</a></p>
 
 
-								<a class="twitter-timeline" href="https://twitter.com/search?q=famelab" data-widget-id="330804112058880001">Tweets about "famelab"</a>
-								<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
 
 							</div>
 							<div class="clear-block"></div>
 						</div>
 					</div>
+
+					<a class="twitter-timeline" href="https://twitter.com/search?q=famelab" data-widget-id="330804112058880001">Tweets about "famelab"</a>
+					<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
 				</div>
 				<div id="sidebar-left" class="column sidebar region grid-4 pull-12">
 					<div id="block-boxes-follow_us" class="block block-boxes">
@@ -302,17 +304,7 @@
 							</div>
 						</div>
 					</div>
-					<div id="block-boxes-twitter" class="block block-boxes">
-						<div class="content">
-							<div id='boxes-box-twitter' class='boxes-box'>
-								<div class="boxes-box-content">
-									<a class="twitter-timeline" href="https://twitter.com/search?q=famelab" data-widget-id="330804112058880001">Tweets about "famelab"</a>
-									<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
+					
 			</div>
 		</div></div>
 		<div id="footer-group-wrapper" class="full-width">
