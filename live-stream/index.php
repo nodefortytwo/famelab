@@ -13,7 +13,10 @@
   		<link type="text/css" rel="stylesheet" media="all" href="./794772a21a181b492bd1653ec15a491b.css?o" />
 		<link type="text/css" rel="stylesheet" media="all" href="./css_bb77b879e84c6545b8148baf2ea5cead.css" />
 		<link type="text/css" rel="stylesheet" media="screen" href="./css_4f4924658dd1eb7619a9e21ea3d04936.css" />
-  <script type="text/javascript" src="./js_0014e7b0b149a3973dcbfe2b13214a4b.js"></script>
+		<style>
+
+		</style>
+  		<script type="text/javascript" src="./js_0014e7b0b149a3973dcbfe2b13214a4b.js"></script>
 		<script type="text/javascript">
 			<!--//--><![CDATA[//><!--
 			jQuery.extend(Drupal.settings, {
@@ -176,7 +179,7 @@
 		</script>
 	</head>
 
-	<body class="front not-logged-in page-front no-sidebars ">
+	<body class="not-logged-in page-front no-sidebars ">
 		<div id="header-group-wrapper" class="full-width">
 			<div id="header-group" class="container-16">
 				<div id="header-group-inner" class="grid-16">
