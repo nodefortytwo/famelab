@@ -14,7 +14,9 @@
 		<link type="text/css" rel="stylesheet" media="all" href="./css_bb77b879e84c6545b8148baf2ea5cead.css" />
 		<link type="text/css" rel="stylesheet" media="screen" href="./css_4f4924658dd1eb7619a9e21ea3d04936.css" />
 		<style>
-
+		#twitter-widget-0{
+			width:700px;
+		}
 		</style>
   		<script type="text/javascript" src="./js_0014e7b0b149a3973dcbfe2b13214a4b.js"></script>
 		<script type="text/javascript">
