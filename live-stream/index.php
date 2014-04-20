@@ -252,36 +252,19 @@
 						<div id="node-951" class="node clear-block">
 							<div class="meta"></div>
 							<div class="content">
-								<p>
-									<p style="margin-left:-10px;">
-										<iframe src="http://strong-rain-7575.herokuapp.com/"  width="725" height="410"></iframe>
-									</p>
-									<p style="text-align: center;">
-										<strong>Friday 07 June 2013.  Stream starts just before 6.30 pm UK</strong>
-									</p>
-									<p style="text-align: center;">
-										 
-									</p>
-									<h2 style="text-align: center;"> 10 scientists and engineers have battled it out through regional heats, national finals and international semi-finals - now it all comes down to this one event and just 3 minutes!</h2>
-									<p style="text-align: center"><strong>Who will be crowned the international FameLab champion 2013?</strong></p>
-									<p style="text-align: center;">
-                                       <strong>Science communication doesn't get tougher than this!</strong>
-                                    </p>
-									<p style="text-align: center;">
-										Live from 'the Glastonbury of Science' at The Times Cheltenham Science Festival on June 7th
-									</p>
-									<p style="text-align: center;">
-                                        Join a panel of esteemed judges, hundreds of audience members and thousands of viewers from around the world for a night of intrigue, amazement and a lot of fun ... All with clarity, content and charisma!
-                                    </p>
-									<p style="text-align: center;">
-										This will be a live stream. If the screen goes black or freezes for extended period (during live performance times) please refresh your browser.
-									</p>
-									
-								</p>
+								
+								<p style="text-align:center;"><strong>FameLab UK Final 2014</strong></p>
+
+								<p style="text-align:center;">Live streamed here on <strong>Wednesday, April 23</strong> at <strong>7.00 PM (BST)</strong></p>
+
+								<p style="text-align:center;">For full details on this year's finalists, judges and more please see: <a href="http://www.famelab.org/uk/Final_2014">http://www.famelab.org/uk/Final_2014</a></p>
+
+								<p style="text-align:center;">This year's final is happening at the Bloomsbury Theatre in London</p>
+
+								<p style="text-align:center;"><strong>Want to be there in person? TICKETS are only £8 and available here:</strong> <a href="http://www.thebloomsbury.com/event/run/0775">http://www.thebloomsbury.com/event/run/0775</a></p>
+
 							</div>
-							<div class="clear-block">
-								 
-							</div>
+							<div class="clear-block"></div>
 						</div>
 					</div>
 				</div>
