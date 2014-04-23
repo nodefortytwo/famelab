@@ -268,7 +268,7 @@
 
 								<p style="text-align:center;"><strong>Want to be there in person? TICKETS are only £8 and available here:</strong> <a href="http://www.thebloomsbury.com/event/run/0775">http://www.thebloomsbury.com/event/run/0775</a></p>
 
-								<iframe width="853" height="480" src="//www.youtube.com/embed/pg_i_8KMXuA?rel=0" frameborder="0" allowfullscreen></iframe>
+								<iframe width="700" height="420" src="//www.youtube.com/embed/pg_i_8KMXuA?rel=0" frameborder="0" allowfullscreen style="margin-left:-10px;"></iframe>
 
 							</div>
 							<div class="clear-block"></div>
